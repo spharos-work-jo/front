@@ -1,2 +1,1 @@
-# frontend
-ssg point frontend
+Spharos Front
