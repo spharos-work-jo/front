@@ -85,3 +85,76 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
   background: #000;
   margin-left: 8px;
 }
+
+.footer_box {
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
+  padding: 26px 25px 35px 25px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.footer_box li {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 20px 0 0;
+}
+
+
+.info_box {
+  margin-bottom: 20px;
+}
+.info_box p {
+  font-weight: 600;
+}
+
+.ssg_cs {
+  font-size: 14px;
+  line-height: 1em;
+  padding: 0 0 10px 0;
+  display: block;
+  letter-spacing: .5px;
+}
+
+.tel {
+  color: #000;
+  font-size: 26px;
+  line-height: 1em;
+  font-weight: 500;
+  letter-spacing: 0;
+  display: inline-block;
+  vertical-align: top;
+
+}
+
+.op_time {
+  font-size: 12px;
+  line-height: 18px;
+  margin: -27px 0 0 20px;
+  display: inline-block;
+}
+
+.footer_box li a {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  height: 20px;
+  line-height: 20px;
+}
+
+.txt_cnt {
+  font-size: 11px;
+}
+.txt_cnt .txt {
+  padding: 3px 0 10px 0;
+}
+
+.we_mark {
+  position: absolute;
+  right: 15px;
+  top: 158px;
+}
+
+.we_mark img {
+  width: 67px;
+}
