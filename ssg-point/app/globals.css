@@ -86,6 +86,13 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
   margin-left: 8px;
 }
 
+/* 버튼 하얀 색 */
+.btn_white {
+  color: #000;
+  background: #fff;
+  border: 1px solid #bcbcbc;
+}
+
 .footer_box {
   position: relative;
   background: #fff;

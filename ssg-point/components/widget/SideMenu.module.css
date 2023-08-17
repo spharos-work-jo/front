@@ -70,6 +70,13 @@
   margin-left: 8px;
 }
 
+.btn_white {
+  padding-top: 6px;
+  color: #000;
+  background: #fff;
+  border: 1px solid #bcbcbc;
+}
+
 .side_fav{
   position: relative;
   background: #fff9ea;
