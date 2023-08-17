@@ -184,12 +184,12 @@ function MenuBox (props: {menuList: MenuList[]}) {
     <div className={styles.shortcut_wrap}>
       <div className={styles.shortcut_menu_box}>
          
-        {menuList.map((item)=>(
-          <>
-            <h3 key={item.main}>{item.main}</h3> 
-            <ul className={styles.menu_list}>
-              {item.menu.map((mm)=> (
-                <li className='w-1/2 sm:w-1/3'>
+        {menuList.map((item, idx)=>(
+          <div key={idx}>
+            <h3 >{item.main}</h3> 
+            <ul  className={styles.menu_list}>
+              {item.menu.map((mm, idx)=> (
+                <li key={idx}  className='w-1/2 sm:w-1/3'>
                   <Link href={mm.url}>
                     <img src={mm.img_url}></img>
                     {mm.name}
@@ -197,7 +197,8 @@ function MenuBox (props: {menuList: MenuList[]}) {
                 </li>
               ))}
             </ul>
-          </>
+          </div>
+          
           ))}
       </div>
     </div>

@@ -6,7 +6,6 @@
   --ssg-point-primary: #000;
   --ssg-point-secondary: #fff;
   --ssg-point-tertiary: #f5f5f5;
-
   --ssg-point-primary-gradient: linear-gradient(126deg, #F40000 0%, #E6772A 7.29%, #EE9C38 17.71%, #EDAE3D 53.36%, #E78A41 65.63%, #A460C4 79.52%, #9C6BC2 88.98%, #71A2B9 96.55%);
 }
 
@@ -58,4 +57,31 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   padding-bottom: 0;
+}
+
+/* 버튼 */
+.btn_box {
+  border-radius: 8px;
+  width: 50%;
+  height: 36px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 1000;
+}
+
+/* 버튼 메인 색, 알록달록 */
+.btn_primary {
+  padding-top: 6px;
+  background: linear-gradient(110deg,#f40000 -5.78%,#ff8a00 17.06%,#f8b404 33.44%,#f9ad05 48.81%,#ff8a00 64.68%,#b258cb 85.01%,#00c4b4 103.04%);
+  /* background: var(--ssg-point-primary-gradient); */
+  color: #000;
+}
+
+/* 버튼 서브 색, 검정색 */
+.btn_sub {
+  padding-top: 6px;
+  color: #fff;
+  background: #000;
+  margin-left: 8px;
 }
