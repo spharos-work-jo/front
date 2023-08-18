@@ -5,6 +5,8 @@ import styles from "./SideMenu.module.css";
 import Logo from "../ui/header/Logo";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import path from "path";
 
 const favUrl =
   "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_big_";
@@ -31,11 +33,15 @@ function SideMenu(props: {
     point: string;
   }
   // 로그인 됐다고 가정
-  // const [user, setUser] = useState<User | null>(null);
-  const [user, setUser] = useState<User | null>({name: '배송윤', point: '0'});
-
+  const [user, setUser] = useState<User | null>(null);
   // const user: User = { name: "배송윤", point: "0" };
+  const [prevPath, setPrevPath] = useState<string>('');
 
+  const pathname = usePathname(); 
+  const prev = pathname;
+  console.log(pathname)
+
+  
   const { isOpened, setIsOpened } = props;
   const ssgPointLogoUrl =
     "https://m.shinsegaepoint.com/img/logo_header.840b502c.gif";
@@ -142,7 +148,7 @@ function SideMenu(props: {
       ],
     },
   ];
-  console.log(user);
+
   return (
     <>
       <div
