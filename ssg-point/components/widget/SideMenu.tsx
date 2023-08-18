@@ -33,7 +33,7 @@ function SideMenu(props: {
     point: string;
   }
   // 로그인 됐다고 가정
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | null>(null );
   // const user: User = { name: "배송윤", point: "0" };
   const [prevPath, setPrevPath] = useState<string>('');
 
