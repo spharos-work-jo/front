@@ -35,7 +35,7 @@ function HeaderTop() {
       ? 
       <Logo url={'/'} imgUrl={'https://m.shinsegaepoint.com/img/logo_header.840b502c.gif'} imgAlt={'신세계포인트 로고'}      
       /> 
-      : "other component" }
+      : "other" }
       <nav className='header_menu'>
         <ul className='flex gap-4 justify-center items-center'>
           <li className='text-sm font-medium'>
