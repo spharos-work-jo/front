@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import path from "path";
+import { useRouter } from "next/navigation";
 
 const favUrl =
   "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_big_";
@@ -22,32 +23,26 @@ interface MenuList {
   menu: MenuItem[];
 }
 
+interface User {
+  name: string;
+  email?: string;
+  phone?: string;
+  point: string;
+}
 function SideMenu(props: {
   isOpened: Boolean;
   setIsOpened: React.Dispatch<React.SetStateAction<Boolean>>;
 }) {
-  interface User {
-    name: string;
-    email?: string;
-    phone?: string;
-    point: string;
-  }
   // 로그인 됐다고 가정
-  const [user, setUser] = useState<User | null>(null );
+  const [user, setUser] = useState<User | null>(null);
   // const user: User = { name: "배송윤", point: "0" };
-  const [prevPath, setPrevPath] = useState<string>('');
 
-  const pathname = usePathname(); 
-  const prev = pathname;
-  console.log(pathname)
-
-  
   const { isOpened, setIsOpened } = props;
   const ssgPointLogoUrl =
     "https://m.shinsegaepoint.com/img/logo_header.840b502c.gif";
 
   // todo : 타입 변환 필요
-  const favList: any[] = [
+  const favList: string[][] = [
     ["포인트 내역", "00.png", "my_point"],
     ["포인트 카드", "01.png"],
     ["선물하기", "02.png"],
@@ -226,8 +221,12 @@ function SideMenu(props: {
         {/* 즐겨찾기 메뉴 리스트 */}
         <FavList favList={favList}></FavList>
 
+        {/* 로그인 시 보임 */}
+        <MyPage></MyPage>
+
         {/* 메뉴 박스 */}
         <MenuBox menuList={menuList}></MenuBox>
+
         <button
           className={styles.close_btn}
           onClick={() => setIsOpened(false)}
@@ -243,6 +242,7 @@ function SideMenu(props: {
 
 export default SideMenu;
 
+// 즐겨찾기 메뉴
 function FavList(props: { favList: any }) {
   return (
     <div className={styles.side_fav}>
@@ -269,27 +269,177 @@ function FavList(props: { favList: any }) {
   );
 }
 
+const menu_tit =
+  "pb-[8px] text-base font-bold leading-7 border-b border-black ";
+const acco_btn =
+  "relative block w-[100%] h-[48px] text-left text-[14px] leading-6";
+
+// 로그인 시 보이는 메뉴
+function MyPage() {
+  const menuList = [
+    {
+      main: "마이 포인트",
+      menu: [
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+      ],
+    },
+    {
+      main: "마이 혜택",
+      menu: [
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+        {
+          img_url:
+            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
+          name: "포인트 내역",
+          url: "/",
+        },
+      ],
+    },
+  ];
+
+  const [accOn, setAccOn] = useState<boolean>(false);
+
+  // 마이 페이지 요소 숨기기
+  const handleClick = (e: any) => {
+    const val = e.target.value;
+
+    const changeHidden = document.getElementById(val);
+    if (changeHidden?.classList.contains("hidden")) {
+      changeHidden.classList.remove("hidden");
+      e.target.children[0].style.backgroundPosition = "0  -7px";
+    } else {
+      changeHidden?.classList.add("hidden");
+      e.target.children[0].style.backgroundPosition = "0  1px";
+    }
+  };
+
+  return (
+    <div className="pt-[24px] px-[20px] ">
+      <h3 className={menu_tit}>마이 페이지</h3>
+      <div className="">
+        {menuList.map((item, idx) => (
+          <div className="border-b" key={idx}>
+            <button
+              value={idx}
+              className={acco_btn}
+              onClick={(e) => handleClick(e)}
+            >
+              {item.main}
+              <span className={styles.acco_arrow}></span>
+            </button>
+            <div id={`${idx}`} className="ul_box">
+              <ul className="pb-[34px] mt-[-10px]">
+                {item.menu.map((mm, idx) => (
+                  <li
+                    key={idx}
+                    className="w-1/2 sm:w-1/3 inline-block align-top pt-[20px] "
+                  >
+                    <Link
+                      className="flex items-center text-[13px] font-semibold  "
+                      href={mm.url}
+                    >
+                      <Image
+                        src={mm.img_url}
+                        width={20}
+                        height={20}
+                        alt="메뉴 이미지"
+                      ></Image>
+                      {mm.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// 메뉴 박스
 function MenuBox(props: { menuList: MenuList[] }) {
   const { menuList } = props;
+
   return (
     <div className={styles.shortcut_wrap}>
       <div className={styles.shortcut_menu_box}>
         {menuList.map((item, idx) => (
-          <div key={idx}>
-            <h3>{item.main}</h3>
-            <ul className={styles.menu_list}>
-              {item.menu.map((mm, idx) => (
-                <li key={idx} className="w-1/2 sm:w-1/3">
-                  <Link href={mm.url}>
-                    <img src={mm.img_url}></img>
-                    {mm.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <MenuItem item={item} idx={idx} key={idx}></MenuItem>
         ))}
       </div>
+    </div>
+  );
+}
+
+// 세부 아이템
+function MenuItem(props: { item: MenuList; idx: number }) {
+  const { item, idx } = props;
+  return (
+    <div className={`${idx > 0 ? "mt-[40px]" : ""}`} key={idx}>
+      <h3 className={menu_tit}>{item.main}</h3>
+      <ul className={styles.menu_list}>
+        {item.menu.map((mm, idxx) => (
+          <li key={idxx} className="w-1/2 sm:w-1/3">
+            <Link href={mm.url}>
+              <Image
+                className="mr-[4px]"
+                src={mm.img_url}
+                width={20}
+                height={20}
+                alt="메뉴 이미지"
+              ></Image>
+              {mm.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
