@@ -343,12 +343,11 @@ function MyPage() {
     },
   ];
 
-  const [accOn, setAccOn] = useState<boolean>(false);
-
   // 마이 페이지 요소 숨기기
   const handleClick = (e: any) => {
     const val = e.target.value;
-
+    
+    // 클릭 시 토글
     const changeHidden = document.getElementById(val);
     if (changeHidden?.classList.contains("hidden")) {
       changeHidden.classList.remove("hidden");
