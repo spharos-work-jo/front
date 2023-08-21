@@ -36,8 +36,8 @@ const Footer = () => {
             ㈜이마트 서울시 중구 세종대로 7길 37(순화동)
           </span>
           <br />
-          <span className="txt1">대표자 : 강희석</span>
-          <span className="txt2">사업자등록번호 : 206-86-50913</span>
+          <span className="txt1">대표자 : 강희석 </span>
+          <span className="txt2">   사업자등록번호 : 206-86-50913</span>
         </p>
         <p className="copyright">
           COPYRIGHT (c) EMART INC. ALL RIGHTS RESERVED.

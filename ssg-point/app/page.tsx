@@ -1,20 +1,24 @@
-import styles from './page.module.css'
+import EventBanner from "@/components/pages/home/EventBanner";
+import styles from './globals.css'
+
+
+export interface EventType {
+    id : string,
+    img_url : string
+    }
+export const eventData: EventType[] = [
+    { id: '1', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" }, 
+    { id: '2', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
+    { id: '3', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
+    ];
 
 export default function Home() {
-  return (
 
-    <main className='mt-10' style={{marginTop: '120px'}}>
-      <section id="main_event_banner">
-        <div className="event_banner_wrap">
-            <img src="./assets/images/event/main_event01.jpg" alt="이벤트 배너" />
-            <div className="progress_nav_wrap">
-                <div className="progress_bar"></div>
-                <div className="progress_step">
-                    <p><span>1</span>/6</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  return (
+    <div>
+     <EventBanner
+        dataList={eventData}
+     />
 
     <section id="main">
         <div className={styles.main_menu}>
@@ -53,7 +57,11 @@ export default function Home() {
         </div>
     </section>
 
-    </main>
+    </div>
 
-  )
+
+
+  );
 }
+
+
