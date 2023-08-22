@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 
 import HeaderUserStatus from './HeaderUserStatus'
@@ -9,12 +8,19 @@ import SideMenu from '../widget/SideMenu'
 import Logo from '../ui/header/Logo'
 import { usePathname } from 'next/navigation'
 
-function HeaderTop() {
+interface HeaderTopProps{
+  passedData: string;
+}
+
+
+function HeaderTop(props:HeaderTopProps) {
   const [isLogin, setIsLogin] = useState<Boolean>(false)
   const [isOpened, setIsOpened] = useState<Boolean>(false)
 
   const pathname = usePathname();
 
+  const {passedData} = props;
+  
   // url 변동 시 사이드메뉴 닫기
   useEffect(()=>{
     if (isOpened) {
@@ -35,7 +41,7 @@ function HeaderTop() {
       ? 
       <Logo url={'/'} imgUrl={'https://m.shinsegaepoint.com/img/logo_header.840b502c.gif'} imgAlt={'신세계포인트 로고'}      
       /> 
-      : "other" }
+      : passedData }
       <nav className='header_menu'>
         <ul className='flex gap-4 justify-center items-center'>
           <li className='text-sm font-medium'>

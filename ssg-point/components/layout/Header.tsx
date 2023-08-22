@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <header className='main_header'>
-      <HeaderTop />
+      <HeaderTop passedData=""/>
       <HeaderBottom />
     </header>
   )
