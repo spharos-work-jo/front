@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import HeaderUserStatus from './HeaderUserStatus'
 import SideMenu from '../widget/SideMenu'
@@ -12,11 +12,19 @@ import { usePathname } from 'next/navigation'
 function HeaderTop() {
   const [isLogin, setIsLogin] = useState<Boolean>(false)
   const [isOpened, setIsOpened] = useState<Boolean>(false)
+
   const pathname = usePathname();
 
+  // url 변동 시 사이드메뉴 닫기
+  useEffect(()=>{
+    if (isOpened) {
+      setIsOpened(!isOpened)
+    }
+  }, [pathname])
+
+  
   const handleSideMenu = () => {
     setIsOpened(!isOpened)
-    console.log(isOpened)
   }
 
   return (
@@ -27,7 +35,7 @@ function HeaderTop() {
       ? 
       <Logo url={'/'} imgUrl={'https://m.shinsegaepoint.com/img/logo_header.840b502c.gif'} imgAlt={'신세계포인트 로고'}      
       /> 
-      : "other component" }
+      : "other" }
       <nav className='header_menu'>
         <ul className='flex gap-4 justify-center items-center'>
           <li className='text-sm font-medium'>
@@ -36,7 +44,7 @@ function HeaderTop() {
             : <Link href='/login'>로그인</Link> }
           </li>
           <li onClick={handleSideMenu}>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <svg className='cursor-pointer' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M4 5H20" stroke="#121212" strokeWidth="2" strokeLinecap="round"/>
               <path d="M4 12L20 12" stroke="#121212" strokeWidth="2" strokeLinecap="round"/>
               <path d="M4 19H20" stroke="#121212" strokeWidth="2" strokeLinecap="round"/>
