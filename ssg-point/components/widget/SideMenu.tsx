@@ -5,6 +5,7 @@ import styles from "./SideMenu.module.css";
 import Logo from "../ui/header/Logo";
 import Link from "next/link";
 import Image from "next/image";
+import { User } from "@/types/user";
 
 const favUrl =
   "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_big_";
@@ -20,12 +21,7 @@ interface MenuList {
   menu: MenuItem[];
 }
 
-interface User {
-  name: string;
-  email?: string;
-  phone?: string;
-  point: string;
-}
+
 function SideMenu(props: {
   isOpened: Boolean;
   setIsOpened: React.Dispatch<React.SetStateAction<Boolean>>;

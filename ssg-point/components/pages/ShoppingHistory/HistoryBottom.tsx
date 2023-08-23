@@ -1,3 +1,4 @@
+import { EventType } from "@/types/event";
 import React from "react";
 
 //bar_graph 태그의 height는  (적립포인트 / 총 보유 포인트 * 100)%
@@ -23,10 +24,6 @@ const HistoryBottom = () => {
     zIndex: "0",
   };
 
-  interface EventType {
-    id : string,
-    img_url : string
-  }
 
   const EventData: EventType[] = [
     { id: '1', img_url: "" }, 
