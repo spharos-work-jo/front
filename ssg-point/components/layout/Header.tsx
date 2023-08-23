@@ -11,7 +11,7 @@ const Header = () => {
     <header className='main_header'>
       <HeaderTop />
       {
-        pathname === '/' ?  <HeaderBottom /> : null
+        (pathname === '/' || pathname === 'coupon') ?  <HeaderBottom /> : null
       } 
 
     </header>

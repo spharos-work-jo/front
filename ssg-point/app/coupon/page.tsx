@@ -1,10 +1,13 @@
 import React from 'react'
+import CouponPageTop from '@/components/pages/coupon-page/CouponPageTop';
+import CouponPageBot from '@/components/pages/coupon-page/CouponPageBot';
 
 const coupon = () => { 
   return (
-    <section>
+    <section className="pt-[4rem]">
 
-        coupon
+        <CouponPageTop></CouponPageTop>
+        <CouponPageBot></CouponPageBot>
 
     </section>
   )

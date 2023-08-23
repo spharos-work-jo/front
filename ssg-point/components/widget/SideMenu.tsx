@@ -5,7 +5,7 @@ import styles from "./SideMenu.module.css";
 import Logo from "../ui/header/Logo";
 import Link from "next/link";
 import Image from "next/image";
-import { User } from "@/types/user";
+import { User } from "@/types/userType";
 
 const favUrl =
   "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_big_";

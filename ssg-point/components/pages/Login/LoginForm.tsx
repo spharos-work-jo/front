@@ -103,7 +103,8 @@ function LoginForm() {
       <input 
         type={pwType ? 'password' : 'text'}
         name="password" 
-        id="password" 
+        id="password"
+        placeholder='비밀번호 (영문, 숫자, 특수문자 8~20자)' 
         className='w-full rounded-3xl bg-white p-3 text-sm border border-black-500'
         onChange={handleOnChange}
       />
