@@ -1,5 +1,5 @@
 import EventBanner from "@/components/pages/home/EventBanner";
-import styles from './globals.css'
+import styles from './page.module.css'
 
 
 export interface EventType {
@@ -19,6 +19,8 @@ export default function Home() {
      <EventBanner
         dataList={eventData}
      />
+
+
 
     <section id="main">
         <div className={styles.main_menu}>
