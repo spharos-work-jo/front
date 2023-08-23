@@ -1,9 +1,13 @@
+import LoginForm from '@/components/pages/Login/LoginForm'
+import Logo from '@/components/ui/header/Logo'
 import React from 'react'
+// get path from 'path'
 
-const Login = () => {
+function Login() {
   return (
-    <section>
-      
+    <section className='flex flex-col items-center gap-10 pt-20'>
+      <Logo url={'/'} imgAlt={'Login Logo'} />
+      <LoginForm />
     </section>
   )
 }
