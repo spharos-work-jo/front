@@ -16,6 +16,28 @@ export default function Home() {
         </div>
     </section>
 
+import EventBanner from "@/components/pages/home/EventBanner";
+import styles from './globals.css'
+
+
+export interface EventType {
+    id : string,
+    img_url : string
+    }
+export const eventData: EventType[] = [
+    { id: '1', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" }, 
+    { id: '2', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
+    { id: '3', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
+    ];
+
+export default function Home() {
+
+  return (
+    <div>
+     <EventBanner
+        dataList={eventData}
+     />
+
     <section id="main">
         <div className={styles.main_menu}>
                 <ul>
@@ -53,7 +75,11 @@ export default function Home() {
         </div>
     </section>
 
-    </main>
+    </div>
 
-  )
+
+
+  );
 }
+
+
