@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "ssg-point-client",
   "version": "0.1.0",
   "private": true,
@@ -26,5 +27,12 @@
   },
   "devDependencies": {
     "@mdi/js": "^7.2.96"
+=======
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-slick": "^0.29.0",
+    "slick": "^1.12.2",
+    "swiper": "^10.2.0"
+>>>>>>> ad78b4de55c064cfb5ff4290e1a3170c1e40ac64
   }
 }
