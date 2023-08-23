@@ -5,9 +5,6 @@ import styles from "./SideMenu.module.css";
 import Logo from "../ui/header/Logo";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
-import path from "path";
-import { useRouter } from "next/navigation";
 
 const favUrl =
   "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_big_";
