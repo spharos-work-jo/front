@@ -25,14 +25,13 @@ const signupInfoBottom = () => {
                 ))
               }
             </ol>
-            <div className='w-full'>
-    
+            <div className='w-full py-8'>
               <Link href='signup/cert'>
-                <p className='w-full p-4 text-center text-black text-sm rounded-md'>
+                <p className='w-full p-4 text-center text-black text-sm rounded-lg bg-ssg-linear'>
                   회원가입
                 </p>
               </Link>
-              <p className=''>만 14세 미만 아동은 회원가입할 수 없습니다.</p>
+              <p className='text-xs text-center pt-6 text-gray-400'>만 14세 미만 아동은 회원가입할 수 없습니다.</p>
             </div>
           </div>
         </>
