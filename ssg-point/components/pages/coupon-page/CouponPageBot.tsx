@@ -19,7 +19,7 @@ const CouponPageBot = () => {
               <li className='pt-0 text-[13px] text-center leading-5 w-44 bg-auto items-center justify-between'>
                 <Link href='/mycoupon' className='inline-block box-border pt-7 h-16 bg-auto'>
 
-                  <img src="/assets/images/coupon/my_coupon.png" alt="마이쿠폰함" width={96} height={60}/>
+                  <img src="/assets/images/coupon/my_coupon.png" alt="마이쿠폰함" width={65} height={65}/>
 
                   마이쿠폰함으로 이동
                   
@@ -64,7 +64,7 @@ const CouponInput = () => {
         </label>
         
         <button>
-          삭제
+
         </button>
 
       </div>
@@ -74,7 +74,7 @@ const CouponInput = () => {
           다음에 하기
         </button>
 
-        <button className='w-full rounded-lg bg-linear-gradient text-black p-3 text-sm border border-black-500'>
+        <button className='w-full rounded-lg bg-gradient text-black p-3 text-sm border border-black-500'>
           등록하기
         </button>
 

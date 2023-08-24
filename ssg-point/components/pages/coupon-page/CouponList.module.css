@@ -1,0 +1,11 @@
+.col:before {
+    content: "";
+    clear: both;
+    display: inline-block;
+    width: 1px;
+    height: 10px;
+    background: #cbcbcb;
+    margin-right: 8px;
+    vertical-align: middle;
+    margin-bottom: 1px;
+}
