@@ -8,5 +8,6 @@ export interface PageTitleType {
     {path: "coupon", title: "쿠폰",},
     {path: "ingevents", title: "이벤트 - 진행 이벤트",},
     {path: "endevents", title: "이벤트 - 종료 이벤트",},
-    {path: "mylounge", title: "마이라운지",}
+    {path: "mylounge", title: "마이라운지",},
+    {path: "signup",title:"회원가입",}
   ]
