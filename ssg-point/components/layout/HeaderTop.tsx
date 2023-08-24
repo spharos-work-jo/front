@@ -36,14 +36,14 @@ function HeaderTop() {
     <SideMenu isOpened={isOpened} setIsOpened={setIsOpened}/>
     <div className='header_top w-auto flex justify-between items-center'>
       { pathname === '/' 
-      ? 
+      ?
       <Logo url={'/'} imgAlt={'신세계포인트 로고'}      
       /> 
       : <HeaderUserStatus title={title} /> }
       <nav className='header_menu'>
         <ul className='flex gap-4 justify-center items-center'>
           <li className='text-sm font-medium'>
-            {isLogin ? 
+            {isLogin ?
             null
             : <Link href='/login'>로그인</Link> }
           </li>

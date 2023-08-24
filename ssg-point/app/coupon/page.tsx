@@ -1,6 +1,8 @@
 import React from 'react'
 import CouponPageTop from '@/components/pages/coupon-page/CouponPageTop';
 import CouponPageBot from '@/components/pages/coupon-page/CouponPageBot';
+import CouponPageReg from '@/components/pages/coupon-page/CouponPageReg';
+import CouponList from '@/components/pages/coupon-page/CouponList';
 
 const coupon = () => { 
   return (
@@ -8,6 +10,10 @@ const coupon = () => {
 
         <CouponPageTop></CouponPageTop>
         <CouponPageBot></CouponPageBot>
+
+        <CouponPageReg></CouponPageReg>
+
+        <CouponList></CouponList>
 
     </section>
   )

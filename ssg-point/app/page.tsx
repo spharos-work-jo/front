@@ -1,11 +1,13 @@
-import EventBanner from "@/components/pages/home/EventBanner";
+import EventBanner from "@/components/pages/event/EventBanner";
 import styles from './page.module.css'
+import Link from "next/link";
 
 
 export interface EventType {
     id : string,
     img_url : string
     }
+
 export const eventData: EventType[] = [
     { id: '1', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" }, 
     { id: '2', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
@@ -16,10 +18,19 @@ export default function Home() {
 
   return (
     <div>
-     <EventBanner
-        dataList={eventData}
-     />
 
+    <nav style={{marginTop: '200px'}}>
+        <ul className="flex gap-10">
+          <li>
+            <Link href="/event/ingevents">
+                
+                Event
+                
+                
+            </Link>
+          </li>
+        </ul>
+     </nav>
 
 
 
