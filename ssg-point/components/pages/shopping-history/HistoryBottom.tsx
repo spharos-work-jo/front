@@ -35,7 +35,6 @@ const HistoryBottom = () => {
     marginLeft: "-6px",
     width: 0,
     height: 0,
-    // borderTop: "6px solid #ea035c",
     borderRight: "6px solid transparent",
     borderLeft: "6px solid transparent",
   };
@@ -137,7 +136,6 @@ const HistoryBottom = () => {
             <span>원</span>
           </p>
         </div>
-
       </div>
     </div>
   );
