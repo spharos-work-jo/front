@@ -8,12 +8,10 @@ const coupon = () => {
   return (
     <section className="pt-[4rem]">
 
-        <CouponPageTop></CouponPageTop>
-        <CouponPageBot></CouponPageBot>
-
-        <CouponPageReg></CouponPageReg>
-
-        <CouponList></CouponList>
+        <CouponPageTop/>
+        <CouponPageBot/>
+        <CouponPageReg/>
+        <CouponList/>
 
     </section>
   )
