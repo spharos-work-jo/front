@@ -1,7 +1,6 @@
 import React from "react"
 
 const SignupInfoTop = () => {
-const signupInfoTop = () => {
     return(
         <>
         <div className="text-2xl px-5 py-8">
@@ -16,4 +15,3 @@ const signupInfoTop = () => {
     );
 };
 export default SignupInfoTop;
-export default signupInfoTop;
