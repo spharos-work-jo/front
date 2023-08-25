@@ -3,6 +3,7 @@ import { ErroLogInFormType } from '@/types/errorType';
 import { LogInFormDataType } from '@/types/formType';
 import { signIn } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
+import styles from './LoginForm.module.css'
 
 function LoginForm() {
 
@@ -134,13 +135,26 @@ function LoginForm() {
           <label htmlFor="isAutoLogin">자동 로그인</label>
         </div>
       </div>
-      <button type="submit" className='w-full rounded-3xl bg-black text-white p-3 text-sm border border-black-500'>
+      <button type="submit" className='w-full rounded-3xl bg-gradient text-black p-3 text-sm border border-black-500'>
         로그인
       </button>
       {/* <p>LOGIN ID : {loginData.loginId}</p>
       <p>PASSWORD : {loginData.password}</p>
       <p>IS AUTO ID : {loginData.isAutoId ? 'true' : 'false'}</p>
       <p>IS AUTO LOGIN : {loginData.isAutoLogin ? 'true' : 'false'}</p> */}
+      <ul className='btn_list_box text-center'>
+        <li className={styles.log}>
+          아이디 찾기
+        </li>
+        <li>
+          비밀번호 찾기
+        </li>
+        <li>
+          회원가입
+        </li>
+      </ul>
+
+
     </form>
   )
 }

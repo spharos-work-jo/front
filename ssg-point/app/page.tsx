@@ -1,20 +1,21 @@
 import EventBanner from "@/components/pages/event/EventBanner";
 import styles from './page.module.css'
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
 
-import 'swiper/css';
+// import { Swiper, SwiperSlide } from "swiper/react";
 
-export interface EventType {
-    id : string,
-    img_url : string
-    }
+// import 'swiper/css';
 
-export const eventData: EventType[] = [
-    { id: '1', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" }, 
-    { id: '2', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
-    { id: '3', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
-    ];
+// export interface EventType {
+//     id : string,
+//     img_url : string
+//     }
+
+// export const eventData: EventType[] = [
+//     { id: '1', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" }, 
+//     { id: '2', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
+//     { id: '3', img_url: "https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230728/9b27af5c-59cb-4246-9778-0a1dfb2b21a7.jpg" },
+//     ];
 
 export default () => {
 
@@ -28,7 +29,8 @@ export default () => {
             <div className="swiper_container">
                 <ul className="swiper_wrapper flex box-content">
                     <li className="swiper-slide">
-                        <Swiper
+                        
+                        {/* <Swiper
                         spaceBetween={50}
                         slidesPerView={3}
                         onSlideChange={() => console.log('slide change')}
@@ -38,7 +40,7 @@ export default () => {
                         <SwiperSlide>Slide 2</SwiperSlide>
                         <SwiperSlide>Slide 3</SwiperSlide>
                         <SwiperSlide>Slide 4</SwiperSlide>
-                         </Swiper>
+                        </Swiper> */}
 
 
                     </li>
@@ -57,7 +59,7 @@ export default () => {
           <li>
             <Link href="/event/ingevents">
                 
-                Event
+                <img src="./assets/images/event/main_event01.jpg" />
                 
                 
             </Link>

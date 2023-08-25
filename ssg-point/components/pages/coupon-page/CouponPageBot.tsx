@@ -29,7 +29,6 @@ const CouponPageBot = () => {
                 <li className='pt-0 text-[13px] text-center leading-5 w-44 bg-auto items-center justify-between'>
 
                 <button className={styles.register_coupon} onClick={()=>setIsView(true)}>
-                {/* onClick={() => {setVi}} */}
                   <img src='/assets/images/coupon/coupon_reg.png' alt="쿠폰등록" />
                   쿠폰 등록
                 </button>
