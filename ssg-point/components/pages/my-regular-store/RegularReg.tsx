@@ -49,12 +49,9 @@ const RegularReg = () => {
   }, []);
   // const storeList = null
 
-  const handleDelStore = (e) => {
-    console.log(e.target.id);
-    // 클릭 시, 해당 지점의 id를 가져오고,
-    // storeList에서 해당되는 id를 삭제,
-    console.log(storeList);
-    console.log('지워짐', storeList.splice(e.target.id, 1));
+  const handleDelStore = (e:any) => {
+
+    storeList.splice(e.target.id, 1)
     const newList = [...storeList];
     setStoreList(newList);
   };
