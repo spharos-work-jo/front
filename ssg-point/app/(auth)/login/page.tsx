@@ -1,13 +1,19 @@
 import LoginForm from '@/components/pages/Login/LoginForm'
 import Logo from '@/components/ui/header/Logo'
 import React from 'react'
+import Image from 'next/image'
+
 // get path from 'path'
 
 function Login() {
+
   return (
     <section className='flex flex-col items-center gap-10 pt-20'>
-      <Logo url={'/'} imgAlt={'Login Logo'} />
+
+      <Image src={'/assets/images/logo/logo_header_login.gif'} alt={"로그인 로고"} width={89} height={56} />
+      {/* {/* <Logo url={'/'} imgAlt={'Login Logo'}/> */}
       <LoginForm />
+
     </section>
   )
 }

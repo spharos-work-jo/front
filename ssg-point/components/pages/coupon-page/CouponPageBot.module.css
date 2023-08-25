@@ -39,13 +39,16 @@
     justify-content: center;
 }
 
-.register_coupon button {
-    display: inline-block;
+.register_coupon {
+    padding-left: 40px;
     box-sizing: border-box;
-    padding-top: 33px;
     height: 60px;
-    background: url(/assets/images/coupon/coupon_reg.png) top no-repeat;
     background-size: 48px auto;
+    position: relative;
+    display : flex ;
+    flex-direction: column ;
+    align-items: center;
+    justify-content: center;
 }
 
 .coupon_button:after {

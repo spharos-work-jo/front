@@ -8,4 +8,16 @@
     margin-right: 8px;
     vertical-align: middle;
     margin-bottom: 1px;
+    margin-left: 10px;
+}
+
+.btn:before {
+    background: url('/assets/images/coupon/down.png')no-repeat left 0/19px 19px;
+    content: "";
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    position: absolute;
+    right: 0;
+    bottom: -2px;
 }

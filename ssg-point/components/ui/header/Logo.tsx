@@ -1,12 +1,18 @@
+'use client'
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import logoImg from '../../../public/assets/images/logo/logo_header.gif'
+import { usePathname } from 'next/navigation'
 
 function Logo(props : {url: string, imgUrl?: string, imgAlt: string}) {
+
+  // const pathname = usePathname();
+  // console.log(pathname);
+
   const { url, imgUrl, imgAlt } = props
   return (
-    <div className='header_logo w-14 h-auto object-cover'>
+    <div className={'header_logo w-14 h-auto object-cover'}>
       <Link href={url}>
         <Image
             src={imgUrl ? imgUrl : logoImg }

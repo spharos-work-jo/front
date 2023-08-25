@@ -4,6 +4,7 @@ import { LogInFormDataType } from '@/types/formType';
 import { signIn } from 'next-auth/react';
 import React, { useEffect, useState } from 'react'
 import styles from './LoginForm.module.css'
+import Image from 'next/image';
 
 function LoginForm() {
 
@@ -105,14 +106,31 @@ function LoginForm() {
         type={pwType ? 'password' : 'text'}
         name="password" 
         id="password"
-        placeholder='비밀번호 (영문, 숫자, 특수문자 8~20자)' 
-        className='w-full rounded-3xl bg-white p-3 text-sm border border-black-500'
+        placeholder='비밀번호 (영문, 숫자, 특수문자 8~20자)'
+        className='Pw relative w-full rounded-3xl bg-white p-3 text-sm border border-black-500'
         onChange={handleOnChange}
-      />
+        />
+
+        <div className="absolute left-[485px] top-[42.5%] ">
+        {pwType ? (
+          <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eye.png'} alt="비밀번호 감추기" height={20} width={20}  /> </button>
+        ) : (
+          <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eyeclose.png'} alt="비밀번호 보이기" height={20} width={20}  />   </button>
+        )}
+  
+        </div>
+
+
+
+    
+
+     
+
+
       <p className='text-red-500 text-xs'>{errorText.password}</p>
-      <button type="button" onClick={handlePwType}>
-        view password
-      </button>
+
+    
+
       <div className='flex justify-between'>
         <div className='flex justify-start items-center gap-3'>
           <input 
@@ -136,7 +154,7 @@ function LoginForm() {
         </div>
       </div>
       <button type="submit" className='w-full rounded-3xl bg-gradient text-black p-3 text-sm border border-black-500'>
-        로그인
+        <strong>로그인</strong>
       </button>
       {/* <p>LOGIN ID : {loginData.loginId}</p>
       <p>PASSWORD : {loginData.password}</p>

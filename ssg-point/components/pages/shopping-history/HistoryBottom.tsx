@@ -56,7 +56,7 @@ const HistoryBottom = () => {
           </div>
           <p
             className={`${pointContent} after:bg-point-img
-             after:bg-contain after:w-[33px] after:h-[30px] after:ml-[7px]`}
+            after:bg-contain after:w-[33px] after:h-[30px] after:ml-[7px]`}
           >
             0
           </p>
