@@ -50,7 +50,6 @@ const RegularReg = () => {
   // const storeList = null
 
   const handleDelStore = (e:any) => {
-
     storeList.splice(e.target.id, 1)
     const newList = [...storeList];
     setStoreList(newList);
@@ -60,10 +59,10 @@ const RegularReg = () => {
     // 단골 매장이 없는 경우
     <div
       className={
-        storeList === null ? `pb-[80px] mx-[20px]` : `px-[20px] pb-[80px]`
+        storeList.length === 0 ? `pb-[80px] mx-[20px]` : `px-[20px] pb-[80px]`
       }
     >
-      {storeList === null ? (
+      {storeList.length === 0 ? (
         <div className="regist-box h-[154px] border-[1px] border-dashed border-[#bababa] w-full mb-10">
           <p className="flex justify-center relative text-[13px] leading-[21px] text-[#767676] text-center pt-[80px] box-border">
             <Image
@@ -99,7 +98,7 @@ const RegularReg = () => {
                   {item.sido} {item.gungu} {item.detail_address}
                 </p>
                 <button
-                  id={`${item.id}`}
+                  id={`${idx}`}
                   className="reg_del absolute bg-cover w-[20px] h-[26px] right-[30px] top-[50%] mt-[-13px] overflow-hidden bg-[url('/assets/images/etc/bookmark.png')]"
                   onClick={(e) => handleDelStore(e)}
                 ></button>
