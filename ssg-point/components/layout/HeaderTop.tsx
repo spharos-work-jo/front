@@ -28,6 +28,9 @@ function HeaderTop() {
       setTitle(result)
     }
     getTitle()
+    if (isOpened) {
+      setIsOpened(!isOpened)
+    }
   },[pathname])
   
 
