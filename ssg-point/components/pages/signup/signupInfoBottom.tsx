@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 // import styles from "./signupInfoBottom.module.css";
 
-const signupInfoBottom = () => {
+const SignupInfoBottom = () => {
     return(
         <>
         <div className="px-5 pb-8">
@@ -37,4 +37,4 @@ const signupInfoBottom = () => {
         </>
     );
 };
-export default signupInfoBottom;
+export default SignupInfoBottom;
