@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./SideMenu.module.css";
 import Logo from "../ui/header/Logo";
 import Link from "next/link";
@@ -33,10 +33,6 @@ function SideMenu(props: {
   const ssgPointLogoUrl =
     "https://m.shinsegaepoint.com/img/logo_header.840b502c.gif";
 
-
-  useEffect(()=>{
-
-  }, [])
   // todo : 타입 변환 필요
   const favList: string[][] = [
     ["포인트 내역", "00.png", "my_point"],
