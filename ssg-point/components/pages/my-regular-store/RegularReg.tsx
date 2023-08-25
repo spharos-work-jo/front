@@ -23,7 +23,7 @@ const RegularReg = () => {
     lat?: string;
     lng?: string;
   }
-  const [storeList, setStoreList] = useState<StoreListType | string>("dd");
+  const [storeList, setStoreList] = useState<StoreListType | string>("");
 
   return (
     // 단골 매장이 없는 경우

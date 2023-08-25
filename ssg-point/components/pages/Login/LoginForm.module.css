@@ -1,0 +1,7 @@
+.log:after {
+    content: "";
+    width: 1px;
+    height: 13px;
+    background: #e14747;
+    margin: 5px 16px 0;
+}
