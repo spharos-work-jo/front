@@ -1,5 +1,6 @@
 import React from "react"
 
+const SignupInfoTop = () => {
 const signupInfoTop = () => {
     return(
         <>
@@ -14,4 +15,5 @@ const signupInfoTop = () => {
         
     );
 };
+export default SignupInfoTop;
 export default signupInfoTop;

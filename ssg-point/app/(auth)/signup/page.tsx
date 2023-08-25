@@ -1,4 +1,7 @@
 import React from 'react'
+
+import SignupInfoTop from "@/components/pages/signup/SignupInfoTop"
+import SignupInfoBottom from "@/components/pages/signup/SignupInfoBottom"
 import SignupInfoTop from "@/components/pages/signup/signupInfoTop"
 import SignupInfoBottom from "@/components/pages/signup/signupInfoBottom"
 
@@ -10,7 +13,6 @@ function Page(){
             <SignupInfoBottom />  
           </section>
         </>
-        
     );
 };
 export default Page;
