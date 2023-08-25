@@ -1,5 +1,7 @@
 import React from 'react'
 import styles from './CouponList.module.css'
+import Image from 'next/image'
+
 
 const CouponList = () => {
 
@@ -8,13 +10,21 @@ const CouponList = () => {
     <div className='pt-2.5 pr-5 pb-14 pl-5'>
         <h3 className='hidden'>쿠폰 리스트</h3>
 
-        <div className='coupon_search h-11 flex items-center justify-between border-b'>
-            <div>
+        <div className='coupon_search h-[46px] flex items-center justify-between border-b border-black'>
+            <div className='w-[95px] h-[38px] text-[14px] relative pt-3'>
                 마감임박
+                <select className=''>
+                </select>
             </div>
 
             <div>
-                전체다운
+                <button className='text-[14px] pr-[26px] relative'>
+                    
+                    <span className={styles.btn}>
+                    전체다운
+                    </span>
+
+                </button>
             </div>
         </div>
 
@@ -27,7 +37,7 @@ const CouponList = () => {
                         <img src='/assets/images/coupon/emart24.png' alt="emart24" height={80} width={80} />
                 </div>
 
-                <div className='pl-[18px] w-[calc(100% - 80px)] align-top inline-block box-border'>
+                <div className='pl-[18px] w-[calc(100%_-_80px)]  align-top inline-block box-border'>
                     <p className='text-[11px] text-gray-400 leading-5'>
                         이마트24(일부 매장 제외)
                     </p>
@@ -44,12 +54,14 @@ const CouponList = () => {
                     </span>
                     </span>
                     </p>
-                    <div className='flex border-t-[1px]'>
-                        <div>
+                    <div className='flex justify-between items-center box-border border-t-[1px] relative pt-[12px] pb-[16px] mt-[12px]'>
+                        <div className='flex justify-between w-full'>
                             <div>
                                 <img src='/assets/images/coupon/e24.png' alt="e24" height={20} width={20} />
                             </div>
-
+                                <button className=''>
+                                    <img src='/assets/images/coupon/down.png' alt="다운로드" width={18} height={17} />
+                                </button>
                         </div>
                     </div>
                 </div>

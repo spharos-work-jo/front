@@ -9,5 +9,6 @@ export interface PageTitleType {
     {path: "ingevents", title: "이벤트 - 진행 이벤트",},
     {path: "endevents", title: "이벤트 - 종료 이벤트",},
     {path: "mylounge", title: "마이라운지",},
-    {path: "signup",title:"회원가입",}
+    {path: "signup",title:"회원가입",},
+    {path: "login", title:"로그인",},
   ]
