@@ -1,12 +1,12 @@
 import CertTop from "@/components/pages/cert/CertTop";
-import CertBottom from"@/components/pages/cert/CertBottom";
+import CertBody from"@/components/pages/cert/CertBody";
 
 function Page(){
     return(
         <>
-            <section>
+            <section className="pt-20 pb-10 block">
                 <CertTop/>
-                <CertBottom/> 
+                <CertBody/>
             </section>
         </>
     )
