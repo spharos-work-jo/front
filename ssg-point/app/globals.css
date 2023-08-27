@@ -61,8 +61,6 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
 /* 버튼 */
 .btn_box {
   border-radius: 8px;
-  width: 50%;
-  height: 36px;
   text-align: center;
   font-size: 14px;
   line-height: 24px;
