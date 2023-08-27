@@ -90,6 +90,11 @@ const KakaoMap = () => {
     return () => mapScript.removeEventListener("load", onLoadKakaoMap);
   }, []);
 
-  return <div className="w[100%] h-[100%] " id="map" />;
+  return (
+    <>
+      <h3 className="hidden">지도로 찾기</h3>
+      <div className="w[100%] h-[100%] " id="map" />
+    </>
+  );
 };
 export default KakaoMap;
