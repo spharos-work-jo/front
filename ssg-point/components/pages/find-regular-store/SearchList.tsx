@@ -11,7 +11,7 @@ const SearchList = (props: {name : string }) => {
       <div className="block relative align-top">
         <input name="store" type='radio' className="absolute w-[40px] h-[24px] appearance-none" />
         <label className={`block py-[15px] px-[20px] text-[14px] ${labelBefore} `}>
-          <span >{name}</span>
+          <span>{name}</span>
         </label>
       </div>
     </li>
