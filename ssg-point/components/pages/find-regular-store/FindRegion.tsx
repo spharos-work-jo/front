@@ -6,16 +6,19 @@ import SearchList from "./SearchList";
 
 const select_box = "relative inline-block rounded-[8px] align-top";
 const FindRegion = () => {
+  // 셀렉트 박스 옵션 타입
   interface SelectType {
     id: string;
     name: string;
   }
 
+  // 검색에 필요한 데이터 타입
   interface SearchType {
     partner: string;
     si: string;
     gungu: string;
   }
+
   const partnerList: SelectType[] = [
     {
       id: "0",
@@ -85,8 +88,8 @@ const FindRegion = () => {
     ],
   };
 
+  const [selected, setSelected] = useState<string>("");
 
-  const [SearchRes, setSearchRes] = useState();
   const handleData = (e: any) => {
     switch (e.target.title) {
       case "제휴사":
@@ -150,15 +153,25 @@ const FindRegion = () => {
         </div>
       </div>
       <div className="mt-[-40px]">
-        {/* 검색 정보가 없을 경우 */}
-        <EmptyBox content={"지역 매장 정보가 없습니다"}></EmptyBox>
-
-        {/* 검색 정보가 있을 경우 */}
-        <ul>
-          {resData.data.map((item : any, idx : number)=> (
-            <SearchList name={item.store_name}></SearchList>
-          ))}
-        </ul>
+        {resData === null ? (
+          // 검색 정보가 없을 경우
+          <EmptyBox content={"지역 매장 정보가 없습니다"}></EmptyBox>
+        ) : (
+          // 검색 정보가 있을 경우
+          <ul>
+            {resData.data.map((item: any, idx: number) => (
+              <SearchList
+                name={item.store_name}
+                id={item.id}
+                selected={selected}
+                setSelected={setSelected}
+                sido={item.sido}
+                gun={item.gungu}
+                detail={item.detail_address}
+              ></SearchList>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );
