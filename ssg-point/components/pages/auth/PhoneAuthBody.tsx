@@ -1,12 +1,10 @@
 'use client'
 import React, { useState } from 'react'
-import Image from 'next/image'
-import { PhoneCardSelectBoxData } from '@/data/PhoneCardSelectBoxData';
 import { newsAgencyList } from '@/data/newsAgencyList';
 import { authenticatedNeedDataType } from '@/types/authenticatedNeedDataType';
 import { signUpErrorTypeData } from '@/types/signUpErrorTypeData';
 import { signUpAgreeList } from '@/data/signUpAgreeConditionsList';
-function CertBody() {
+function PhoneAuthBody() {
   
     const [signUpListData,setSignUpListData] = useState<authenticatedNeedDataType>({
       name: '',
@@ -77,26 +75,7 @@ function CertBody() {
     }
   return (
     <>
-      <form className='px-10 pt-10' onSubmit={handleSignUpFetch}>
-          <div className='flex'>
-            {
-                PhoneCardSelectBoxData.map( item => (
-                  <div className='box-border w-3/6 h-[88px] border flex justify-center items-center rounded-[6px] divide-[#e5e7eb]'>
-                    <a role="tab">
-                      <Image 
-                        alt={item.title}
-                        src={item.url}
-                        height={50}
-                        width={40}
-                        className='ml-2'/>  
-                      <b>
-                        <span className='text-[13px]'>{item.title}</span>
-                      </b>
-                    </a>
-                  </div>
-              ))
-            }
-          </div>
+      <form className='px-10 pt-4' onSubmit={handleSignUpFetch}>
           <div className='text-[13px]'>
             <p className='pt-10 pb-2'>
               <b>이름을 입력해주세요.</b>
@@ -200,4 +179,4 @@ function CertBody() {
   )
 
               }
-export default CertBody
+export default PhoneAuthBody;
