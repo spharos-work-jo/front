@@ -1,6 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import SelectBox from "./SelectBox";
+import EmptyBox from "@/components/layout/EmptyBox";
+import SearchList from "./SearchList";
 
 const select_box = "relative inline-block rounded-[8px] align-top";
 const FindRegion = () => {
@@ -46,7 +48,7 @@ const FindRegion = () => {
   };
 
   const select =
-    "block relative h-[48px] pr-[32px] pl-[15px] border-2 border-[#e8e8e8] rounded-[8px] text-[13px]";
+    "block relative h-[48px] pr-[32px] pl-[15px] border-2 border-[#e8e8e8] rounded-[8px] text-[13px] font-bold";
 
   const [gunguList, setGunguList] = useState<[]>([]);
 
@@ -56,6 +58,35 @@ const FindRegion = () => {
     gungu: "",
   });
 
+  const resData = {
+    data: [
+      {
+        id: 1,
+        store_name: "이마트24",
+        sido: "부산시",
+        gungu: "00구",
+        detail_address: "상세상세 00호",
+        la: 35.1821291,
+        lo: 128.976148,
+        image_url:
+          "https://storage.googleapis.com/ssg-point-spharos/ssg-partner/emart24.jpg",
+      },
+      {
+        id: 2,
+        store_name: "스타벅스 00점",
+        sido: "부산시",
+        gungu: "00구",
+        detail_address: "상세상세 00호",
+        la: 35.1821293,
+        lo: 128.97614,
+        image_url:
+          "https://storage.googleapis.com/ssg-point-spharos/ssg-partner/starbucks.jpg",
+      },
+    ],
+  };
+
+
+  const [SearchRes, setSearchRes] = useState();
   const handleData = (e: any) => {
     switch (e.target.title) {
       case "제휴사":
@@ -117,6 +148,17 @@ const FindRegion = () => {
             검색
           </button>
         </div>
+      </div>
+      <div className="mt-[-40px]">
+        {/* 검색 정보가 없을 경우 */}
+        <EmptyBox content={"지역 매장 정보가 없습니다"}></EmptyBox>
+
+        {/* 검색 정보가 있을 경우 */}
+        <ul>
+          {resData.data.map((item : any, idx : number)=> (
+            <SearchList name={item.store_name}></SearchList>
+          ))}
+        </ul>
       </div>
     </>
   );
