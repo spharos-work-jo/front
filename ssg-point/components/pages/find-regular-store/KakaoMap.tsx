@@ -93,7 +93,7 @@ const KakaoMap = () => {
   return (
     <>
       <h3 className="hidden">지도로 찾기</h3>
-      <div className="w[100%] h-[100%] " id="map" />
+      <div className="w[100%] h-[100%]" id="map" />
     </>
   );
 };
