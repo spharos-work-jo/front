@@ -18,7 +18,7 @@ export default () => {
         <div className="main_visual_banner">
             <h3 className="hidden">메인 비주얼 배너</h3>
 
-            <div className="swiper_container mt-[200px]">
+            <div className="swiper_container pt-[100px]">
                 <ul className="swiper_wrapper flex box-content">
                     <li className="swiper-slide">
                     

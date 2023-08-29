@@ -103,7 +103,7 @@ function LoginForm() {
         name="loginId" 
         id="loginId" 
         placeholder='아이디' 
-        className='w-full rounded-3xl bg-white p-3 text-sm border border-black-500'
+        className='w-full rounded-3xl  focus-visible:outline-blue-700 bg-white p-3 text-sm border border-black-500'
         // defaultValue={loginData.loginId}
         onChange={handleOnChange}
       />
@@ -115,11 +115,11 @@ function LoginForm() {
         name="password" 
         id="password"
         placeholder='비밀번호 (영문, 숫자, 특수문자 8~20자)'
-        className='Pw w-full rounded-3xl bg-white p-3 text-sm border border-black-500'
+        className='Pw w-full rounded-3xl focus-visible:outline-blue-700 bg-white p-3 text-sm border border-black-500'
         onChange={handleOnChange}
         />
 
-        <div className="eye absolute left-[400px] top-[26%] ">
+        <div className="eye absolute left-[510px] top-[28%] ">
         {pwType ? (
           <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eye.png'} alt="비밀번호 감추기" height={20} width={20}  /> </button>
         ) : (
@@ -146,7 +146,7 @@ function LoginForm() {
           />
           <label htmlFor="isAutoId" className='text-[13px]'>아이디 저장</label>
         </div>
-        <div className='flex justify-start items-center gap-3'>
+        <div className='flex ml-12 justify-start items-center gap-3'>
           <input 
             className="box-content w-5 h-5 rounded-full checked:bg-black appearance-none border border-black cursor-pointer checked:bg-[url('/assets/images/login/check.png')] checked:bg-[length:12px_10px] checked:bg-no-repeat checked:bg-center"
             type="checkbox"
