@@ -35,7 +35,7 @@ export default function page({ params }: { params: { eventName: string } }) {
       <h2>{title}</h2>
       {
         params.eventName === 'ingevents' ? 
-          <EventSort 
+        <EventSort 
             pathName={params.eventName}
           />
         :

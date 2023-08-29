@@ -20,11 +20,11 @@ const Footer = () => {
         <p className="op_time">
           {" "}
           운영시간
-          <span>:</span>
+          <span> : </span>
           <em>09</em>시 -<em>18</em>시
           <br />
           점심시간
-          <span>:</span>
+          <span> : </span>
           <em>12</em>시 -<em>13</em>시
           <br />
           (공휴일 제외)
