@@ -14,13 +14,13 @@ const FindStore = () => {
   ];
 
   return (
-    <section className="pt-[4rem] h-[100vh]">
+    <section className={selected === "0" ? 'pt-[4rem] h-[100vh]' : 'pt-[4rem]'}>
       <MenuWrap
         menuList={menuList}
         selected={selected}
         setSelected={setSelected}
       ></MenuWrap>
-      {selected === "0" 
+      {selected === "0"
       ? <KakaoMap></KakaoMap> 
       : <FindRegion></FindRegion>}
     </section>

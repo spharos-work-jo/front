@@ -1,7 +1,9 @@
-.log:after {
+.log::after {
     content: "";
     width: 1px;
     height: 13px;
-    background: #e14747;
+    background: #ebebeb;
     margin: 5px 16px 0;
+    display: inline-block;
+    vertical-align: top;
 }

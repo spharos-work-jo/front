@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './HomeMenu.module.css'
+import Link from 'next/link'
 
 export default function HomeMenu() {
   return (
@@ -8,10 +9,10 @@ export default function HomeMenu() {
         <div className={styles.main_menu}>
           <ul>
             <li>
-                  <a href="#">
+                  <Link href="event/ingevents">
                       <img src="./assets/images/nav/menu01.png" alt="이벤트" />
                       <p>이벤트</p>
-                  </a>
+                  </Link>
               </li>
               <li>
                   <a href="#">
