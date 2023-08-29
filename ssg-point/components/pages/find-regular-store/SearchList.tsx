@@ -21,16 +21,15 @@ const SearchList = (props: {
   const labelStyle = "block py-[15px] px-[20px] text-[14px]";
   const handleClick = (e: any) => {
     setSelected(e.target.htmlFor);
-    console.log(selected, e.target.htmlfor);
   };
   return (
     <li
+      key={id}
       className={
         selected === name
           ? "on border-t border-b-2 border-b-[#ea035c] bg-[#fff3f8]"
           : "border-t"
       }
-      key={id}
     >
       <div className="block relative align-top">
         <input

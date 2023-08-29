@@ -2,7 +2,6 @@
 import FindRegion from "@/components/pages/find-regular-store/FindRegion";
 import KakaoMap from "@/components/pages/find-regular-store/KakaoMap";
 import MenuWrap from "@/components/pages/find-regular-store/MenuWrap";
-import NaverMaps from "@/components/pages/find-regular-store/NaverMaps";
 import { SamllMenuType } from "@/types/menuType";
 import React, { useState } from "react";
 
@@ -15,7 +14,7 @@ const FindStore = () => {
   ];
 
   return (
-    <section className={selected === "0" ? 'pt-[4rem] h-[100vh]' : 'pt-[4rem]'}>
+    <section className={selected === "0" ? 'pt-[5rem] h-[100vh]' : 'pt-[5rem]'}>
       <MenuWrap
         menuList={menuList}
         selected={selected}
