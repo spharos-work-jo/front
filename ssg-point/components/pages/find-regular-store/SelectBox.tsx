@@ -1,15 +1,16 @@
 "use client";
-import { regionType } from "@/data/regionData";
+import { RegionType } from "@/data/regionData";
 import React from "react";
 
 const select_box = "relative inline-block rounded-[8px] align-top";
 const select =
   "block relative h-[48px] pr-[32px] pl-[15px] border-2 border-[#e8e8e8] rounded-[8px] text-[13px] font-bold";
 
+
 const SelectBox = (props: {
   title: string;
   placehold: string;
-  optionList: regionType[];
+  optionList: RegionType[];
   handleData: any;
 }) => {
   const { title, placehold, optionList, handleData } = props;
@@ -29,7 +30,6 @@ const SelectBox = (props: {
         className={`${select} w-[100%]`}
         onChange={handleData}
         name={title}
-        // value=""
       >
         <option value="">{placehold}</option>
         {optionList &&

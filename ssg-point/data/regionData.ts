@@ -1,13 +1,13 @@
-export interface regionType {
+export interface RegionType {
   code: string;
   name: string;
 }
 
 export interface gunguType {
-  [key: string]: regionType[];
+  [key: string]: RegionType[];
 }
 
-export const regionList: regionType[] = [
+export const regionList: RegionType[] = [
   { code: "11", name: "서울" },
   { code: "26", name: "부산" },
   { code: "27", name: "대구" },
