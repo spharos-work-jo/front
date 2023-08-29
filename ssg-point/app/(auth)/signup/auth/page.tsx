@@ -1,4 +1,5 @@
 'use client'
+import AuthBottom from "@/components/pages/auth/AuthBottom";
 import AuthTop from "@/components/pages/auth/AuthTop";
 import CardAuthBody from "@/components/pages/auth/CardAuthBody";
 import PhoneAuthBody from "@/components/pages/auth/PhoneAuthBody";
@@ -34,6 +35,7 @@ function Page(){
                     selected === "0" ? <PhoneAuthBody/> : <CardAuthBody/>
 
                 }
+                <AuthBottom/>
             </section>
         </>
     )

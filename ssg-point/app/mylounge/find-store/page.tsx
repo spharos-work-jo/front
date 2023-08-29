@@ -2,7 +2,6 @@
 import FindRegion from "@/components/pages/find-regular-store/FindRegion";
 import KakaoMap from "@/components/pages/find-regular-store/KakaoMap";
 import MenuWrap from "@/components/pages/find-regular-store/MenuWrap";
-import NaverMaps from "@/components/pages/find-regular-store/NaverMaps";
 import { SamllMenuType } from "@/types/menuType";
 import React, { useState } from "react";
 

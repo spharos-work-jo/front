@@ -4,17 +4,36 @@ import { newsAgencyList } from '@/data/newsAgencyList';
 import { authenticatedNeedDataType } from '@/types/authenticatedNeedDataType';
 import { signUpErrorTypeData } from '@/types/signUpErrorTypeData';
 import { signUpAgreeList } from '@/data/signUpAgreeConditionsList';
+import { SmsAuthApi } from '@/components/widget/SmsAuthApi';
+import { genderTypeList } from '@/data/genderTypeList';
+import { localForeignerList } from '@/data/localForeignerList';
+
 function PhoneAuthBody() {
-  
+
+
+    const certReq = () => {
+      const RandomNumber:number = Math.floor(Math.random() * 100000);
+      
+      const num = SmsAuthApi()
+      // fetch 
+
+      // RandomNumber과 인풋 비교
+      
+
+    }
+
+    
+    
     const [signUpListData,setSignUpListData] = useState<authenticatedNeedDataType>({
       name: '',
-      gender: '',
-      foreigner: undefined,
+      gender: '남자',
+      foreigner: '내국인',
       birthday:'',
       agency: '',
       phone: '',
       agree:0 ,
     });
+
     const [errorText,setErrorText] = useState<signUpErrorTypeData>({
       name: '',
       gender: '',
@@ -22,6 +41,8 @@ function PhoneAuthBody() {
       birthday:'',
       phone: '',
     });
+
+    // const [isGender, setIsGender] = useState<boolean[]>()
     // const handleOnClick = (value : string) => {
 
     //   setSignUpListData({
@@ -34,8 +55,17 @@ function PhoneAuthBody() {
     //   })
     // }
     const handleOnChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+      e.preventDefault();
       const {name,value} = e.target;
-
+      // if(name==='gender') {
+      //   setSignUpListData(
+      //     {
+      //       ...signUpListData,
+      //       [name]: 
+      //     }
+      //   )
+      // }
+      console.log(name, value)
         setSignUpListData({
           ...signUpListData,
           [name]:value
@@ -46,6 +76,7 @@ function PhoneAuthBody() {
           [name]:value
         })
       }
+
     const handleSignUpFetch = async (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       let errText: signUpErrorTypeData = {
@@ -55,7 +86,6 @@ function PhoneAuthBody() {
         birthday:'',
         phone: '',
       }
-
       if(signUpListData.name === '' || signUpListData.name === undefined) errText.name = "이름을 입력해주세요."
       if(signUpListData.gender === '' || signUpListData.gender === undefined) errText.gender = "성별을 선택해주세요."
       if(signUpListData.foreigner === undefined ) errText.foreigner = "외국인 여부를 체크해주세요."
@@ -83,7 +113,7 @@ function PhoneAuthBody() {
               <input
                 type='text'
                 name='name'
-                className='w-full h-[48px] border rounded-[6px] divide-[#e5e7eb] text-sm'
+                className='w-full h-[48px] border divide-[#e5e7eb] rounded-[6px] text-sm'
                 placeholder='  이름입력'
                 onChange={handleOnChange}
               />
@@ -91,39 +121,49 @@ function PhoneAuthBody() {
             <p className='pt-[12px] pb-1'>
               <b>성별을 선택해주세요.</b>
             </p>
-          <div className='flex'>
-            <button
-              type='button'
-              className='h-[48px] w-1/2 border rounded-[6px] divide-[#e5e7eb] pr-2'
-              name='gender'>
-              <p>남자</p>  
-            </button>    
-            <button
-              type='button'
-              className='h-[48px] w-1/2 border rounded-[6px] divide-[#e5e7eb]'
-              name='gender'>
-            <p>여자</p>
-            </button>    
-          </div>
-          <p className='pt-[12px] pb-1'>
-            <b>외국인 이신가요?</b>
-          </p>
-          <div className='flex'>
-            <button 
-              type='button'
-              className='h-[48px] w-1/2 border rounded-[6px] divide-[#e5e7eb] pr-2'
-              name='foreigner'>
-            <p>내국인</p>
-            </button>
-            <button
-              type='button'
-              className='h-[48px] w-1/2 border rounded-[6px] divide-[#e5e7eb]'
-              name='foreigner'>
-            <p>외국인</p>
-            </button>
-          </div>  
+            <div className='flex'>
+            {
+              genderTypeList.map( item => (
+                  
+                  <div className={signUpListData.gender === item.gender ? `flex justify-center items-center w-40 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
+                      onClick = { () => setSignUpListData ({
+                  ...signUpListData,
+                  gender: item.gender
+                })
+                  }>
+                  {item.gender}
+                  </div>
+              ))
+            }
+            </div>
+            <p className='pt-[12px] pb-1'>
+              <b>외국인 이신가요?</b>
+            </p>
+            <div className='flex'>
+              {
+              localForeignerList.map( item => (
+                  
+                  <div className={signUpListData.foreigner === item.type ? `flex justify-center items-center w-40 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
+                      onClick = { () => setSignUpListData ({
+                  ...signUpListData,
+                  foreigner: item.type
+                })
+                  }>
+                  {item.type}
+                  </div>
+              ))
+            }
+            </div>
+              {/* <div className={signUpListData.gender === '여자' ? `flex justify-center items-center w-40 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
+              onClick={()=>setSignUpListData({
+                ...signUpListData,
+                gender: '여자'
+              })}
+              >
+                여자
+            </div>*/} 
               <p className='pt-[12px] pb-1'>
-                <b>생년월일을 입력해주세요.</b>
+                <b>생년월일을 입력해주세요.(예:19990101)</b>
               </p>
               <input 
                 type='text' 
@@ -157,17 +197,35 @@ function PhoneAuthBody() {
                 <b>휴대전화 인증 약관</b>
               </p>
               <ul className="flex-col justify-start">
-                {
+                <li className="flex border-b-[1px] border-gray-400 pb-3 mb-2 text-[15px] my-5">
+                        <input 
+                          id="agreeAllConditions"
+                          name="agreeAllConditions"
+                          type="checkbox"
+                          className="w-5 h-5 mr-2 appearance-none rounded-full border border-gray-500 cursor-pointer checked:bg-black"
+                          onChange={() => setSignUpListData({
+                            ...signUpListData,
+                            agree:4
+                            })
+                          }
+                          />
+                        <label htmlFor="agreeAllConditions">모든 약관에 동의합니다.</label>
+
+                </li>
+                  {
                     signUpAgreeList.map( item => (      
-                      <li className="flex first:border-b-[1px] border-gray-400 first:pb-3 first:mb-2 first:text-[15px] text-[13px] my-5" key={item.id}>
+                      <li className="flex text-[13px] my-5" key={item.id}>
                         <input id="agreeAllConditions" name="agreeAllConditions" type="checkbox" className="w-5 h-5 mr-2 appearance-none rounded-full border border-gray-500 cursor-pointer checked:bg-black"/>
                         <label htmlFor="agreeAllConditions">{item.title}</label>
                       </li>
                     ))   
-                }
+                  }
               </ul>
             <div>
-              <button className="w-full" type='submit'>
+              <button
+                className="w-full"
+                type='submit'
+                onClick={certReq}>
                   <p className='p-4 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
                     인증번호 요청
                   </p>
