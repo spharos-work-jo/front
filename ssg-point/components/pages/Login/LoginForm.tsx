@@ -6,13 +6,14 @@ import React, { useEffect, useState } from 'react'
 import styles from './LoginForm.module.css'
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 function LoginForm() {
   
+  const query = useSearchParams();
+  const callBackUrl = query.get('callbackUrl');
+
   const labelBefore = "w-6 h-6 rounded-full checked:bg-black appearance-none border border-black cursor-pointer"
-
-
-
 
   const [loginData, setLoginData] = useState<LogInFormDataType>({
     loginId: '',
@@ -58,8 +59,7 @@ function LoginForm() {
     setPwType(!pwType)
   }
 
-  const handleLoginFetch = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleLoginFetch = async () => {
     let errText: ErroLogInFormType = {
       loginId: '',
       password: '',
@@ -72,11 +72,11 @@ function LoginForm() {
       return
     } else {
       console.log(loginData)
-      const result = await signIn('Credentials', {
-        username: loginData.loginId,
+      const result = await signIn('credentials', {
+        loginId: loginData.loginId,
         password: loginData.password,
-        redirect: false,
-        callbackUrl: '/'
+        redirect: true,
+        callbackUrl: callBackUrl ? callBackUrl : '/'
       })
       console.log(result)
     }
@@ -156,7 +156,7 @@ function LoginForm() {
           <label htmlFor="isAutoLogin" className='text-[13px]'>자동 로그인</label>
         </div>
       </div>
-      <button type="submit" className='w-full rounded-[28px] bg-gradient text-black p-3 text-sm border h-[56px]'>
+      <button type="button" className='w-full rounded-[28px] bg-gradient text-black p-3 text-sm border h-[56px]' onClick={handleLoginFetch}>
         <strong className='text-[18px]'>로그인</strong>
       </button>
       {/* <p>LOGIN ID : {loginData.loginId}</p>
