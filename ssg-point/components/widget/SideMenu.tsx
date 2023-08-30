@@ -5,137 +5,27 @@ import styles from "./SideMenu.module.css";
 import Logo from "../ui/header/Logo";
 import Link from "next/link";
 import Image from "next/image";
-import { User } from "@/types/userType";
+import {
+  MenuListType,
+  favList,
+  loginMenuList,
+  menuList,
+} from "@/data/SideMenuData";
+import { useSession } from "next-auth/react";
 
 const favUrl =
   "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_big_";
-
-interface MenuItem {
-  url: string;
-  name: string;
-  img_url: string;
-}
-
-interface MenuList {
-  main: string;
-  menu: MenuItem[];
-}
-
 
 function SideMenu(props: {
   isOpened: Boolean;
   setIsOpened: React.Dispatch<React.SetStateAction<Boolean>>;
 }) {
-  // 로그인 됐다고 가정
-  const [user, setUser] = useState<User | null>(null);
-  // const user: User = { name: "배송윤", point: "0" };
+  const session = useSession();
+  console.log(session)
   const { isOpened, setIsOpened } = props;
-  const ssgPointLogoUrl =
-    "https://m.shinsegaepoint.com/img/logo_header.840b502c.gif";
 
-  // todo : 타입 변환 필요
-  const favList: string[][] = [
-    ["포인트 내역", "00.png", "my_point"],
-    ["포인트 카드", "01.png"],
-    ["선물하기", "02.png"],
-    // ['포인트 전환', '03.png'],
-    // ['포인트 비밀번호', '05.png'],
-    // ['영수증', '04.png'],
-    // ['제휴사', '06.png'],
-  ];
-
-  // todo : 타입 변환 필요
-  // 기본값으로 로그인 전 메뉴로 구성하고, 로그인이 확인되면, 마이페이지 추가해서 보여주기
-  const menuList: MenuList[] = [
-    {
-      main: "신세계 포인트",
-      menu: [
-        {
-          url: "url1",
-          name: "가맹점 소개",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "포인트 카드",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "포인트 서비스",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "가맹점 소개",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "포인트 카드",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "포인트 서비스",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-      ],
-    },
-    {
-      main: "맴버십 서비스",
-      menu: [
-        {
-          url: "url1",
-          name: "가맹점 소개",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "포인트 카드",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "포인트 서비스",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-      ],
-    },
-    {
-      main: "고객센터",
-      menu: [
-        {
-          url: "url1",
-          name: "가맹점 소개",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "포인트 카드",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-        {
-          url: "url1",
-          name: "포인트 서비스",
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_40.png",
-        },
-      ],
-    },
-  ];
-
+  // Back에서 받아오는 나의 즐겨찾기 목록
+  // const [myFav, setMyFav] = useState<>()
   return (
     <>
       <div
@@ -148,13 +38,13 @@ function SideMenu(props: {
         <div className="side_header pt-5 pl-5">
           <Logo
             url={"/"}
-            imgUrl={ssgPointLogoUrl}
+            imgUrl={"/assets/images/logo/logo_header.gif"}
             imgAlt={"신세계포인트 로고"}
           ></Logo>
         </div>
         {/* 로그인 박스 */}
         <div className={styles.login_signup}>
-          {user ? (
+          {session.status === "authenticated" ? (
             <>
               <div>
                 <p className="text-[18px] leading-[26px] inline">
@@ -163,13 +53,13 @@ function SideMenu(props: {
                 after:bg-[#ffdfb5] after:absolute
                 after:w-[100%] after:inline-block after:h-[15px] after:z-[-1] after:left-0 after:bottom-0"
                   >
-                    {user.name}
+                    {/* {user.name} */}
                   </strong>
                   님 반갑습니다.
                 </p>
               </div>
               <p className="flex itmes-center mt-[16px] text-[20px] font-bold leading-6">
-                {user.point}
+                {/* {user.point} */}
                 <Image
                   alt="point"
                   src={
@@ -188,7 +78,7 @@ function SideMenu(props: {
           )}
 
           <div className={styles.btn_box}>
-            {user ? (
+            {session.status === "authenticated" ? (
               <>
                 <Link className={styles.btn_white} href={"/logout"}>
                   로그아웃
@@ -213,11 +103,29 @@ function SideMenu(props: {
         {/* 즐겨찾기 메뉴 리스트 */}
         <FavList favList={favList}></FavList>
 
-        {/* 로그인 시 보임 */}
-        <MyPage></MyPage>
+        {session.status === "authenticated" ? <MyPage></MyPage> : null}
 
         {/* 메뉴 박스 */}
         <MenuBox menuList={menuList}></MenuBox>
+
+        <ul className="sidemenu_terms mt-[50px] mb-[80px] ml-[20px]">
+          <li className="inline-block">
+            <Link
+              href="/stplat/terms"
+              className="block text-[12px] text-[#767676] leading-[13px] py-[5px] font-semibold"
+            >
+              서비스 이용약관
+            </Link>
+          </li>
+          <li className="inline-block relative ml-[24px]">
+            <Link
+              href="/stplat/policy"
+              className="block text-[#eb0000] text-[12px] leading-3 py-[5px] font-semibold"
+            >
+              개인정보 처리방침
+            </Link>
+          </li>
+        </ul>
 
         <button
           className={styles.close_btn}
@@ -248,6 +156,7 @@ function FavList(props: { favList: any }) {
           </p>
         ))}
       </div>
+
       <div className={styles.select_fav_box}>
         <button className={styles.ico_btn}></button>
         <span className={styles.select_txt}>
@@ -268,77 +177,10 @@ const acco_btn =
 
 // 로그인 시 보이는 메뉴
 function MyPage() {
-  const menuList = [
-    {
-      main: "마이 포인트",
-      menu: [
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-      ],
-    },
-    {
-      main: "마이 혜택",
-      menu: [
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-        {
-          img_url:
-            "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_00.png",
-          name: "포인트 내역",
-          url: "/",
-        },
-      ],
-    },
-  ];
-
   // 마이 페이지 요소 숨기기
   const handleClick = (e: any) => {
     const val = e.target.value;
-    
+
     // 클릭 시 토글
     const changeHidden = document.getElementById(val);
     if (changeHidden?.classList.contains("hidden")) {
@@ -354,7 +196,7 @@ function MyPage() {
     <div className="pt-[24px] px-[20px] ">
       <h3 className={menu_tit}>마이 페이지</h3>
       <div className="">
-        {menuList.map((item, idx) => (
+        {loginMenuList.map((item, idx) => (
           <div className="border-b" key={idx}>
             <button
               value={idx}
@@ -372,7 +214,7 @@ function MyPage() {
                     className="w-1/2 sm:w-1/3 inline-block align-top pt-[20px] "
                   >
                     <Link
-                      className="flex items-center text-[13px] font-semibold  "
+                      className="flex items-center text-[11px]"
                       href={mm.url}
                     >
                       <Image
@@ -380,6 +222,7 @@ function MyPage() {
                         width={20}
                         height={20}
                         alt="메뉴 이미지"
+                        className="mr-1"
                       ></Image>
                       {mm.name}
                     </Link>
@@ -395,7 +238,7 @@ function MyPage() {
 }
 
 // 메뉴 박스
-function MenuBox(props: { menuList: MenuList[] }) {
+function MenuBox(props: { menuList: MenuListType[] }) {
   const { menuList } = props;
 
   return (
@@ -410,7 +253,7 @@ function MenuBox(props: { menuList: MenuList[] }) {
 }
 
 // 세부 아이템
-function MenuItem(props: { item: MenuList; idx: number }) {
+function MenuItem(props: { item: MenuListType; idx: number }) {
   const { item, idx } = props;
   return (
     <div className={`${idx > 0 ? "mt-[40px]" : ""}`} key={idx}>
@@ -420,7 +263,7 @@ function MenuItem(props: { item: MenuList; idx: number }) {
           <li key={idxx} className="w-1/2 sm:w-1/3">
             <Link href={mm.url}>
               <Image
-                className="mr-[4px]"
+                className="mr-1"
                 src={mm.img_url}
                 width={20}
                 height={20}
