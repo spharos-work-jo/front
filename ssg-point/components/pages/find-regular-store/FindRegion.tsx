@@ -178,7 +178,7 @@ const FindRegion = () => {
             {resData.data.map((item: any, idx: number) => (
               <SearchList
                 name={item.store_name}
-                id={item.id}
+                key={item.id}
                 selected={selected}
                 setSelected={setSelected}
                 sido={item.sido}
