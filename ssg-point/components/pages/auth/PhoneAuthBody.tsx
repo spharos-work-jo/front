@@ -8,9 +8,11 @@ import { genderTypeList } from '@/data/genderTypeList';
 import { localForeignerList } from '@/data/localForeignerList';
 import Image from "next/image";
 import { signupModalDataType } from '@/types/signupModalDataType';
+import AuthBehindTap from './AuthBehindTap';
 
 function PhoneAuthBody() {
 
+    const [isTapView, setIsTapView] = useState<boolean>(false);
 
     // const certReq = () => {
     //   const RandomNumber:number = Math.floor(Math.random() * 100000);
@@ -69,7 +71,7 @@ function PhoneAuthBody() {
           [name]:value
         })
       }
-    const handleOnSelect = (e : React.FormEvent<HTMLSelectElement>) => {
+    const handleOnSelect = (e : React.ChangeEvent<HTMLSelectElement>) => {
       
       e.preventDefault();
       
@@ -127,6 +129,7 @@ function PhoneAuthBody() {
             <p className='pt-10 pb-2'>
               <b>이름을 입력해주세요.</b>
             </p>
+            
               <input
                 type='text'
                 name='name'
@@ -142,7 +145,7 @@ function PhoneAuthBody() {
             {
               genderTypeList.map( item => (
                   
-                  <div className={signUpListData.gender === item.gender ? `flex justify-center items-center w-40 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
+                  <div className={signUpListData.gender === item.gender ? `flex justify-center items-center w-1/2 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
                       onClick = { () => setSignUpListData ({
                   ...signUpListData,
                   gender: item.gender
@@ -160,7 +163,7 @@ function PhoneAuthBody() {
               {
               localForeignerList.map( item => (
                   
-                  <div className={signUpListData.foreigner === item.type ? `flex justify-center items-center w-40 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
+                  <div className={signUpListData.foreigner === item.type ? `flex justify-center items-center w-1/2 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
                       onClick = { () => setSignUpListData ({
                   ...signUpListData,
                   foreigner: item.type
@@ -205,7 +208,7 @@ function PhoneAuthBody() {
               </select>
               <input 
                 type='text'
-                className='h-[48px] border w-full rounded-[6px] divide-[#e5e7eb]text-sm'
+                className='h-[48px] border w-full rounded-[6px] divide-[#e5e7eb] text-sm'
                 placeholder='  -없이 휴대폰 번호 입력'
                 name="phone"
                 onChange={handleOnChange}
@@ -226,20 +229,6 @@ function PhoneAuthBody() {
                           />
                         <label htmlFor="agreeAllConditions">모든 약관에 동의합니다.</label>
                 </li>
-                  {/* {
-                    signUpAgreeList.map( item => (      
-                      <li className="flex text-[13px] my-5" key={item.id}>
-                        <input
-                          id={item.id}
-                          name={`agree${item.id}`}
-                          type="checkbox"
-                          className="w-5 h-5 mr-2 appearance-none rounded-full border border-gray-500 cursor-pointer checked:bg-black"
-                          onChange={handleOnChange}  
-                        />
-                        <label htmlFor="agreeAllConditions">{item.title}</label>
-                      </li>
-                    ))   
-                  } */}
                   {
                     agreeList.map(item=>(
                       <li className="flex text-[13px] my-5" key={item.id}>
@@ -255,7 +244,7 @@ function PhoneAuthBody() {
                         htmlFor="agreeAllConditions"
                         className='w-80'
                         >{item.title}</label>
-                      <button
+                      <button 
                         key={item.id}
                         onClick={() => setModalHandle({
                           id: item.id,
@@ -275,20 +264,23 @@ function PhoneAuthBody() {
                   
                 <p className='text-red-500 text-xs'>{errorText.agree}</p>  
               </ul>
-            <div>
-              <button
-                className="w-full"
-                type='submit'
-                // onClick={certReq}
-                >
-                  <p className='p-4 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
-                    인증번호 요청
-                  </p>
-                </button>
             </div>
-          </div>
-        </form>
-    </>
+                  {
+                    // isTapView ? <AuthBehindTap setIsTapView={setIsTapView}/> : 
+                    isTapView ? <AuthBehindTap/> :  
+                  <button
+                    className="w-full"
+                    onClick={() => setIsTapView(true)}
+                    type='submit'
+                    >
+                      <p className='p-4 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
+                        인증번호 요청
+                      </p>
+                    </button>
+                  }  
+            </form>
+          </>
   )
-              }
+}
 export default PhoneAuthBody;
+
