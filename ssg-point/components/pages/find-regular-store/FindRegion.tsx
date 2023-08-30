@@ -3,10 +3,11 @@ import React, { SelectHTMLAttributes, useEffect, useState } from "react";
 import SelectBox from "./SelectBox";
 import EmptyBox from "@/components/layout/EmptyBox";
 import SearchList from "./SearchList";
-import { gungu, gunguType, regionList, regionType } from "@/data/regionData";
+import { gungu, gunguType, regionList, RegionType } from "@/data/regionData";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { now } from "next-auth/client/_utils";
 import { flightRouterStateSchema } from "next/dist/server/app-render/types";
+import { tmpdir } from "os";
 
 const select_box = "relative inline-block rounded-[8px] align-top";
 const select =
@@ -23,7 +24,7 @@ const FindRegion = () => {
     gunGu: string | null;
   }
 
-  const partnerList: regionType[] = [
+  const partnerList: RegionType[] = [
     {
       code: "0",
       name: "쓱고우",
@@ -38,8 +39,8 @@ const FindRegion = () => {
     },
   ];
 
-  const [queryUrl, setQueryUrl] = useState<String>();
-  const [gunguList, setGunguList] = useState<regionType[]>([]);
+  const [queryUrl, setQueryUrl] = useState<String | undefined>("");
+  const [gunguList, setGunguList] = useState<RegionType[]>([]);
   const [searchData, setSearchData] = useState<SearchType>({
     partner: null,
     city: null,
@@ -80,31 +81,29 @@ const FindRegion = () => {
     ],
   };
 
+  console.log("선택 데이터", searchData);
+  console.log("현재 url", queryUrl);
+
   // 제휴사, 시, 군구 선택 시 실행
-  const handleData = (e: React.ChangeEvent<HTMLInputElement>) => {
-    
+  const handleData = async (e: React.ChangeEvent<HTMLInputElement>) => {
     // 옵션 변경 로직
     const name: string = e.target.title;
+
     setSearchData({ ...searchData, [name]: e.target.value });
     if (name === "city") {
       const val = e.target.value;
       const resGungu = gungu[val];
       setGunguList(resGungu);
     }
-    
-    // 선택 할 때 마다, queryUrl 갱신, 푸시는 안됨
-    const searchUrl = `${pathname}?partner=${searchData.partner}&city=${searchData.city}&gunGu=${searchData.gunGu}&isClick=${isClicked}`;
-    setQueryUrl(searchUrl);
-    
-    
+
+    const tmpUrl = `${pathname}?partner=${searchData.partner}&city=${searchData.city}&gunGu=${searchData.gunGu}`;
+    setQueryUrl(tmpUrl);
   };
 
   // fetch 함수 선언
   const fetchData = () => {
     console.log("fetch 실행");
-    const part = params.get("partner");
-    const city = params.get("city");
-    const gun = params.get("gunGu");
+
     // query 불러오기
     const searchUrl = `${pathname}?partner=${searchData.partner}&city=${searchData.city}&gunGu=${searchData.gunGu}&isClick=${isClicked}`;
     console.log("현재 상태", searchUrl);
@@ -117,37 +116,14 @@ const FindRegion = () => {
   // 검색 시 실행
   const handleSubmit = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const part = params.get("partner");
-    const city = params.get("city");
-    const gun = params.get("gunGu");
-
-    // 클릭을 한번도 안했다면, 했다고 처리
-    if (!isClicked) {
-      setIsClicked(!isClicked);
-    }
-
-    // 검색 당시의 query 정보를 담아, 푸시한다.
-    const searchUrl = `${pathname}?partner=${part}&city=${city}&gunGu=${gun}&isClick=${isClicked}`;
-    router.push(searchUrl);
-    fetchData()
+    console.log(params.get("gunGu"));
   };
 
   useEffect(() => {
-    console.log('유즈이펙트 실행')
-    // 검색 버튼을 한번도 안눌렀다면, fetch 막는다.
-    if (isClicked) {
-      fetchData();
-    }
-
-    const part = params.get("partner");
-    const city = params.get("city");
-    const gun = params.get("gunGu");
     
-    console.log(part, city, gun)
-    const searchUrl = `${pathname}?partner=${part}&city=${city}&gunGu=${gun}&isClick=${isClicked}`;
-    router.push(searchUrl)
-    console.log('유즈이펙트 실행 시 url', searchUrl)
+    const newUrl = `${pathname}?partner=${searchData.partner}&city=${searchData.city}&gunGu=${searchData.gunGu}`;
+    router.push(`${newUrl}`);
+
   }, [queryUrl]);
 
   return (
