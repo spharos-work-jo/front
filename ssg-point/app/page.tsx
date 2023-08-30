@@ -20,6 +20,7 @@ export default () => {
 
             <div className="swiper_container pt-[100px]">
                 <ul className="swiper_wrapper flex box-content">
+
                     <li className="swiper-slide">
                     
                     <Swiper
@@ -29,8 +30,8 @@ export default () => {
                     onSwiper={(swiper) => console.log(swiper)}
                     >
                     <SwiperSlide><img src="\assets\images\event\main_event01.jpg"/></SwiperSlide>
-                    <SwiperSlide><img src="\assets\images\event\main_event02.jpg"/> </SwiperSlide>
-                    <SwiperSlide><img src="\assets\images\event\main_event03.jpg"/> </SwiperSlide>
+                    <SwiperSlide><img src="\assets\images\event\main_event02.jpg" alt=""/></SwiperSlide>
+                    <SwiperSlide><img src="\assets\images\event\main_event03.jpg"/></SwiperSlide>
                     </Swiper>
 
                     </li>

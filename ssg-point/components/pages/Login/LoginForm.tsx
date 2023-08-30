@@ -110,7 +110,7 @@ function LoginForm() {
       <p className='text-red-500 text-xs'>{errorText.loginId}</p>
 
       <div className='relative'>
-      <input 
+        <input 
         type={pwType ? 'password' : 'text'}
         name="password" 
         id="password"
@@ -119,7 +119,7 @@ function LoginForm() {
         onChange={handleOnChange}
         />
 
-        <div className="eye absolute left-[510px] top-[28%] ">
+        <div className="eye absolute right-[20px] top-[28%] ">
         {pwType ? (
           <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eye.png'} alt="비밀번호 감추기" height={20} width={20}  /> </button>
         ) : (
