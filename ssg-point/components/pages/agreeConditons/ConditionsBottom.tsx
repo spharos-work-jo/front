@@ -26,7 +26,7 @@ function ConditionsBottom() {
             </li>
             ))
           }
-          <Link href="signup/profile-input">
+          <Link href="/signup/profile-input">
             <button className="w-full" type='submit'>
               
               <p className='p-4 mt-[30px] text-center text-black text-sm rounded-lg bg-ssg-linear'>

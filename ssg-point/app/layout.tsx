@@ -4,8 +4,11 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import Footer from '@/components/layout/Footer'
 import AuthProvider from '@/app/context/AuthProvider'
+import localFont from "next/font/local"
 
 const inter = Inter({ subsets: ['latin'] })
+
+
 
 export const metadata: Metadata = {
   title: '신세계포인트',
@@ -15,6 +18,14 @@ export const metadata: Metadata = {
   themeColor: '#ffffff',
 }
 
+
+
+// const myFont = localFont({
+//   src: '../fonts/NotoSans.ttf ',
+//   display: 'swap',
+// })
+
+
 export default function RootLayout({
   children,
 }: {
@@ -22,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={inter.className}>
+      <body>
         <AuthProvider>
           <Header></Header>
           {children}

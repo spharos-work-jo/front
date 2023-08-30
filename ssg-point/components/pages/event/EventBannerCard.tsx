@@ -6,7 +6,12 @@ function EventBannerCard({ id, img, title}: { id: number, img: string, title: st
   return (
     <li>
       <Link href={""}>
-        <Image src={img} alt={title} width={100} height={100}/>
+        <Image 
+          src={img}
+          alt={title}
+          width={100}
+          height={100}
+        />
       </Link>
     </li>
   )

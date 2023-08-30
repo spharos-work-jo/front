@@ -10,6 +10,8 @@ import { pageTitle } from '@/data/pageTitle'
 import { useRouter } from 'next/navigation'
 import { userAgent } from 'next/server'
 import path from 'path'
+import { useSession } from 'next-auth/react'
+import Image from 'next/image'
 
 function HeaderTop() {
   const [isLogin, setIsLogin] = useState<Boolean>(false)
@@ -17,6 +19,9 @@ function HeaderTop() {
   const [title, setTitle] = useState<String>('')
   const pathname = usePathname();
   const router = useRouter();
+  const session = useSession();
+  console.log(session)
+
 
   const handleSideMenu = () => {
     setIsOpened(!isOpened)
@@ -59,8 +64,7 @@ function HeaderTop() {
       <nav className='header_menu'>
         <ul className='flex relative gap-4 justify-center items-center'>
           <li className='text-sm font-medium'>
-            {isLogin ?
-            null
+            {session.status==='authenticated' ? <div> <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/> </div>
             : <Link href='/login'>로그인</Link> }
           </li>
           <li onClick={handleSideMenu}>
