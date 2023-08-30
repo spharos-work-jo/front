@@ -3,14 +3,13 @@ import React from "react";
 
 const SearchList = (props: {
   name: string;
-  id: number;
   selected: string;
   setSelected: React.Dispatch<React.SetStateAction<string>>;
   sido: string;
   gun: string;
   detail: string;
 }) => {
-  const { name, id, selected, setSelected, sido, gun, detail } = props;
+  const { name, selected, setSelected, sido, gun, detail } = props;
 
   const labelBefore =
     "before:inline-block before:absolute before:border-none before:top-[20px] before:right-[25px] before:w-[14px] before:h-[10px] before:bg-no-repeat before:bg-auto  before:bg-[length:14px_10px] ";
@@ -21,7 +20,6 @@ const SearchList = (props: {
   const labelStyle = "block py-[15px] px-[20px] text-[14px]";
   const handleClick = (e: any) => {
     setSelected(e.target.htmlFor);
-    console.log(selected, e.target.htmlfor);
   };
   return (
     <li
@@ -30,7 +28,6 @@ const SearchList = (props: {
           ? "on border-t border-b-2 border-b-[#ea035c] bg-[#fff3f8]"
           : "border-t"
       }
-      key={id}
     >
       <div className="block relative align-top">
         <input

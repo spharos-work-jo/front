@@ -5,6 +5,8 @@ export interface EventBannerCardProps {
   imgAlt: string
 }
 
+
+
 export interface EventType {
     id : string,
     img_url : string

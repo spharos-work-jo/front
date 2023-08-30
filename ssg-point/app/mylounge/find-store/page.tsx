@@ -14,7 +14,7 @@ const FindStore = () => {
   ];
 
   return (
-    <section className={selected === "0" ? 'pt-[4rem] h-[100vh]' : 'pt-[4rem]'}>
+    <section className={selected === "0" ? 'pt-[5rem] h-[100vh]' : 'pt-[5rem]'}>
       <MenuWrap
         menuList={menuList}
         selected={selected}
