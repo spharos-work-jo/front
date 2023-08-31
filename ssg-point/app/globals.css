@@ -172,3 +172,12 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
 body {
   font-family: "sans";
 } */
+.postmodal{
+  position: fixed;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  height: 100px;
+  width: 50px;
+  top:20%;
+  left: 0;
+  z-index:9999;
+}
