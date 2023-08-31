@@ -1,7 +1,5 @@
 import { signatureType } from "@/types/signatureType";
-import React from "react";
 import { signatureCrypto } from "./MakeNaverSignature";
-import signatureData from "@/data/signatureData";
 
 export const RandomNumber:number = Math.floor(Math.random() * 100000);
 

@@ -26,7 +26,9 @@ function ProfileInputBody() {
     city:"",
     detailAddress:"",
   })
+  const profileFetchHandle = () => {
 
+  }
   return (  
     <>
       <form className="block px-5 mt-10">
@@ -52,6 +54,7 @@ function ProfileInputBody() {
                 type="text"
                 placeholder={item.placeholder}
                 name={item.name}
+                // onChange={}
               />
             </div>
             ))

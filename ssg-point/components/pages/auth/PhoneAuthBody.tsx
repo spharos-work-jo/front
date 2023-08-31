@@ -1,5 +1,5 @@
 'use client'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import { newsAgencyList } from '@/data/newsAgencyList';
 import { authenticatedNeedDataType } from '@/types/authenticatedNeedDataType';
 import { signUpErrorTypeData } from '@/types/signUpErrorTypeData';
@@ -12,7 +12,10 @@ import AuthBehindTap from './AuthBehindTap';
 
 function PhoneAuthBody() {
 
-    const [isTapView, setIsTapView] = useState<boolean>(false);
+    const reqNum:string = "123456";
+
+
+    const [isClick,setIsClick] = useState<boolean>(false);
 
     // const certReq = () => {
     //   const RandomNumber:number = Math.floor(Math.random() * 100000);
@@ -25,7 +28,7 @@ function PhoneAuthBody() {
     // }
     // 본인인증 API <- 백엔드와 상의 후 진행예정
 
-
+    const [reqCertNumber,setReqCertNumber] = useState<boolean>(false);
 
     const [modalHandle,setModalHandle] = useState<signupModalDataType>({
       id:"",
@@ -66,10 +69,10 @@ function PhoneAuthBody() {
           [name]:value
           }
         )
-        setErrorText({
-          ...errorText,
-          [name]:value
-        })
+        // setErrorText({
+        //   ...errorText,
+        //   [name]:value
+        // })
       }
     const handleOnSelect = (e : React.ChangeEvent<HTMLSelectElement>) => {
       
@@ -77,17 +80,18 @@ function PhoneAuthBody() {
       
       const {name,value} = e.target;
 
+
       setSignUpListData({
         ...signUpListData,
         [name]:value
       })
-      setErrorText({
-        ...errorText,
-        [name]:value
-      })
-
+      // setErrorText({
+      //   ...errorText,
+      //   [name]:value
+      // })
     }
-    const handleSignUpFetch = async (e: React.FormEvent<HTMLFormElement>) => {
+
+    const handleSignUpFetch = async (e: React.MouseEvent<HTMLButtonElement>) => {
 
       e.preventDefault();
       
@@ -97,18 +101,25 @@ function PhoneAuthBody() {
         phone: '',
         agree:'',
       }
+
       if(signUpListData.name === '' || signUpListData.name === undefined) errText.name = "이름을 입력해주세요."
       if(signUpListData.birthday === '' || signUpListData.birthday === undefined) errText.birthday = "생년월일을 입력해주세요."
       if(signUpListData.birthday.length !== 8) errText.birthday = "생년월일을 다시 입력해주세요."
       if(signUpListData.phone === '' || signUpListData.phone === undefined) errText.phone = "전화번호를 입력해주세요"
       if(signUpListData.phone.length !== 11) errText.phone = "전화번호를 다시 입력해주세요."
       if(errText.name !== '' || errText.birthday !== '' || errText.phone !== ''||errText.agree !== '')
-          {
-            setErrorText(errText)
+      {
+          
+          setErrorText(errText);
+            
+          return  
+
+          }else{         
+
+            setReqCertNumber(true);
+            setIsClick(true);
             return 
-    
-          }else{
-            console.log(signUpListData)
+
           }
     }
 
@@ -120,11 +131,15 @@ function PhoneAuthBody() {
 
       console.log(changeData)
       
-      
     }
+    useEffect(() => {
+      if(reqCertNumber){
+        console.log(reqCertNumber)
+      }
+    },[reqCertNumber])
   return (
     <>
-      <form className='px-10 pt-4' onSubmit={handleSignUpFetch}>
+      <form className='px-10 pt-4'>
           <div className='text-[13px]'>
             <p className='pt-10 pb-2'>
               <b>이름을 입력해주세요.</b>
@@ -145,7 +160,9 @@ function PhoneAuthBody() {
             {
               genderTypeList.map( item => (
                   
-                  <div className={signUpListData.gender === item.gender ? `flex justify-center items-center w-1/2 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
+                  <div 
+                      className={signUpListData.gender === item.gender ? `flex justify-center items-center w-1/2 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
+                      key={item.id}
                       onClick = { () => setSignUpListData ({
                   ...signUpListData,
                   gender: item.gender
@@ -237,7 +254,7 @@ function PhoneAuthBody() {
                         name={item.title}
                         type="checkbox"
                         checked={item.check}
-                        className="w-5 h-5 mr-2 appearance-none rounded-full border border-gray-500 cursor-pointer checked:bg-black"
+                        className="w-5 h-5 mr-2 appearance-none rounded-full border border-gray-500 cursor-pointer checked:bg-balck checked:bg-[url('/assets/images/login/check.png')] checked:bg-[length:12px_10px] checked:bg-center"
                         onChange={handleAgree}
                       />
                       <label
@@ -265,22 +282,25 @@ function PhoneAuthBody() {
                 <p className='text-red-500 text-xs'>{errorText.agree}</p>  
               </ul>
             </div>
-                  {
-                    // isTapView ? <AuthBehindTap setIsTapView={setIsTapView}/> : 
-                    isTapView ? <AuthBehindTap/> :  
-                  <button
-                    className="w-full"
-                    onClick={() => setIsTapView(true)}
-                    type='submit'
-                    >
-                      <p className='p-4 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
-                        인증번호 요청
-                      </p>
-                    </button>
-                  }  
+              <button
+                className="w-full"
+                onClick={handleSignUpFetch}
+                type='submit'
+              >
+                { reqCertNumber === true && isClick === true ? <AuthBehindTap resultNum={reqNum}/> : <AuthDefaultTap/> } 
+              </button>
             </form>
           </>
   )
 }
 export default PhoneAuthBody;
 
+const AuthDefaultTap = () => {
+  return (  
+    <>
+      <p className='p-4 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
+        인증번호 요청
+      </p>
+    </>
+  );
+}
