@@ -9,7 +9,7 @@ export default function HomeMenu() {
         <div className={styles.main_menu}>
           <ul>
             <li>
-                  <Link href="event/ingevents">
+                  <Link href="event/ingevent">
                       <img src="./assets/images/nav/menu01.png" alt="이벤트" />
                       <p>이벤트</p>
                   </Link>
