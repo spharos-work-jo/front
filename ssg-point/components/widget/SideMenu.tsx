@@ -24,7 +24,7 @@ function SideMenu(props: {
   console.log(session)
   const { isOpened, setIsOpened } = props;
 
-  // Back에서 받아오는 나의 즐겨찾기 목록
+  /** 참고: Back에서 받아오는 나의 즐겨찾기 목록 state */ 
   // const [myFav, setMyFav] = useState<>()
   return (
     <>
@@ -53,13 +53,13 @@ function SideMenu(props: {
                 after:bg-[#ffdfb5] after:absolute
                 after:w-[100%] after:inline-block after:h-[15px] after:z-[-1] after:left-0 after:bottom-0"
                   >
-                    {/* {user.name} */}
+                    {/* {user.name} 참고 : 나중에 session에서 유저정보 불러오면 이름 표시 */} 
                   </strong>
                   님 반갑습니다.
                 </p>
               </div>
               <p className="flex itmes-center mt-[16px] text-[20px] font-bold leading-6">
-                {/* {user.point} */}
+                {/* {user.point} 참고 : 유저의 포인트 정보 불러온 후 표시 */}
                 <Image
                   alt="point"
                   src={
@@ -102,12 +102,14 @@ function SideMenu(props: {
 
         {/* 즐겨찾기 메뉴 리스트 */}
         <FavList favList={favList}></FavList>
-
+            
+        {/* 로그인 시 마이 포인트, 마이 라운지 등의 바로가기 메뉴 */}
         {session.status === "authenticated" ? <MyPage></MyPage> : null}
 
-        {/* 메뉴 박스 */}
+        {/* 바로가기 메뉴 박스 */}
         <MenuBox menuList={menuList}></MenuBox>
-
+        
+        {/* 사이드메뉴 Footer */}
         <ul className="sidemenu_terms mt-[50px] mb-[80px] ml-[20px]">
           <li className="inline-block">
             <Link
@@ -126,7 +128,8 @@ function SideMenu(props: {
             </Link>
           </li>
         </ul>
-
+        
+        {/* 사이드 메뉴 열고 닫는 X 버튼 */}
         <button
           className={styles.close_btn}
           onClick={() => setIsOpened(false)}
@@ -142,7 +145,7 @@ function SideMenu(props: {
 
 export default SideMenu;
 
-// 즐겨찾기 메뉴
+/** 즐겨찾기 메뉴 컴포넌트 */
 function FavList(props: { favList: any }) {
   return (
     <div className={styles.side_fav}>
@@ -175,7 +178,7 @@ const menu_tit =
 const acco_btn =
   "relative block w-[100%] h-[48px] text-left text-[14px] leading-6";
 
-// 로그인 시 보이는 메뉴
+/** 로그인 시 보이는 메뉴 컴포넌트 (마이포인트, 마이혜택 등) */
 function MyPage() {
   // 마이 페이지 요소 숨기기
   const handleClick = (e: any) => {
@@ -191,11 +194,12 @@ function MyPage() {
       e.target.children[0].style.backgroundPosition = "0  1px";
     }
   };
-
+  "2023-08-31"
   return (
     <div className="pt-[24px] px-[20px] ">
       <h3 className={menu_tit}>마이 페이지</h3>
       <div className="">
+        {/* loginMenuList의  */}
         {loginMenuList.map((item, idx) => (
           <div className="border-b" key={idx}>
             <button
