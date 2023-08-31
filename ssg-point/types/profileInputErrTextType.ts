@@ -1,10 +1,9 @@
 export interface profileInputErrTextType{
-  id:string,
+  loginId:string,
   password:string,
-  checkPassword:string,
   name:string,
   phone:string,
-  zipCode:string,
+  zoneCode:string,
   city:string,
   detailAddress:string,
 }
