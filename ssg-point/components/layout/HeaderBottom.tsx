@@ -19,11 +19,7 @@ function HeaderBottom() {
           <li className={ pathname === '/' ? `text-sm font-bold active` : `text-sm font-bold`}>
             <Link href='/'>홈</Link>
           </li>
-          {/* <li className='mt-50 '>
-            { pathname === '/' ? <HomeMenu/> : null}
-          </li> */}
         </ul>
-        
       </nav>
     </div>
   )

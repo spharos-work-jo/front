@@ -1,6 +1,6 @@
 import { EventBannerListProps } from "../types/event";
 
-export const EventBannerData :EventBannerListProps[] = [
+export const EventTop :EventBannerListProps[] = [
     {
         id: 1,
         url: '/ingevents',
@@ -40,4 +40,3 @@ export const EventBannerData :EventBannerListProps[] = [
         imgAlt: '지구의 내일을 우리가 함께 모바일 영수증을 ON 하세요 배너 클릭 시 공지사항 상세페이지로 현재창 이동합니다.'
     }
 ]
-

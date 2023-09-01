@@ -61,7 +61,6 @@ export const options: NextAuthOptions = {
 // 여기가 추가된 부분
   pages: {
     signIn: "/login",
-    // signOut: "/logout",
   },
 // 여기가 추가된 부분
 
