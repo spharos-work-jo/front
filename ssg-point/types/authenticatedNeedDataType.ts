@@ -5,5 +5,11 @@ export interface authenticatedNeedDataType{
   birthday:string,
   agency:string,
   phone:string,
-  agree:number,
+  allAgree:boolean,
+  agree:number
+  // allAgree:boolean,
+  // agree1:boolean,
+  // agree2:boolean,
+  // agree3:boolean,
+  // agree4:boolean,
 }
