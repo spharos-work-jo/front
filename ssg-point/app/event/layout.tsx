@@ -1,43 +1,29 @@
 'use client'
-import { useState } from 'react';
-import './layout.css';
 import Link from "next/link";
+import { eventTabMenu } from '@/data/eventTabMenu';
+import { EventMenuType } from '@/types/eventMenuType';
+import { usePathname } from 'next/navigation';
+
 
 export default function EventLayout({children}: {children: React.ReactNode}) {
 
-  const [activeTab, setActiveTab] = useState<number>();
-
-  const handleTabClick = (tabIndex: number) => {
-    setActiveTab(tabIndex);
-  };
+  const pathName = usePathname()
 
   return (
       <>
       <nav className="flex w-full pt-20">
-      <li
-        className={`tab ${activeTab === 0 ? "active" : ""}`}
-        onClick={() => handleTabClick(0)}
-      >
-        <Link href="/event/ingevent">진행 이벤트</Link>
-      </li>
-
-      <li
-        className={`tab ${activeTab === 1 ? "active" : ""}`}
-        onAbort={() => handleTabClick(1)}
-      >
-        <Link href="/event/endevent">종료 이벤트</Link>
-      </li>
-
-      <li 
-        className={`tab ${activeTab === 2 ? "active" : ""}`}
-      >
-        <Link href="/event/winevent">당첨 확인</Link>
-      </li>
-    </nav>
-    {children}
-    </>
-  
-    
+        <ul className="flex w-full">
+        {
+          eventTabMenu.map((item: EventMenuType) => (
+            <li key={item.id} className={ pathName === `/event${item.link}` ? 'event-tab active' : 'event-tab'}>
+              <Link href={`/event${item.link}`}>{item.name}</Link>
+            </li>
+          ))
+        }
+        </ul>
+      </nav>
+      {children}
+      </>
   )
 }
 
