@@ -16,7 +16,7 @@ const handleClick = (e : any) => {
   setSelected(e.target.id);
   console.log(selected);
 };
-
+  
   return(
     <>
       <div className="px-10 pb-5 pt-16 flex w-110">

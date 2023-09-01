@@ -9,11 +9,6 @@
   --ssg-point-primary-gradient: linear-gradient(126deg, #F40000 0%, #E6772A 7.29%, #EE9C38 17.71%, #EDAE3D 53.36%, #E78A41 65.63%, #A460C4 79.52%, #9C6BC2 88.98%, #71A2B9 96.55%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-   /* dark mode */
-  }
-}
 * {
   box-sizing: border-box;
 }
@@ -163,6 +158,12 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
   width: 67px;
 }
 
+
+.ssg-radio {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
 /* @font-face {
   font-family: "sans";
   src: url("/fonts/NotoSans.ttf");
@@ -171,3 +172,12 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
 body {
   font-family: "sans";
 } */
+.postmodal{
+  position: fixed;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  height: 100px;
+  width: 50px;
+  top:20%;
+  left: 0;
+  z-index:9999;
+}
