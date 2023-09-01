@@ -35,7 +35,7 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <AuthProvider>
-          <Header></Header>
+          <Header></Header> 
           {children}
           <Footer></Footer>
         </AuthProvider>

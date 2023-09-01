@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="info_box">
         <p className="ssg_cs">신세계 포인트 고객센터</p>
         <button className="tel">1899-4349</button>
-        <p className="op_time">
+        <p className="op_time relative left-5">
           {" "}
           운영시간
           <span> : </span>

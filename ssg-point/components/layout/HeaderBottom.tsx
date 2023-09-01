@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import React from 'react'
 import { usePathname } from 'next/navigation'
+import HomeMenu from '@/components/pages/home/HomeMenu'
 
 function HeaderBottom() {
 
@@ -18,7 +19,11 @@ function HeaderBottom() {
           <li className={ pathname === '/' ? `text-sm font-bold active` : `text-sm font-bold`}>
             <Link href='/'>홈</Link>
           </li>
+          {/* <li className='mt-50 '>
+            { pathname === '/' ? <HomeMenu/> : null}
+          </li> */}
         </ul>
+        
       </nav>
     </div>
   )

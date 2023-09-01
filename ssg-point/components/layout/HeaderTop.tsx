@@ -29,9 +29,12 @@ function HeaderTop() {
   }
 
   useEffect(() => {
-    console.log(pathname.split('/')[1])
+    const PathName = pathname.split('/').length
+    console.log(pathname.split('/'))
+    
     const getTitle = () => {
-      const result = pageTitle.find((item) => item.path === pathname.split('/')[1] )?.title
+      const result = pageTitle.find((item) => item.path === pathname.split('/')[PathName -1] )?.title
+
       if(result === undefined) return setTitle('신세계 포인트')
       setTitle(result)
     }

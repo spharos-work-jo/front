@@ -1,6 +1,6 @@
-import { EventBannerCardProps } from "../types/event";
+import { EventBannerListProps } from "../types/event";
 
-export const EventBannerData :EventBannerCardProps[] = [
+export const EventBannerData :EventBannerListProps[] = [
     {
         id: 1,
         url: '/ingevents',
@@ -25,17 +25,19 @@ export const EventBannerData :EventBannerCardProps[] = [
         imgUrl: '/main_event04.jpg',
         imgAlt: 'SHINSEGAE UNIVERSE 혜택이 모이면 특권이 된다! 대한민국 특권 신세계 유니버스 클럽'
     },
+
     {
         id: 5,
         url: '/ingevents',
         imgUrl: '/main_event05.jpg',
         imgAlt: '버즈빌 이벤트 pop번트 켜고 100Point Get'
     },
+
     {
         id: 6,
         url: '/ingevents',
         imgUrl: '/main_event06.jpg',
         imgAlt: '지구의 내일을 우리가 함께 모바일 영수증을 ON 하세요 배너 클릭 시 공지사항 상세페이지로 현재창 이동합니다.'
     }
-    
 ]
+

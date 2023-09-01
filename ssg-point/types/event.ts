@@ -1,4 +1,10 @@
-export interface EventBannerCardProps {
+
+export interface EventBannerDataType {
+  id: number
+  data: EventBannerListProps[]
+}
+
+export interface EventBannerListProps {
   id: number
   url: string
   imgUrl: string
@@ -6,8 +12,11 @@ export interface EventBannerCardProps {
 }
 
 
-
 export interface EventType {
-    id : string,
-    img_url : string
+    partnerid: number
+    name: string
+    startDate : string
+    endDate : string
+    type : number
+    imgUrl : string
 }
