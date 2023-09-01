@@ -15,7 +15,7 @@ function PostCodeDaum({isView, setAddress}: {isView: boolean, setAddress: React.
             isView &&
             <DaumPostcode
                 className="postmodal"
-                autoClose
+                // autoClose
                 onComplete={complete} 
             />
         }
