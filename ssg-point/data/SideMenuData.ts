@@ -161,7 +161,7 @@ export const loginMenuList = [
       {
         img_url: "/assets/images/sidemenu/shop_history.png",
         name: "쇼핑 히스토리",
-        url: "/",
+        url: "/mylounge/history",
       },
       {
         img_url: "/assets/images/sidemenu/recommend.png",
@@ -176,12 +176,12 @@ export const loginMenuList = [
       {
         img_url: "/assets/images/sidemenu/find_store.png",
         name: "매장 찾기",
-        url: "/",
+        url: "/mylounge/find-store",
       },
       {
         img_url: "/assets/images/sidemenu/regular_store.png",
         name: "자주 찾는 매장",
-        url: "/",
+        url: "/mylounge/regular-store",
       },
     ],
   },

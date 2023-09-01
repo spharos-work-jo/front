@@ -1,4 +1,4 @@
-// import EventBanner from "@/components/pages/home/EventBanner";
+import EventBanner from "@/components/pages/home/EventBanner";
 import HomeMenu from "@/components/pages/home/HomeMenu";
 import HomeBot from "@/components/pages/home/HomeBot";
 
@@ -13,11 +13,11 @@ export default () => {
         <div className="main_visual_banner">
             <h3 className="hidden">메인 비주얼 배너</h3>
             <div className="swiper_container pt-[100px]">
-                {/* <EventBanner/> */}<HomeBot/>
+                <EventBanner/>
+                <HomeMenu/>
+                <HomeBot/>
             </div>
         </div>
-        
-        
         </div>
     );
 
