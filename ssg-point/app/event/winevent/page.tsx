@@ -1,8 +1,11 @@
 import React from 'react'
+import WinEvent from '@/components/pages/event/WinEvent'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <WinEvent/>
+    </div>
   )
 }
 

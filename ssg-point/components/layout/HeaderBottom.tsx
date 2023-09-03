@@ -12,7 +12,7 @@ function HeaderBottom() {
   return (
     <div className='header_bottom'>
       <nav>
-        <ul className='flex gap-6 justify-center items-center'>
+        <ul className={ pathname === '/' ? 'flex gap-6 justify-center items-center pt-3 pb-1' : 'flex gap-6 justify-center items-center'}>
           <li className={ pathname === '/coupon' ? `text-sm font-bold active` : `text-sm font-bold`}>
             <Link href='/coupon'>쿠폰</Link>
           </li>
