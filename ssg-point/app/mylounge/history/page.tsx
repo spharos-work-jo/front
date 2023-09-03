@@ -5,7 +5,7 @@ import HistoryBottom from "@/components/pages/shopping-history/HistoryBottom";
 
 const ShopHistory = () => {
   return (
-    <section className="pt-[4rem]">
+    <section className="">
       <HistoryTop></HistoryTop>
       <HistoryBottom></HistoryBottom>
     </section>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-const CardManage = () => {
+const cardManage = () => {
   return (
-    <div>CardManage 돼냐</div>
+    <div>cardManage</div>
   )
 }
 
-export default CardManage
+export default cardManage

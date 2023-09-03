@@ -16,7 +16,7 @@ function EventBanner() {
   return (
     <section>
         <div>
-          <Swiper className='relative w-full h-[500px]'
+          <Swiper className='relative w-full h-[455px]'
           spaceBetween={50}
           slidesPerView={1}
           onSlideChange={() => console.log('slide change')}
