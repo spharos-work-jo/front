@@ -10,8 +10,11 @@ declare module "next-auth" {
         uuid: string,
         role: string,
         name: string,
-    } & DefaultSession["user"]
+        image: string,
+        providerName: string,
+    } & DefaultSession["user"] & KakaoProfile["kakao_account"]
   }
 }
+
 
 // 유저의 확장값

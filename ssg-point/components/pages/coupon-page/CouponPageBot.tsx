@@ -17,7 +17,7 @@ const CouponPageBot = () => {
           <div className={styles.coupon_button}>
             <ul className='coupon_wrap flex flex-row justify-between items-center '>
               <li className='pt-0 mr-[40px] text-[13px] text-center leading-5 w-44 bg-auto items-center justify-between'>
-                <Link href='/mycoupon' className='flex items-center flex-col box-border pt-[7px] pr-[50px] h-[60px] bg-[48px] bg-auto'>
+                <Link href='/mybenefits/mycoupon' className='flex items-center flex-col box-border pt-[7px] pr-[50px] h-[60px] bg-[48px] bg-auto'>
 
                   <img src="/assets/images/coupon/my_coupon.png" alt="마이쿠폰함" width={55} height={55}/>
                   마이쿠폰함으로 이동

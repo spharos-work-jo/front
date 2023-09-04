@@ -12,7 +12,7 @@ export default () => {
         <h3 className="hidden">홈</h3>
         <div className="main_visual_banner">
             <h3 className="hidden">메인 비주얼 배너</h3>
-            <div className="swiper_container pt-16">
+            <div className="swiper_container relative pt-16">
                 <EventBanner/>
                 <HomeMenu/>
                 <HomeBot/>

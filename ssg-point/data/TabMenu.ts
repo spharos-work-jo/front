@@ -81,3 +81,16 @@ export const mypointTabMenu = [
         link: '/point-pwd-chg',
     },
 ]
+
+export const mybenefitsTabMenu = [
+    {
+        id: 1,
+        name: '마이 쿠폰함',
+        link: '/mycoupon',
+    },
+    {
+        id: 2,
+        name: '마이 이벤트',
+        link: '/myevent',
+    },
+]
