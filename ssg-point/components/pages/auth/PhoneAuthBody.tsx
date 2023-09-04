@@ -1,5 +1,5 @@
 'use client'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { newsAgencyList } from '@/data/newsAgencyList';
 import { authenticatedNeedDataType } from '@/types/authenticatedNeedDataType';
 import { signUpErrorTypeData } from '@/types/signUpErrorTypeData';
@@ -11,8 +11,9 @@ import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditio
 
 
 function PhoneAuthBody() {
+    const reqUrl = "http://workjo.duckdns.org"
 
-    const reqNum:string = "123456";
+    const [authPhoneNumber,setAuthPhoneNumber] = useState<string>("");;
 
     const [isAllChecked, setIsAllChecked] = useState<boolean>(false);
 
@@ -80,6 +81,7 @@ function PhoneAuthBody() {
       birthday:'',
       phone: '',
       agree:'',
+      reqInfo:''
     });
 
     const handleOnChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -95,10 +97,6 @@ function PhoneAuthBody() {
           [name]:value
           }
         )
-        // setErrorText({
-        //   ...errorText,
-        //   [name]:value
-        // })
       }
     const handleOnSelect = (e : React.ChangeEvent<HTMLSelectElement>) => {
       
@@ -111,21 +109,18 @@ function PhoneAuthBody() {
         ...signUpListData,
         [name]:value
       })
-      // setErrorText({
-      //   ...errorText,
-      //   [name]:value
-      // })
     }
 
     const handleSignUpFetch = async (e: React.MouseEvent<HTMLButtonElement>) => {
 
       e.preventDefault();
-      
+
       let errText: signUpErrorTypeData = {
         name:'',
         birthday:'',
         phone: '',
         agree:'',
+        reqInfo:''
       }
 
       if(signUpListData.name === '' || signUpListData.name === undefined) errText.name = "이름을 입력해주세요."
@@ -136,15 +131,40 @@ function PhoneAuthBody() {
       if(!isAllChecked) errText.agree = "필수약관을 동의해주세요."
       if(errText.name !== '' || errText.birthday !== '' || errText.phone !== ''||errText.agree !== '' || errText.agree !== '')
       {
-          
+        //약관동의 체크 안되어있다가 전부다 체크하면 인증번호 요청 컴포넌트 호출되어야하는데
+        //안됨 이 부분은 차후 수정예정
+          console.log(errText)
           setErrorText(errText);
             
           return  
 
-          }else{         
+          }else{    
 
-            setReqCertNumber(true);
             setIsClick(true);
+            setAuthPhoneNumber(signUpListData.phone)
+
+            let res = await fetch(reqUrl + "/api/v1/cert/phone", {
+              method:"POST",
+              headers:{
+                'Content-type':'application/json'
+              },
+              body: JSON.stringify({
+                phone: authPhoneNumber
+              })
+            })
+            
+            console.log(res.body)
+            if(res.status === 200){
+
+              errText.reqInfo=""
+              setReqCertNumber(true)
+              
+              return 
+            }
+            
+            errText.reqInfo="입력하신 정보를 다시 확인해주세요."
+            
+
             return 
 
           }
@@ -272,7 +292,7 @@ function PhoneAuthBody() {
                       handler={handleChecked}
                       size={20}
                     />
-                  )
+                  ) 
                 })
               }
               <p className='text-red-500 text-xs'>{errorText.agree}</p>
@@ -281,8 +301,12 @@ function PhoneAuthBody() {
                 onClick={handleSignUpFetch}
                 type='submit'
               >
-                { reqCertNumber === true && isClick === true ? <AuthBehindTap resultNum={reqNum}/> : <AuthDefaultTap/> } 
+                { reqCertNumber === true && isClick === true ? null : <AuthDefaultTap/> } 
               </button>
+
+                { reqCertNumber === true && isClick === true ? <AuthBehindTap authNumber={authPhoneNumber}/> : null } 
+
+              <p className='text-red-500 text-xs'>{errorText.reqInfo}</p>
             </form>
           </>
   )
@@ -292,7 +316,7 @@ export default PhoneAuthBody;
 const AuthDefaultTap = () => {
   return (  
     <>
-      <p className='p-4 my-[24px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
+      <p className= 'p-4 my-[24px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
         인증번호 요청
       </p>
     </>
