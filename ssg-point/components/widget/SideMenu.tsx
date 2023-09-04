@@ -11,7 +11,7 @@ import {
   loginMenuList,
   menuList,
 } from "@/data/SideMenuData";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const favUrl =
   "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_big_";
@@ -55,7 +55,7 @@ function SideMenu(props: {
                   >
                     {/* {user.name} 참고 : 나중에 session에서 유저정보 불러오면 이름 표시 */} 
                   </strong>
-                  님 반갑습니다.
+                  김형진님 반갑습니다.
                 </p>
               </div>
               <p className="flex itmes-center mt-[16px] text-[20px] font-bold leading-6">
@@ -79,14 +79,16 @@ function SideMenu(props: {
 
           <div className={styles.btn_box}>
             {session.status === "authenticated" ? (
-              <>
-                <Link className={styles.btn_white} href={"/logout"}>
+              <div className="flex w-full relative">
+                <button className={styles.btn_outbox} onClick={()=>signOut({
+                  callbackUrl: 'http://localhost:3000/'
+                })}>
                   로그아웃
-                </Link>
-                <Link className={styles.btn_sub} href={"/mypage"}>
+                </button>
+                <Link className={styles.btn_mybox} href={"/mypage"}>
                   마이페이지
                 </Link>
-              </>
+              </div>
             ) : (
               <>
                 <Link className={styles.btn_primary} href={"/login"}>

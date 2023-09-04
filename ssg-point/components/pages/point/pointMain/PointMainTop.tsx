@@ -9,6 +9,7 @@ function PointMainTop() {
 
   return (  
     <>
+<<<<<<< HEAD
       <div className="relative mt-5 mx-5 w-[400px] h-[202px] bg-ssg-linear rounded-[16px] flex justify-center items-end">
         <div className="flex">
           <Image 
@@ -32,6 +33,8 @@ function PointMainTop() {
             </ul>
           </div>
       </div>
+=======
+>>>>>>> 0902291953baac299607e884a797c1e9e61d3728
     </>
   );
 }

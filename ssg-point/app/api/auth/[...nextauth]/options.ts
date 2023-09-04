@@ -1,5 +1,6 @@
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import KakaoProvider from 'next-auth/providers/kakao'
 
 export const options: NextAuthOptions = {
   providers: [
@@ -35,7 +36,8 @@ export const options: NextAuthOptions = {
         // Return null if user data could not be retrieved
         return null
       }
-    })
+    }),
+
   ],
 
   callbacks: {
@@ -59,7 +61,6 @@ export const options: NextAuthOptions = {
 // 여기가 추가된 부분
   pages: {
     signIn: "/login",
-    // signOut: "/logout",
   },
 // 여기가 추가된 부분
 

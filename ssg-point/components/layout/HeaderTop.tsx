@@ -29,9 +29,12 @@ function HeaderTop() {
   }
 
   useEffect(() => {
-    console.log(pathname.split('/')[1])
+    const PathName = pathname.split('/').length
+    console.log(pathname.split('/'))
+    
     const getTitle = () => {
-      const result = pageTitle.find((item) => item.path === pathname.split('/')[1] )?.title
+      const result = pageTitle.find((item) => item.path === pathname.split('/')[PathName -1] )?.title
+
       if(result === undefined) return setTitle('신세계 포인트')
       setTitle(result)
     }
@@ -44,8 +47,9 @@ function HeaderTop() {
   return (
     <>
     <SideMenu isOpened={isOpened} setIsOpened={setIsOpened}/>
-    <div className='header_top w-full box-border relative [z-index:2] flex justify-between items-center'>
-    <nav className='flex relative justify-center items-center'>
+    <div className='header_top w-full pr-5 box-border relative [z-index:2] flex justify-between items-center'>
+      
+    <nav className={pathname==='/' ? 'flex relative justify-center items-center ml-5 mt-3' : 'flex relative justify-center items-center'}>
       <ul>
       { pathname === '/' ? null :
       <button
@@ -56,7 +60,7 @@ function HeaderTop() {
       }
       </ul>
       <ul>
-      { pathname === '/' ? <Logo url={'/'} imgAlt={'신세계포인트 로고'} /> 
+      { pathname === '/' ? <Logo url={'/'} imgAlt={'신세계포인트 로고'}/> 
       : <HeaderUserStatus title={title}/>}
       </ul>
     </nav>

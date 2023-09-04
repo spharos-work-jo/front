@@ -119,12 +119,12 @@ const FindRegion = () => {
     console.log(params.get("gunGu"));
   };
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    const newUrl = `${pathname}?partner=${searchData.partner}&city=${searchData.city}&gunGu=${searchData.gunGu}`;
-    router.push(`${newUrl}`);
+  //   const newUrl = `${pathname}?partner=${searchData.partner}&city=${searchData.city}&gunGu=${searchData.gunGu}`;
+  //   router.push(`${newUrl}`);
 
-  }, [queryUrl]);
+  // }, [queryUrl]);
 
   return (
     <>

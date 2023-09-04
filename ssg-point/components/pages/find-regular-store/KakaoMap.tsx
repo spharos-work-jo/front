@@ -15,7 +15,7 @@ const KakaoMap = () => {
     lon: 0,
   });
   mapScript.async = true;
-  mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAOMAP_APPKEY}&autoload=false&libraries=services,clusterer,drawing`;
+  mapScript.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=3fa18601d9ff2627a9c2a783631d72ec&autoload=false&libraries=services,clusterer,drawing`;
   document.head.appendChild(mapScript);
 
   // 매장들 정보

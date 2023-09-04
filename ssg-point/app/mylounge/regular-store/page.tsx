@@ -4,7 +4,7 @@ import React from "react";
 
 const RegularStore = () => {
   return (
-    <section className="pt-[4rem]">
+    <section className="">
       <RegularHeader></RegularHeader>
       <RegularReg></RegularReg>
     </section>
