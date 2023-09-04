@@ -4,8 +4,6 @@ function PointMainBottom() {
   return (
     <>
     
-    PointMainBottom
-    
     </>
   );
 }
