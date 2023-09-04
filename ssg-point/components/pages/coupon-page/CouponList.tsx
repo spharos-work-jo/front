@@ -5,25 +5,21 @@ import Image from 'next/image'
 
 const CouponList = () => {
 
-  return (
+    return (
 
     <div className='pt-2.5 pr-5 pb-14 pl-5'>
         <h3 className='hidden'>쿠폰 리스트</h3>
-
         <div className='coupon_search h-[46px] flex items-center justify-between border-b border-black'>
             <div className='w-[95px] h-[38px] text-[14px] relative pt-3'>
                 마감임박
                 <select className=''>
                 </select>
             </div>
-
             <div>
                 <button className='text-[14px] pr-[26px] relative'>
-                    
                     <span className={styles.btn}>
                     전체다운
                     </span>
-
                 </button>
             </div>
         </div>
@@ -42,7 +38,7 @@ const CouponList = () => {
                         이마트24(일부 매장 제외)
                     </p>
 
-                    <p className='text-[16px] font-medium pt-0.5 pb-3 leading-6'>
+                    <p className='text-[16px] [font-weight:600] pt-0.5 pb-3 leading-[26px] overflow-hidden text-black  '>
                         1만원 이상 구매시 1천원 할인
                     </p>
 
@@ -67,9 +63,8 @@ const CouponList = () => {
                 </div>
             </li>
         </ul>
-    
     </div>
-  )
+)
 }
 
 export default CouponList

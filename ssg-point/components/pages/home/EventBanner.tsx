@@ -5,6 +5,10 @@ import { Swiper , SwiperSlide } from 'swiper/react';
 import { EventBannerListProps } from '@/types/event';
 import { EventTop } from '@/data/homeTopEvent';
 import Image from 'next/image';
+import { Scrollbar, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css/scrollbar';
+import 'swiper/css/pagination';
+import 'swiper/css';
 
 
 function EventBanner() {
@@ -16,7 +20,20 @@ function EventBanner() {
   return (
     <section>
         <div>
-          <Swiper className='relative w-full h-[455px]'
+          <Swiper 
+          className='relative w-full h-[500px]'
+
+          modules={[Scrollbar, Pagination, Navigation]}
+          pagination={{
+            clickable: true,
+            type: 'fraction'
+          }}
+          scrollbar={{ 
+            draggable: true
+          }}
+
+
+
           spaceBetween={50}
           slidesPerView={1}
           onSlideChange={() => console.log('slide change')}

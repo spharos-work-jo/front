@@ -15,3 +15,9 @@ export interface mypointTabMenuType {
     name: string;
     link: string;
 }
+
+export interface mybenefitsTabMenuType {
+    id: number;
+    name: string;
+    link: string;
+}
