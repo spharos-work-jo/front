@@ -91,37 +91,37 @@ export const loginMenuList = [
       {
         img_url: "/assets/images/sidemenu/point_history.png",
         name: "포인트 내역",
-        url: "/my-point",
+        url: "/mypoint/point-history",
       },
       {
         img_url: "/assets/images/sidemenu/card_manage.png",
         name: "포인트 카드 관리",
-        url: "/",
+        url: "/mypoint/card-manage",
       },
       {
         img_url: "/assets/images/sidemenu/point_gift.png",
         name: "포인트 선물",
-        url: "/",
+        url: "/mypoint/point-gift",
       },
       {
         img_url: "/assets/images/sidemenu/partner_point_add.png",
         name: "제휴포인트 카드 관리",
-        url: "/",
+        url: "/mypoint/partner-card-manage",
       },
       {
         img_url: "/assets/images/sidemenu/point_change.png",
         name: "포인트 전환",
-        url: "/",
+        url: "/mypoint/point-convert",
       },
       {
         img_url: "/assets/images/sidemenu/receipt_add.png",
         name: "영수증으로 적립",
-        url: "/",
+        url: "/mypoint/point-save",
       },
       {
         img_url: "/assets/images/sidemenu/change_pwd.png",
         name: "포인트 비밀번호 변경",
-        url: "/",
+        url: "/mypoint/point-pwd-chg",
       },
     ],
   },
@@ -166,12 +166,12 @@ export const loginMenuList = [
       {
         img_url: "/assets/images/sidemenu/recommend.png",
         name: "추천 서비스",
-        url: "/",
+        url: "/mylounge/recommend",
       },
       {
         img_url: "/assets/images/sidemenu/smart_receipt.png",
         name: "스마트 영수증",
-        url: "/",
+        url: "/mylounge/smart-receipt",
       },
       {
         img_url: "/assets/images/sidemenu/find_store.png",

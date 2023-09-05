@@ -18,7 +18,6 @@ const OAuthLogin = () => {
         <p className='kakao' onClick={()=>signIn('kakao')}>
           <Link href={''} className='btn relative block w-[48px] h-[48px] bg-[url(/assets/images/login/easy_login.png)] bg-no-repeat [background-position-x:0px] [background-position-y:-113px] [background-size:98%] cursor-pointer overflow-hidden leading-[0px]'/>
             <span className='hidden'>kakao</span>
-            
         </p>
         <li className='apple'>
           <Link href={''} className='btn relative block w-[48px] h-[48px] bg-[url(/assets/images/login/easy_login.png)] bg-no-repeat [background-position-x:0px] [background-position-y:-169px] [background-size:98%] cursor-pointer overflow-hidden leading-[0px]'/>

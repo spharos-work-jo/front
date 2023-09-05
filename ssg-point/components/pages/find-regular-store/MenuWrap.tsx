@@ -1,10 +1,10 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { SamllMenuType } from "@/types/menuType";
+import { SmallMenuType } from "@/types/menuType";
 
 const MenuWrap = (props: {
-  menuList: SamllMenuType[];
+  menuList: SmallMenuType[];
   selected: string;
   setSelected: React.Dispatch<React.SetStateAction<string>>;
 }) => {

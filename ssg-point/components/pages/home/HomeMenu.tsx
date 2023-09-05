@@ -1,6 +1,7 @@
 import React from 'react'
 import styles from './HomeMenu.module.css'
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function HomeMenu() {
   return (
@@ -10,33 +11,33 @@ export default function HomeMenu() {
           <ul>
             <li>
                   <Link href="event/ingevent">
-                      <img src="./assets/images/nav/menu01.png" alt="이벤트" />
+                      <Image src="/assets/images/nav/menu01.png" alt="이벤트" height={23} width={23} />
                       <p>이벤트</p>
                   </Link>
               </li>
               <li>
-                  <a href="#">
-                      <img src="./assets/images/nav/menu02.png" alt="출석체크" />
+                  <Link href="#">
+                      <Image src="/assets/images/nav/menu02.png" alt="출석체크" height={23} width={23} />
                       <p>출석체크</p>
-                  </a>
+                  </Link>
               </li>
               <li>
-                  <a href="#">
-                      <img src="./assets/images/nav/menu03.png" alt="럭키룰렛" />
+                  <Link href="#">
+                      <Image src="/assets/images/nav/menu03.png" alt="럭키룰렛" height={23} width={23} />
                       <p>럭키룰렛</p>
-                  </a>
+                  </Link>
               </li>
               <li>
-                  <a href="#">
-                      <img src="./assets/images/nav/menu04.png" alt="운세서비스" />
+                  <Link href="#">
+                      <Image src="/assets/images/nav/menu04.png" alt="운세서비스" height={23} width={23} />
                       <p>운세서비스</p>
-                  </a>
+                  </Link>
               </li>
               <li>
-                  <a href="#">
-                      <img src="./assets/images/nav/menu05.png" alt="영수증" />
+                  <Link href="#">
+                      <Image src="/assets/images/nav/menu05.png" alt="영수증" height={23} width={23} />
                       <p>영수증</p>
-                  </a>
+                  </Link>
               </li>
             </ul>
           </div>

@@ -18,13 +18,8 @@ const handleClick = (e : any) => {
   return(
     <>
       
-      <div className="px-10">
-        <b>
-          <span className="text-[13px] text-[#767673]">
-            본인인증 수단을 선택해주세요.
-          </span>
-        </b>
-        <div className='flex mt-10'>
+      
+        <div className='flex mt-10 mx-10'>
             {
                 typeList.map( item => (
                   <button className='box-border w-3/6 h-[88px] border flex justify-center items-center rounded-[6px] divide-[#e5e7eb]'
@@ -51,7 +46,7 @@ const handleClick = (e : any) => {
               ))
             }
           </div>
-      </div>
+
     </>
     );
 };
