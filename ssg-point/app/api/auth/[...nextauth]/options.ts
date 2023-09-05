@@ -16,7 +16,7 @@ export const options: NextAuthOptions = {
         console.log(credentials)
         if(!credentials?.loginId || !credentials?.password) return null
         
-        const res = await fetch("http://workjo.duckdns.org/api/v1/auth/login", {
+        const res = await fetch("https://workjo.duckdns.org/api/v1/auth/login", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
