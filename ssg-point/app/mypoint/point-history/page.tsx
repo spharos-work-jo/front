@@ -1,4 +1,4 @@
-import PointMainBottom from "@/components/pages/point/pointMain/PointMainBottom";
+import PointMainBody from "@/components/pages/point/pointMain/PointMainBody";
 import PointMainTop from "@/components/pages/point/pointMain/PointMainTop";
 import React from "react";
 
@@ -7,7 +7,7 @@ function Page() {
     <>
     <section>
     <PointMainTop/>
-    <PointMainBottom/>
+    <PointMainBody/>
     </section>
     </>
   );
