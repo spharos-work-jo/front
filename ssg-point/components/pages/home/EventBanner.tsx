@@ -1,47 +1,58 @@
-// import React, { useRef, useState } from "react";
-// Import Swiper React components
 'use client'
-import { useRef } from "react";
-import Image from "next/image";
-// 사용할 모듈 import
+import React, { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation';
+import { Swiper , SwiperSlide } from 'swiper/react';
+import { EventBannerListProps } from '@/types/event';
+import { EventTop } from '@/data/homeTopEvent';
+import Image from 'next/image';
+import { Scrollbar, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css/scrollbar';
+import 'swiper/css/pagination';
+import 'swiper/css';
 
 
+function EventBanner() {
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore from "swiper";
-import { Navigation, Scrollbar } from "swiper/modules"
-
-// 최신 버전인 경우
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/scrollbar";
-
-import Link from 'next/link'
-import { EventType } from "@/app/page";
-
-
-export default function EventBanner( props: {
-  dataList : EventType[]
-
-}) 
-{
-  const {dataList} = props
-  SwiperCore.use([Navigation]);
-  const swiperRef = useRef<SwiperCore>();
+  const [data, setData] = useState<any>();
+  const query = useSearchParams();
+  console.log("url quary ",query.get('sort'))
 
   return (
-    <div className="w-full">
-      {
-        dataList.map(item=>(
-          <Image 
-                src={item.img_url}
-                alt={"text"}
-                width={800}
-                height={800}
-        />
-        ))
-      }
-       
-    </div>
-  );
+    <section>
+        <div>
+          <Swiper 
+          className='relative w-full h-[500px]'
+
+          modules={[Scrollbar, Pagination, Navigation]}
+          pagination={{
+            clickable: true,
+            type: 'fraction'
+          }}
+          scrollbar={{ 
+            draggable: true
+          }}
+
+
+
+          spaceBetween={50}
+          slidesPerView={1}
+          onSlideChange={() => console.log('slide change')}
+          onSwiper={(swiper) => console.log(swiper)}>
+            {
+              EventTop && EventTop.map((item:any) => (
+                <SwiperSlide>
+                  <Image
+                    src={`/assets/images/event${item.imgUrl}`}
+                    alt={`/assets/images/event${item.imgAlt}`}
+                    fill={true}
+                  />
+                </SwiperSlide>
+              ))
+            }
+          </Swiper>
+        </div>
+      </section>
+  )
 }
+
+export default EventBanner
