@@ -3,4 +3,5 @@ export interface signUpErrorTypeData{
   birthday:string,
   phone:string,
   agree:string,
+  reqInfo:string,
 }

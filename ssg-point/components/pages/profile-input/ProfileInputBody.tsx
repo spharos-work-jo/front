@@ -11,6 +11,7 @@ function ProfileInputBody() {
 
   const [isView, setIsView] = useState<boolean>(false);
   const [address, setAddress] = useState<DaumAddressType>();
+  const [pwType, setPwType] = useState<boolean>(false);
 
   const handleOpenModal = () =>{
 
@@ -39,6 +40,7 @@ function ProfileInputBody() {
   const [profileErrText,setProfileErrText] = useState<profileInputErrTextType>({
     loginId:"",
     password:"",
+    checkPassword:"",
     name:"",
     phone:"",
     zoneCode:"",
@@ -64,6 +66,7 @@ function ProfileInputBody() {
     let errText:profileInputErrTextType = {
       loginId:"",
       password:"",
+      checkPassword:"",
       name:"",
       phone:"",
       zoneCode:"",
@@ -77,9 +80,23 @@ function ProfileInputBody() {
     if(8 < userProfile.password.length || 21 < userProfile.password.length){
       errText.password = "비밀번호는 8자 이상 20자 이하로 입력해주세요."
     }
-    // if(userProfile.password !== userProfile.checkPassword){
-    //   errText.
-    // }
+    if(userProfile.password !== userProfile.checkPassword){
+      errText.checkPassword = "비밀번호가 서로 다릅니다."
+    }
+    if(userProfile.name === "") errText.name = "이름을 입력해주세요."
+    if(userProfile.phone === "") errText.phone = "전화번호를 입력해주세요."
+    if(userProfile.zoneCode === 0) errText.zoneCode = "우편번호를 입력해주세요."
+    if(userProfile.city === "") errText.city = "주소를 입력해주세요."
+    if(userProfile.detailAddress === "") errText.detailAddress = "상세주소를 입력해주세요."
+    if(errText.loginId !== "" || errText.password !== "" || errText.checkPassword !== "" ||
+      errText.name !== "" || errText.phone !== "" || errText.zoneCode !== "" || errText.city !== "" ||
+      errText.detailAddress !== ""){
+
+      setProfileErrText(errText);
+
+      return
+    }
+    
   }
   return (  
     <>
@@ -103,17 +120,19 @@ function ProfileInputBody() {
         <div className="flex-col">
           {
             SignupInputProfileList.map( item => (
+
             <div>
+              {/* { item.id === 1 || 2 ? () => setPwType(true)  : null} */}
             <p className="text-[14px] my-3">{item.title}<span className="text-red-500">*</span></p>
               <input
                 className="h-[48px] border w-full rounded-[6px] diveide-[#e5e7eb] text-sm"
-                type="text"
+                type= { pwType? "password" : "text"}
                 placeholder={item.placeholder}
                 name={item.name}
                 onChange={handleOnChange}
                 //이름과 휴대폰 번호는 휴대폰 인증에서 데이터 받아와서 미리 표시해두고 싶지만
                 //시간부족으로 차후 구현예정입니다.
-              />
+                />
             </div>
             ))
           }

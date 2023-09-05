@@ -1,20 +1,55 @@
 'use client'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { newsAgencyList } from '@/data/newsAgencyList';
 import { authenticatedNeedDataType } from '@/types/authenticatedNeedDataType';
 import { signUpErrorTypeData } from '@/types/signUpErrorTypeData';
-import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditionsList';
 import { genderTypeList } from '@/data/genderTypeList';
 import { localForeignerList } from '@/data/localForeignerList';
-import Image from "next/image";
-import { signupModalDataType } from '@/types/signupModalDataType';
 import AuthBehindTap from './AuthBehindTap';
+import CheckStatus from './CheckStatus';
+import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditionsList';
+
 
 function PhoneAuthBody() {
+    const reqUrl = "http://workjo.duckdns.org"
 
-    const reqNum:string = "123456";
+    const [authPhoneNumber,setAuthPhoneNumber] = useState<string>("");;
+
+    const [isAllChecked, setIsAllChecked] = useState<boolean>(false);
+
+    const handleAllChecked = () => {
+      
+      const newAgreeList = [...agreeDataList];
+      
+      newAgreeList.map((item) => {
+      
+        item.check = !isAllChecked;
+      
+        })
+      
+      setAgreedataList(newAgreeList);
+
+      setIsAllChecked(!isAllChecked);
+  }
 
 
+    const [agreeDataList,setAgreedataList] = useState<signUpAgreeListType[]>(signUpAgreeList);
+
+    const handleChecked = (id:number, isCheck:boolean) => {
+
+      const newAgreeList = [...agreeDataList];
+
+      newAgreeList.map((item) => {
+      
+        if(item.id === id){
+      
+          item.check = isCheck;
+      
+        }
+      })
+
+      setAgreedataList(newAgreeList);
+  }
     const [isClick,setIsClick] = useState<boolean>(false);
 
     // const certReq = () => {
@@ -29,14 +64,6 @@ function PhoneAuthBody() {
     // 본인인증 API <- 백엔드와 상의 후 진행예정
 
     const [reqCertNumber,setReqCertNumber] = useState<boolean>(false);
-
-    const [modalHandle,setModalHandle] = useState<signupModalDataType>({
-      id:"",
-      state:false
-    });
-
-
-    const [agreeList, setAgreeList] = useState<signUpAgreeListType[]>(signUpAgreeList);
 
     const [signUpListData,setSignUpListData] = useState<authenticatedNeedDataType>({
       name: '',
@@ -53,7 +80,8 @@ function PhoneAuthBody() {
       name: '',
       birthday:'',
       phone: '',
-      agree:"",
+      agree:'',
+      reqInfo:''
     });
 
     const handleOnChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -69,10 +97,6 @@ function PhoneAuthBody() {
           [name]:value
           }
         )
-        // setErrorText({
-        //   ...errorText,
-        //   [name]:value
-        // })
       }
     const handleOnSelect = (e : React.ChangeEvent<HTMLSelectElement>) => {
       
@@ -85,21 +109,18 @@ function PhoneAuthBody() {
         ...signUpListData,
         [name]:value
       })
-      // setErrorText({
-      //   ...errorText,
-      //   [name]:value
-      // })
     }
 
     const handleSignUpFetch = async (e: React.MouseEvent<HTMLButtonElement>) => {
 
       e.preventDefault();
-      
+
       let errText: signUpErrorTypeData = {
         name:'',
         birthday:'',
         phone: '',
         agree:'',
+        reqInfo:''
       }
 
       if(signUpListData.name === '' || signUpListData.name === undefined) errText.name = "이름을 입력해주세요."
@@ -107,31 +128,48 @@ function PhoneAuthBody() {
       if(signUpListData.birthday.length !== 8) errText.birthday = "생년월일을 다시 입력해주세요."
       if(signUpListData.phone === '' || signUpListData.phone === undefined) errText.phone = "전화번호를 입력해주세요"
       if(signUpListData.phone.length !== 11) errText.phone = "전화번호를 다시 입력해주세요."
-      if(errText.name !== '' || errText.birthday !== '' || errText.phone !== ''||errText.agree !== '')
+      if(!isAllChecked) errText.agree = "필수약관을 동의해주세요."
+      if(errText.name !== '' || errText.birthday !== '' || errText.phone !== ''||errText.agree !== '' || errText.agree !== '')
       {
-          
+        //약관동의 체크 안되어있다가 전부다 체크하면 인증번호 요청 컴포넌트 호출되어야하는데
+        //안됨 이 부분은 차후 수정예정
+          console.log(errText)
           setErrorText(errText);
             
           return  
 
-          }else{         
+          }else{    
 
-            setReqCertNumber(true);
             setIsClick(true);
+            setAuthPhoneNumber(signUpListData.phone)
+
+            let res = await fetch(reqUrl + "/api/v1/cert/phone", {
+              method:"POST",
+              headers:{
+                'Content-type':'application/json'
+              },
+              body: JSON.stringify({
+                phone: authPhoneNumber
+              })
+            })
+            
+            console.log(res.body)
+            if(res.status === 200){
+
+              errText.reqInfo=""
+              setReqCertNumber(true)
+              
+              return 
+            }
+            
+            errText.reqInfo="입력하신 정보를 다시 확인해주세요."
+            
+
             return 
 
           }
     }
 
-    const handleAgree = (e:React.ChangeEvent<HTMLInputElement>) => {
-      
-      const changeData = agreeList.find(item=> item.title === e.target.name )
-
-      const check = changeData?.check 
-
-      console.log(changeData)
-      
-    }
     useEffect(() => {
       if(reqCertNumber){
         console.log(reqCertNumber)
@@ -232,63 +270,43 @@ function PhoneAuthBody() {
                 />
                 <p className='text-red-500 text-xs'>{errorText.phone}</p>
             </div>
-            <div className="pt-10 flex-col flex-wrap">
-              <p className="text-xl pb-3">
-                <b>휴대전화 인증 약관</b>
-              </p>
-              <ul className="flex-col justify-start">
-                <li className="flex border-b-[1px] border-gray-400 pb-3 mb-2 text-[15px] my-5">
-                        <input 
-                          name="allAgree"
-                          type="checkbox"
-                          className="w-5 h-5 mr-2 appearance-none rounded-full border border-gray-500 cursor-pointer checked:bg-black"
-                          onChange={handleAgree}
-                          />
-                        <label htmlFor="agreeAllConditions">모든 약관에 동의합니다.</label>
-                </li>
-                  {
-                    agreeList.map(item=>(
-                      <li className="flex text-[13px] my-5" key={item.id}>
-                      <input
-                        id={item.id}
-                        name={item.title}
-                        type="checkbox"
-                        checked={item.check}
-                        className="w-5 h-5 mr-2 appearance-none rounded-full border border-gray-500 cursor-pointer checked:bg-balck checked:bg-[url('/assets/images/login/check.png')] checked:bg-[length:12px_10px] checked:bg-center"
-                        onChange={handleAgree}
-                      />
-                      <label
-                        htmlFor="agreeAllConditions"
-                        className='w-80'
-                        >{item.title}</label>
-                      <button 
-                        key={item.id}
-                        onClick={() => setModalHandle({
-                          id: item.id,
-                          state: true
-                        })}
-                      >
-                        <Image
-                          src="/assets/images/vector/Vector.png"
-                          alt='화살표'
-                          height={16}
-                          width={5}
-                        />
-                      </button>
-                    </li>
-                    ))
-                  }
-                  
-                <p className='text-red-500 text-xs'>{errorText.agree}</p>  
-              </ul>
+            <div className='text-lg border-b-[1px] divide-[#e5e7eb] mt-14 pb-2'>
+            <CheckStatus
+                  checkId={0}
+                  label={"전체 동의"}
+                  name={"전체 동의"}
+                  checked={agreeDataList.every((item) => item.check)}
+                  handler={handleAllChecked}
+                  size={25}
+                />
             </div>
+              {
+                signUpAgreeList.map( (item:signUpAgreeListType) => {
+                  return(
+                    <CheckStatus
+                      key={item.id}  
+                      checkId={item.id}
+                      label={item.title}
+                      name={item.title}
+                      checked={item.check}
+                      handler={handleChecked}
+                      size={20}
+                    />
+                  ) 
+                })
+              }
+              <p className='text-red-500 text-xs'>{errorText.agree}</p>
               <button
                 className="w-full"
                 onClick={handleSignUpFetch}
                 type='submit'
               >
-                { reqCertNumber === true && isClick === true ? <AuthBehindTap resultNum={reqNum}/> : <AuthDefaultTap/> } 
+                { reqCertNumber === true && isClick === true ? null : <AuthDefaultTap/> } 
               </button>
+
+                { reqCertNumber === true && isClick === true ? <AuthBehindTap authNumber={authPhoneNumber}/> : null } 
+
+              <p className='text-red-500 text-xs'>{errorText.reqInfo}</p>
             </form>
           </>
   )
@@ -298,7 +316,7 @@ export default PhoneAuthBody;
 const AuthDefaultTap = () => {
   return (  
     <>
-      <p className='p-4 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
+      <p className= 'p-4 my-[24px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
         인증번호 요청
       </p>
     </>
