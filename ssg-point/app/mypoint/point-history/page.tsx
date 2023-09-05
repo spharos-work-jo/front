@@ -1,9 +1,16 @@
-import React from 'react'
+import PointMainBottom from "@/components/pages/point/pointMain/PointMainBottom";
+import PointMainTop from "@/components/pages/point/pointMain/PointMainTop";
+import React from "react";
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
+function Page() {
+  return (  
+    <>
+    <section>
+    <PointMainTop/>
+    <PointMainBottom/>
+    </section>
+    </>
+  );
 }
 
-export default page
+export default Page;

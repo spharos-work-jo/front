@@ -11,7 +11,8 @@ import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditio
 
 
 function PhoneAuthBody() {
-    const reqUrl = "http://workjo.duckdns.org"
+    // const reqUrl = "http://workjo.duckdns.org"
+    const reqUrl = "http://10.10.10.103:8000"
 
     const [authPhoneNumber,setAuthPhoneNumber] = useState<string>("");;
 
@@ -138,10 +139,9 @@ function PhoneAuthBody() {
             
           return  
 
-          }else{    
+      }
 
             setIsClick(true);
-            setAuthPhoneNumber(signUpListData.phone)
 
             let res = await fetch(reqUrl + "/api/v1/cert/phone", {
               method:"POST",
@@ -149,10 +149,10 @@ function PhoneAuthBody() {
                 'Content-type':'application/json'
               },
               body: JSON.stringify({
-                phone: authPhoneNumber
+                phone: signUpListData.phone
               })
             })
-            
+       
             console.log(res.body)
             if(res.status === 200){
 
@@ -167,7 +167,7 @@ function PhoneAuthBody() {
 
             return 
 
-          }
+       
     }
 
     useEffect(() => {
@@ -216,10 +216,11 @@ function PhoneAuthBody() {
             </p>
             <div className='flex'>
               {
-              localForeignerList.map( item => (
+              localForeignerList.map( (item , idx)=> (
                   
                   <div className={signUpListData.foreigner === item.type ? `flex justify-center items-center w-1/2 h-[60px] bg-[#000000] rounded-[6px] text-[white] text-base` : `flex justify-center items-center w-1/2 h-[60px] bg-[#F5F5F5] rounded-[6px] text-base`}
-                      onClick = { () => setSignUpListData ({
+                  key={idx}   
+                  onClick = { () => setSignUpListData ({
                   ...signUpListData,
                   foreigner: item.type
                 })
