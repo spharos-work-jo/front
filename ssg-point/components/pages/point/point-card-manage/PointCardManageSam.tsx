@@ -20,8 +20,6 @@ const PointCardManageSam = () => {
           <dd className='text-[13px] leading-[21px]'>구매 금액의 0.2% 신세계포인트와 동시적립
           </dd>
         </dl>
-
-
     </div>
   )
 }

@@ -39,11 +39,11 @@ const HistoryBottom = () => {
     borderLeft: "6px solid transparent",
   };
 
-  const EventData: EventType[] = [
-    { id: "1", img_url: "" },
-    { id: "2", img_url: "" },
-    { id: "3", img_url: "" },
-  ];
+  // const EventData: EventType[] = [
+  //   { id: "1", img_url: "" },
+  //   { id: "2", img_url: "" },
+  //   { id: "3", img_url: "" },
+  // ];
 
   return (
     <div className="px-[20px] pb-[50px]">
