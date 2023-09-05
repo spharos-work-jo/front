@@ -2,6 +2,7 @@
 import React, { cloneElement, useState } from 'react'
 import styles from './CouponPageBot.module.css'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { ThisExpression } from 'typescript'
 
@@ -17,17 +18,15 @@ const CouponPageBot = () => {
           <div className={styles.coupon_button}>
             <ul className='coupon_wrap flex flex-row justify-between items-center '>
               <li className='pt-0 mr-[40px] text-[13px] text-center leading-5 w-44 bg-auto items-center justify-between'>
-                <Link href='/mybenefits/mycoupon' className='flex items-center flex-col box-border pt-[7px] pr-[50px] h-[60px] bg-[48px] bg-auto'>
-
-                  <img src="/assets/images/coupon/my_coupon.png" alt="마이쿠폰함" width={55} height={55}/>
+                <Link href='/mybenefits/mycoupon' className='flex items-center flex-col box-border pt-[7px] pr-[30px] h-[60px] bg-[48px] bg-auto'>
+                  <Image src="/assets/images/coupon/my_coupon.png" alt="마이쿠폰함" width={55} height={55}/>
                   마이쿠폰함으로 이동
                 </Link>
                 </li>
 
                 <li className='pt-[8px] pl-[20px] text-[13px] text-center leading-5 w-[167px] bg-auto items-center justify-between'>
-
                 <button className={styles.register_coupon} onClick={()=>setIsView(true)}>
-                  <img src='/assets/images/coupon/coupon_reg.png' alt="쿠폰등록" height={50} width={50} className='pb-[5px]' />
+                  <Image src='/assets/images/coupon/coupon_reg.png' alt="쿠폰등록" height={50} width={50} className='pb-[5px]' />
                   쿠폰 등록
                 </button>
               </li>

@@ -1,8 +1,13 @@
 import React from 'react'
+import PointGiftTop from '@/components/pages/point/point-gift/PointGiftTop'
+import PointGiftBot from '@/components/pages/point/point-gift/PointGiftBot'
 
 const page = () => {
   return (
-    <div>page</div>
+    <div>
+      <PointGiftTop />
+      <PointGiftBot />
+    </div>
   )
 }
 

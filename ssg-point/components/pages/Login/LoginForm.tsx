@@ -156,7 +156,7 @@ function LoginForm() {
           <label htmlFor="isAutoLogin" className='text-[13px]'>자동 로그인</label>
         </div>
       </div>
-      <button type="button" className='w-full rounded-[28px] bg-gradient text-black p-3 text-sm border h-[56px]' onClick={handleLoginFetch}>
+      <button type="button" className='btn_pm w-full rounded-[28px] text-black p-3 text-sm border h-[56px]' onClick={handleLoginFetch}>
         <strong className='text-[18px]'>로그인</strong>
       </button>
       {/* <p>LOGIN ID : {loginData.loginId}</p>
@@ -165,10 +165,10 @@ function LoginForm() {
       <p>IS AUTO LOGIN : {loginData.isAutoLogin ? 'true' : 'false'}</p> */}
       <ul className='btn_list_box flex text-[14px] text-center justify-center mt-7'>
         <li className={styles.log}>
-          아이디 찾기
+          <Link href={'/member/find-id-pw'}>아이디 찾기</Link>
         </li>
         <li className={styles.log}>
-          비밀번호 찾기
+          <Link href={'/member/find-pw'}>비밀번호 찾기</Link>
         </li>
         <li>
           <Link href='/signup'>회원가입</Link>

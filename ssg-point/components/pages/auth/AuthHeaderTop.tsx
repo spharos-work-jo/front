@@ -18,6 +18,15 @@ function AuthHeaderTop() {
           본인인증
         </p>
       </div>
+
+      <div className="px-10">
+        <b>
+          <span className="text-[13px] text-[#767673]">
+            본인인증 수단을 선택해주세요.
+          </span>
+        </b>
+      </div>
+      
     </>
     );
 }
