@@ -26,7 +26,7 @@ return (
           checked={checked} 
           onChange={()=>handler(checkId, !checked)} 
           className={`border border-gray-300 rounded-[50%] appearance-none cursor-pointer checked:bg-black checked:border-transparent`}
-          style={{ width: `${size??1}px`, height: `${size??1}px` }} 
+          style={{ width: `${size}px`, height: `${size}px` }} 
       />
       <label htmlFor={label}>{label}</label>
   </div>
