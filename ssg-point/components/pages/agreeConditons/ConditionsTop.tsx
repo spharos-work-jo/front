@@ -1,8 +1,23 @@
+'use client'
+
 import Image from 'next/image'
+import React,{useEffect, useState} from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import AllAgreeCheck from './AllAgreeCheck';
 
 function ConditionsTop() {
 
   const iconUrl : string = "/assets/images/signupIcon/";
+
+  const [IsAllAgree,setIsAllAgree] = useState<boolean>(false);
+  
+  // let allAgreeChecked = useRecoilValue(AllAgreeCheck);
+
+  // useEffect(() => {
+
+  //   !allAgreeChecked
+  
+  // },[IsAllAgree])
 
   return (  
     <>
@@ -18,10 +33,19 @@ function ConditionsTop() {
         </p>
         <button
           type='button'
-          className='h-[48px] w-full rounded-[8px] bg-black mt-8 mb-3'
+          onClick={() => setIsAllAgree(!IsAllAgree)}
+          className={
+            IsAllAgree ? 'h-[48px] w-full rounded-[8px] bg-black mt-8 mb-3'
+            : 'h-[48px] w-full rounded-[8px] bg-gray-100 mt-8 mb-3'
+          }
         >
-        <p className='text-white text-sm'>모두 동의합니다.</p>
+        <p className={
+          IsAllAgree ?'text-white text-sm'
+          : 'text-gray-500 text-sm'
+        }
+        >모두 동의합니다.</p>
         </button>
+
         <span className="text-[13px] text-gray-400 w-full">
           <b>※전체 동의에는 필수 및 선택 정보수집에 대한 동의가 포함되어 있으며,<br/>
           개별적인 동의 선택도 가능합니다.선택항목에 대한 동의를 거부하시더라도<br/>

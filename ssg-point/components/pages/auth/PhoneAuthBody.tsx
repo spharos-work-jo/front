@@ -134,6 +134,7 @@ function PhoneAuthBody() {
       {
         //약관동의 체크 안되어있다가 전부다 체크하면 인증번호 요청 컴포넌트 호출되어야하는데
         //안됨 이 부분은 차후 수정예정
+        //↑추가 완료  
           console.log(errText)
           setErrorText(errText);
             
@@ -152,11 +153,12 @@ function PhoneAuthBody() {
                 phone: signUpListData.phone
               })
             })
-       
+
             console.log(res.body)
             if(res.status === 200){
 
               errText.reqInfo=""
+              setAuthPhoneNumber(signUpListData.phone)
               setReqCertNumber(true)
               
               return 
@@ -167,7 +169,7 @@ function PhoneAuthBody() {
 
             return 
 
-       
+      
     }
 
     useEffect(() => {

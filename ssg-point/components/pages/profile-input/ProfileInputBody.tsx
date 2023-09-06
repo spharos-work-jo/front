@@ -1,5 +1,6 @@
 'use client'
 import React, {useState, useEffect} from "react";
+import { useRouter } from "next/navigation";
 import { SignupInputProfileList } from "@/data/SignupInputProfileList";
 import { userProfileInputFormType } from "@/types/userProfileInputFormType";
 import { profileInputErrTextType } from "@/types/profileInputErrTextType";
@@ -9,6 +10,7 @@ import { wayMarketingList } from "@/data/wayMarketingList";
 
 function ProfileInputBody() {
 
+  const router = useRouter();
   const [isView, setIsView] = useState<boolean>(false);
   const [address, setAddress] = useState<DaumAddressType>();
   const [pwType, setPwType] = useState<boolean>(false);
@@ -84,7 +86,8 @@ function ProfileInputBody() {
       errText.checkPassword = "비밀번호가 서로 다릅니다."
     }
     if(userProfile.name === "") errText.name = "이름을 입력해주세요."
-    if(userProfile.phone === "") errText.phone = "전화번호를 입력해주세요."
+    if(userProfile.phone === "") errText.phone = "전화 번호를 입력해주세요."
+    
     if(userProfile.zoneCode === 0) errText.zoneCode = "우편번호를 입력해주세요."
     if(userProfile.city === "") errText.city = "주소를 입력해주세요."
     if(userProfile.detailAddress === "") errText.detailAddress = "상세주소를 입력해주세요."
@@ -92,11 +95,12 @@ function ProfileInputBody() {
       errText.name !== "" || errText.phone !== "" || errText.zoneCode !== "" || errText.city !== "" ||
       errText.detailAddress !== ""){
 
+      console.log(errText)
       setProfileErrText(errText);
 
       return
     }
-    
+    router.push('./signup-completion')
   }
   return (  
     <>
@@ -116,23 +120,30 @@ function ProfileInputBody() {
             >
             중복확인
           </button>
+          <p></p>
         </div>
+          <p className='text-red-500 text-xs'>{profileErrText.loginId}</p>
         <div className="flex-col">
           {
             SignupInputProfileList.map( item => (
-
             <div>
               {/* { item.id === 1 || 2 ? () => setPwType(true)  : null} */}
-            <p className="text-[14px] my-3">{item.title}<span className="text-red-500">*</span></p>
+            <p 
+              className="text-[14px] my-3"
+              key={item.id}
+              >{item.title}
+              <span className="text-red-500">*</span></p>
               <input
                 className="h-[48px] border w-full rounded-[6px] diveide-[#e5e7eb] text-sm"
                 type= { pwType? "password" : "text"}
                 placeholder={item.placeholder}
+                key={item.id}
                 name={item.name}
                 onChange={handleOnChange}
                 //이름과 휴대폰 번호는 휴대폰 인증에서 데이터 받아와서 미리 표시해두고 싶지만
                 //시간부족으로 차후 구현예정입니다.
                 />
+                {/* <p className='text-red-500 text-xs'>{profileErrText. `${item.name}`}</p> */}
             </div>
             ))
           }
@@ -218,6 +229,7 @@ function ProfileInputBody() {
             <input 
               type="checkbox"
               name={item.name}
+              key={item.id}
               className="w-5 h-5 mr-2 appearance-none rounded-full bg-gray-300 cursor-pointer checked:bg-black"
               />
               <label htmlFor={item.name}>
@@ -253,7 +265,7 @@ function ProfileInputBody() {
       </span>
       <button
         className="w-full"
-        type='submit'
+        type='button'
         onClick={handleOnFecth}
         >
         <p className='p-4 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>

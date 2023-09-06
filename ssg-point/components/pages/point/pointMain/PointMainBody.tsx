@@ -2,23 +2,46 @@
 
 import { pointHistoryMenuList, pointHistoryMenuListType } from "@/data/pointHistoryMenuList";
 import { timeFilter } from "@/data/timeFilter";
+import { getCsrfToken, useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useState} from "react";
 
 function PointMainBody() {
 
+  const reqLocalUrl = "http://10.10.10.116:8000"
+
+  const {data, status} = useSession();
+  //useSession
   const [savePoint,setSavePoint] = useState<number>(0);
   const [usedPoint,setUsedPoint] = useState<number>(0);
   const [emptyPointHistory,setEmptyPointHistory] = useState<boolean>(false);
   const [selectPointHistory,setSelectPointHistory] = useState<number>(0);
 
-  const handleOnClick = (e: any) => {
+  async function handleOnClick(e: any) {
 
     const {id} = e.target.id;
 
     setSelectPointHistory(id);
     // fetch보낼때 selectPointHistory (1 ~ 4)에 따라 API호출
     // + 1주일 ~ 6개월 시간 정보까지 같이 보냄
+
+    const csrfToken = await getCsrfToken();
+
+    let res = await fetch(reqLocalUrl + '/api/v1/point/history',{
+      method:"POST",
+      headers:{
+        'Content-type':'application/json'
+      },
+      body: JSON.stringify({
+        "historyStartDate": "2022-09-01",
+        "historyEndDate": "2023-09-06",
+        "pointTypesToSearch": ['EARN',"ETC"]
+      })
+    })
+    console.log(res)
+    console.log(res.body)
+    console.log(csrfToken)
+
   }
   return (
     <>
@@ -51,7 +74,6 @@ function PointMainBody() {
             }
             </select>
           </div>
-          
             <div className="w-full mt-2 pt-1 h-6 bg-gray-100">
               <div className="mx-2 h-4 flex">
                 <Image
