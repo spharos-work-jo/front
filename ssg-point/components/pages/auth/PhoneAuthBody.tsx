@@ -271,16 +271,18 @@ function PhoneAuthBody() {
                 />
                 <p className='text-red-500 text-xs'>{errorText.phone}</p>
             </div>
-            <div className='text-lg border-b-[1px] divide-[#e5e7eb] mt-14 pb-2'>
+            <div className='text-sm border-b-[1px] divide-[#e5e7eb] mt-14 pb-2'>
+            <p><b>휴대전화 인증 약관</b></p>
             <CheckStatus
                   checkId={0}
-                  label={"전체 동의"}
+                  label={"모든 약관에 동의합니다."}
                   name={"전체 동의"}
                   checked={agreeDataList.every((item) => item.check)}
                   handler={handleAllChecked}
-                  size={25}
+                  size={20}
                 />
             </div>
+            <div className='text-xs'>
               {
                 signUpAgreeList.map( (item:signUpAgreeListType) => {
                   return(
@@ -296,6 +298,7 @@ function PhoneAuthBody() {
                   ) 
                 })
               }
+            </div>
               <p className='text-red-500 text-xs'>{errorText.agree}</p>
               <button
                 className="w-full"
