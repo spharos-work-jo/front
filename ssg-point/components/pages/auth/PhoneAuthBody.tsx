@@ -134,6 +134,7 @@ function PhoneAuthBody() {
       {
         //약관동의 체크 안되어있다가 전부다 체크하면 인증번호 요청 컴포넌트 호출되어야하는데
         //안됨 이 부분은 차후 수정예정
+        //↑추가 완료  
           console.log(errText)
           setErrorText(errText);
             
@@ -152,11 +153,12 @@ function PhoneAuthBody() {
                 phone: signUpListData.phone
               })
             })
-       
+
             console.log(res.body)
             if(res.status === 200){
 
               errText.reqInfo=""
+              setAuthPhoneNumber(signUpListData.phone)
               setReqCertNumber(true)
               
               return 
@@ -167,7 +169,7 @@ function PhoneAuthBody() {
 
             return 
 
-       
+      
     }
 
     useEffect(() => {
@@ -271,16 +273,18 @@ function PhoneAuthBody() {
                 />
                 <p className='text-red-500 text-xs'>{errorText.phone}</p>
             </div>
-            <div className='text-lg border-b-[1px] divide-[#e5e7eb] mt-14 pb-2'>
+            <div className='text-sm border-b-[1px] divide-[#e5e7eb] mt-14 pb-2'>
+            <p><b>휴대전화 인증 약관</b></p>
             <CheckStatus
                   checkId={0}
-                  label={"전체 동의"}
+                  label={"모든 약관에 동의합니다."}
                   name={"전체 동의"}
                   checked={agreeDataList.every((item) => item.check)}
                   handler={handleAllChecked}
-                  size={25}
+                  size={20}
                 />
             </div>
+            <div className='text-xs'>
               {
                 signUpAgreeList.map( (item:signUpAgreeListType) => {
                   return(
@@ -296,6 +300,7 @@ function PhoneAuthBody() {
                   ) 
                 })
               }
+            </div>
               <p className='text-red-500 text-xs'>{errorText.agree}</p>
               <button
                 className="w-full"

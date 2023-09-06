@@ -1,13 +1,14 @@
 import EventBanner from "@/components/pages/home/EventBanner";
 import HomeMenu from "@/components/pages/home/HomeMenu";
 import HomeBot from "@/components/pages/home/HomeBot";
-
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import React from 'react';
 
 export default () => {
     return (
+        
         <div>
         <h3 className="hidden">홈</h3>
         <div className="main_visual_banner">

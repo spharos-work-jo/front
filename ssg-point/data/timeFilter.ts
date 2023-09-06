@@ -17,6 +17,6 @@ export const timeFilter:timeFilterType[] = [
   },
   {
     id:"4",
-    name:"6"
+    name:"6개월"
   }
 ]
