@@ -11,8 +11,8 @@ import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditio
 
 
 function PhoneAuthBody() {
-    // const reqUrl = "http://workjo.duckdns.org"
-    const reqUrl = "http://10.10.10.103:8000"
+    const reqUrl = "http://workjo.duckdns.org"
+    // const reqUrl = "http://10.10.10.103:8000"
 
     const [authPhoneNumber,setAuthPhoneNumber] = useState<string>("");;
 
