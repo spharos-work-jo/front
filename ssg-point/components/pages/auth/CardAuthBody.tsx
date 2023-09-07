@@ -2,8 +2,6 @@ import React,{useState} from "react";
 
 function CardAuthBody() {
 
-  const [test,setTest] = useState<boolean>(false);
-
   return (  
     <>
     <div className='px-10 pt-4'>
