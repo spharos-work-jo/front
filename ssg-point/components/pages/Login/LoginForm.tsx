@@ -7,6 +7,7 @@ import styles from './LoginForm.module.css'
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import Swal from "sweetalert2";
 
 function LoginForm() {
   
@@ -60,6 +61,22 @@ function LoginForm() {
   }
 
   const handleLoginFetch = async () => {
+
+
+    Swal.fire({
+      text: "시간 설정이 변경되었습니다.",
+      icon: "success",
+      toast: true,
+      position: "top",
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      customClass: {
+        container: "my-swal",
+      },
+    });
+
+
     let errText: ErroLogInFormType = {
       loginId: '',
       password: '',
@@ -78,9 +95,42 @@ function LoginForm() {
         redirect: true,
         callbackUrl: callBackUrl ? callBackUrl : '/'
       })
+
+      if(result) {
+        Swal.fire({
+          text: "시간 설정이 변경되었습니다.",
+          icon: "success",
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          customClass: {
+            container: "my-swal",
+          },
+        });
+      }
+
       console.log(result)
     }
   }
+
+
+  const handleConfirm = () => {
+    Swal.fire({
+      text: "로그아웃 하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "네",
+      cancelButtonText: "아니요",
+      customClass: {
+        confirmButton: 'mySwalConfirmButton',
+        cancelButton: 'mySwalCancelButton',
+      },
+    }).then((result) => {
+      console.log("close")
+    })
+  }
+
 
   useEffect(() => {
     if(typeof window !== 'undefined') {
@@ -163,6 +213,8 @@ function LoginForm() {
       <p>PASSWORD : {loginData.password}</p>
       <p>IS AUTO ID : {loginData.isAutoId ? 'true' : 'false'}</p>
       <p>IS AUTO LOGIN : {loginData.isAutoLogin ? 'true' : 'false'}</p> */}
+        <p onClick={handleConfirm}> 팝업 샘플</p>
+        
       <ul className='btn_list_box flex text-[14px] text-center justify-center mt-7'>
         <li className={styles.log}>
           <Link href={'/member/find-id-pw'}>아이디 찾기</Link>
