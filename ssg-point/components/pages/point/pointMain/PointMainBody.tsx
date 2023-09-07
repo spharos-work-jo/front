@@ -1,5 +1,4 @@
 'use client'
-
 import { pointHistoryMenuList, pointHistoryMenuListType } from "@/data/pointHistoryMenuList";
 import { timeFilter } from "@/data/timeFilter";
 import { useSession } from "next-auth/react";
@@ -44,14 +43,15 @@ function PointMainBody() {
   const [savePoint,setSavePoint] = useState<number>(0);
   const [usedPoint,setUsedPoint] = useState<number>(0);
   const [emptyPointHistory,setEmptyPointHistory] = useState<boolean>(false);
-  const [selectPointHistory,setSelectPointHistory] = useState<number>(0);
+  const [selectPointHistory,setSelectPointHistory] = useState<string>("1");
   const [pointList,setPointList] = useState<pointDataType[]>({} as pointDataType[]);
 
   async function handleOnClick(e: any) {
 
-    const {id} = e.target.id;
+    
+    setSelectPointHistory(e.target.id);
 
-    setSelectPointHistory(id);
+    console.log(`id ${e.target.id}`)
     // fetch보낼때 selectPointHistory (1 ~ 4)에 따라 API호출
     // + 1주일 ~ 6개월 시간 정보까지 같이 보냄
 
@@ -94,16 +94,25 @@ function PointMainBody() {
     console.log("use Effect")
   },[pointList])
 
+  useEffect(() => {
+    console.log(`selectPointHistory ${selectPointHistory}`)
+  },[selectPointHistory])
+
   return (
     <>
       <div>
-      <ul className="flex justify-around mb-3 w-full border-b-[1px] border-gray-500 pb-4">
+      {/* <p>{myDate.toLocaleDateString('ko-KR', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric'})}</p> */}
+
+      <ul className="flex mb-3 w-full border-b-[2px] border-gray-500">
         {
           pointHistoryMenuList.map((item:pointHistoryMenuListType) => (
             <li 
               key={item.id}
-              className="text-sm"
+              id={item.id}
               onClick={handleOnClick}
+              className={
+                selectPointHistory === item.id ? 'border-b-[3px] border-[#EA035C] pb-8 text-sm w-1/4 flex justify-center' :'text-sm w-1/4 pb-8 flex justify-center'
+              }
             >
               {item.name}
             </li>
@@ -147,6 +156,7 @@ function PointMainBody() {
             { 
               emptyPointHistory ? 
                 <CreatePointComponent
+                  id={selectPointHistory}
                   data={pointList}
                 />
               :

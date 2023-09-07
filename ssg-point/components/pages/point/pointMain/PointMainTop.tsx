@@ -1,13 +1,22 @@
 'use client'
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import { AppContext } from "@/app/mypoint/point-history/page";
 
 function PointMainTop() {
 
-  const [TotalPoint,setTotalPoint] = useState<number>(0);
+  const point = useContext(AppContext);
   const [SavePoint,setSavePoint] = useState<number>(0);
   const [DeletePoint,setDeletePoint] = useState<number>(0);
   const [DeletePointDay,setDeletePointDay] = useState<string>("");
+  
+  const [totalPoint,setTotalPoint] = useState<number>(0);
+
+  useEffect(() => {
+
+    setTotalPoint(point.totalPoint);
+
+  },[point.totalPoint])
 
   return (  
     <>
@@ -30,7 +39,7 @@ function PointMainTop() {
             <ul className="py-6 px-5">
               <li className="w-full text-sm flex justify-between">
                 <b>사용 가능</b>
-                  <p>{TotalPoint}</p>
+                  <p>{totalPoint}</p>
                   <Image 
                   src="/assets/images/point/pointImage.png"
                   alt="포인트 이미지"
