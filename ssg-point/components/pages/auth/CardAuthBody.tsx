@@ -1,6 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 
 function CardAuthBody() {
+
+  const [test,setTest] = useState<boolean>(false);
+
   return (  
     <>
     <div className='px-10 pt-4'>
@@ -12,8 +15,8 @@ function CardAuthBody() {
         </div>
           <button
             className="w-full mt-20"
-            type='submit'
-            >
+            type='button'
+            >             
             <p className='py-4 mt-3 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
               <b>신용/체크카드 인증</b>
             </p>
