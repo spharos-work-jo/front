@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import PointCardManageSam from '@/components/pages/point/point-card-manage/PointCardManageSam';
 import PointCardManageDae from '@/components/pages/point/point-card-manage/PointCardManageDae';
 import PointCardManageAsia from '@/components/pages/point/point-card-manage/PointCardManageAsia';
+import PointCardManageNotice from '@/components/pages/point/point-card-manage/PointCardManageNotice';
 
 const PointCardManage = () => {
 
@@ -34,10 +35,9 @@ const PointCardManage = () => {
       </section>
       
       <PointCardManageBot/>
+      <PointCardManageNotice/>
     </>
-    
   );
-
 };
 
 

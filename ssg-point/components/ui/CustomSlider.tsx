@@ -7,6 +7,8 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/pagination';
 import 'swiper/css';
 import { Pagination, Navigation } from 'swiper/modules';
+import Link from 'next/link';
+
 
 function CustomSlider({data}: {data: EventBannerListProps[]}) {
   return (
@@ -33,6 +35,8 @@ function CustomSlider({data}: {data: EventBannerListProps[]}) {
             data.map((item:EventBannerListProps) => (
               <SwiperSlide key={item.id}>
                 <div className='w-full h-[auto]'>
+                <Link href={item.url}>
+
                 <Image
                   src={`/assets/images/event${item.imgUrl}`}
                   alt={`/assets/images/event${item.imgAlt}`}
@@ -40,7 +44,10 @@ function CustomSlider({data}: {data: EventBannerListProps[]}) {
                   height={500}
                   priority
                 />
+
+                </Link>
                 </div>
+
               </SwiperSlide>
             ))
           }

@@ -13,10 +13,12 @@ export interface EventBannerListProps {
 
 
 export interface EventType {
+    id: string
     partnerid: number
     name: string
     startDate : string
     endDate : string
     type : number
     imgUrl : string
+    thumbnailUrl : string
 }
