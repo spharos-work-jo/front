@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 import Footer from '@/components/layout/Footer'
 import AuthProvider from '@/app/context/AuthProvider'
 import localFont from "next/font/local"
+import ScrollToTop from '@/components/ui/ScrollToTop'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,9 +36,10 @@ export default function RootLayout({
     <html lang="ko">
       <body>
         <AuthProvider>
-          <Header></Header> 
+          <Header />
           {children}
-          <Footer></Footer>
+          <Footer />
+          <ScrollToTop />
         </AuthProvider>
       </body>
     </html>

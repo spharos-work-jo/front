@@ -293,7 +293,7 @@ background: linear-gradient(93.4deg,#f40000,#ff8a00 14.06%,#f9ad05 37.76%,#fc348
 .swiper-scrollbar {
   position: absolute !important;
   left: 30px !important;
-  bottom: 46px !important;
+  bottom: 42px !important;
   width: 73% !important;
   height: 2px !important;
   z-index: 1 !important;
@@ -317,7 +317,7 @@ background: linear-gradient(93.4deg,#f40000,#ff8a00 14.06%,#f9ad05 37.76%,#fc348
 .swiper-pagination {
   position: absolute;
   right: 10px !important;
-  bottom: 38px !important;
+  bottom: 32px !important;
   z-index: 2 !important;
   box-sizing: border-box !important;
   height: 18px !important;
