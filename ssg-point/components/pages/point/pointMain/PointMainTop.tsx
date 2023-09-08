@@ -1,7 +1,7 @@
 'use client'
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import { AppContext } from "@/app/mypoint/point-history/page";
+import { AppContext } from "@/app/layout";
 
 function PointMainTop() {
 
