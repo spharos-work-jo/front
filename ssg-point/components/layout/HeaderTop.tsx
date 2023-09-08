@@ -91,11 +91,11 @@ function HeaderTop() {
             {session.status==='authenticated' ?
               <>
               <p 
-                className="text-xs pb-1"
+                className="text-xs"
                 onClick={handleLogout}
                 >
-                  로그아웃 {session.data.user.name}
-              </p>
+                  로그아웃 : {session.data.user.name}
+                  </p>
               <div className='flex'>
               <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
                 <p className='text-xs pl-2'>{point.totalPoint}</p>
