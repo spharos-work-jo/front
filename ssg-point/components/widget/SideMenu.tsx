@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import styles from "./SideMenu.module.css";
 import Logo from "../ui/header/Logo";
@@ -21,13 +20,15 @@ function SideMenu(props: {
   setIsOpened: React.Dispatch<React.SetStateAction<Boolean>>;
 }) {
   const session = useSession();
-  console.log(session)
+  console.log(session.data)
   const { isOpened, setIsOpened } = props;
+  
 
   /** 참고: Back에서 받아오는 나의 즐겨찾기 목록 state */ 
   // const [myFav, setMyFav] = useState<>()
   return (
     <>
+    
       <div
         className={
           isOpened
@@ -55,11 +56,12 @@ function SideMenu(props: {
                   >
                     {/* {user.name} 참고 : 나중에 session에서 유저정보 불러오면 이름 표시 */} 
                   </strong>
-                  김형진님 반갑습니다.
+                  {session.data.user.data.name}님 반갑습니다.
                 </p>
               </div>
               <p className="flex itmes-center mt-[16px] text-[20px] font-bold leading-6">
                 {/* {user.point} 참고 : 유저의 포인트 정보 불러온 후 표시 */}
+                {/* {point.totalPoint} */}
                 <Image
                   alt="point"
                   src={

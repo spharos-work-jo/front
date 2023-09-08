@@ -213,7 +213,8 @@ function LoginForm() {
       <p>PASSWORD : {loginData.password}</p>
       <p>IS AUTO ID : {loginData.isAutoId ? 'true' : 'false'}</p>
       <p>IS AUTO LOGIN : {loginData.isAutoLogin ? 'true' : 'false'}</p> */}
-        <p onClick={handleConfirm}> 팝업 샘플</p>
+
+        {/* <p onClick={handleConfirm}> 팝업 샘플</p> */}
         
       <ul className='btn_list_box flex text-[14px] text-center justify-center mt-7'>
         <li className={styles.log}>
