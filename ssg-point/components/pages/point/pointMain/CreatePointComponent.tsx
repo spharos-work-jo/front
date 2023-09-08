@@ -1,5 +1,5 @@
 'use client'
-import { AppContext } from "@/app/mypoint/point-history/page";
+import { AppContext } from "@/app/layout";
 import { pointDataType } from "@/types/pointDataType";
 import Image from "next/image";
 import React, { useContext, useEffect, useState } from "react";

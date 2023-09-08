@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import HeaderUserStatus from './HeaderUserStatus'
 import SideMenu from '../widget/SideMenu'
 import Logo from '../ui/header/Logo'
@@ -9,6 +9,7 @@ import { pageTitle } from '@/data/pageTitle'
 import { useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Swal from 'sweetalert2'
+import { AppContext } from "@/app/layout";
 import { signOut, useSession } from 'next-auth/react'
 
 
@@ -19,6 +20,7 @@ function HeaderTop() {
   const pathname = usePathname();
   const router = useRouter();
   const session = useSession();
+  const point = useContext(AppContext);
   console.log(session)
 
 
@@ -88,8 +90,16 @@ function HeaderTop() {
           <li className='text-sm font-medium'>
             {session.status==='authenticated' ?
               <>
-              <p onClick={handleLogout}>로그아웃 : {session.data.user.name}</p>
+              <p 
+                className="text-xs pb-1"
+                onClick={handleLogout}
+                >
+                  로그아웃 {session.data.user.name}
+              </p>
+              <div className='flex'>
               <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
+                <p className='text-xs pl-2'>{point.totalPoint}</p>
+              </div>
               </>
             : <Link href='/login'>로그인</Link> }
 
