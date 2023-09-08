@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { newsAgencyList } from '@/data/newsAgencyList';
 import { authenticatedNeedDataType } from '@/types/authenticatedNeedDataType';
 import { signUpErrorTypeData } from '@/types/signUpErrorTypeData';
@@ -8,9 +8,12 @@ import { localForeignerList } from '@/data/localForeignerList';
 import AuthBehindTap from './AuthBehindTap';
 import CheckStatus from './CheckStatus';
 import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditionsList';
+import { UserContext } from "@/app/signup/layout";
 
 
 function PhoneAuthBody() {
+
+    const user = useContext(UserContext);
     const reqUrl = "http://workjo.duckdns.org"
     // const reqUrl = "http://10.10.10.103:8000"
 
@@ -141,6 +144,10 @@ function PhoneAuthBody() {
           return  
 
       }
+      
+            user.userName = signUpListData.name;
+            user.phone = signUpListData.phone;
+            user.birthDay = signUpListData.birthday;
 
             setIsClick(true);
 

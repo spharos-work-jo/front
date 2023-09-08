@@ -87,23 +87,19 @@ function HeaderTop() {
 
       <nav className='header_menu'>
         <ul className='flex relative gap-4 justify-center items-center'>
-          <li className='text-sm font-medium'>
-            {session.status==='authenticated' ?
-              <>
-              <p 
-                className="text-xs"
-                onClick={handleLogout}
-                >
-                  로그아웃 : {session.data.user.name}
-                  </p>
-              <div className='flex'>
-              <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
-                <p className='text-xs pl-2'>{point.totalPoint}</p>
-              </div>
-              </>
-            : <Link href='/login'>로그인</Link> }
+          <li className='text-sm font-medium whitespace-nowrap' >
+              {session.status==='authenticated' ?
+                <>
+                <p className='pl-5 inline-block text-xs' onClick={handleLogout}>
+                  로그아웃 {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
+                </p>
+                <span className='inline-block'>
+                  <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
+                </span>
+                </>
+              : <Link href='/login'>로그인</Link> }
+            </li>
 
-          </li>
           <li onClick={handleSideMenu}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M4 5H20" stroke="#121212" strokeWidth="2" strokeLinecap="round"/>

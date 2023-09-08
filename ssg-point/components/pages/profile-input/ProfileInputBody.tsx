@@ -1,5 +1,5 @@
 'use client'
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect,useContext } from "react";
 import { useRouter } from "next/navigation";
 import { SignupInputProfileList } from "@/data/SignupInputProfileList";
 import { userProfileInputFormType } from "@/types/userProfileInputFormType";
@@ -7,14 +7,18 @@ import { profileInputErrTextType } from "@/types/profileInputErrTextType";
 import { DaumAddressType } from "@/types/DaumAddressType";
 import DaumPostCodeModal from "../auth/modal/DaumPostCodeModal";
 import { wayMarketingList } from "@/data/wayMarketingList";
+import { UserContext } from "@/app/signup/layout";
 
 function ProfileInputBody() {
 
   const router = useRouter();
-  const [isView, setIsView] = useState<boolean>(false);
-  const [address, setAddress] = useState<DaumAddressType>();
-  const [pwType, setPwType] = useState<boolean>(false);
+  const user = useContext(UserContext);
 
+  const reqUrl = 'http://workjo.duckdns.org/api/v1'
+
+  const [isView, setIsView] = useState<boolean>(false);
+
+  const [address,setAddress] = useState<DaumAddressType>();
   const handleOpenModal = () =>{
 
     setIsView(true);
@@ -29,24 +33,17 @@ function ProfileInputBody() {
 }, [address])
 
   const [userProfile,setUserProfile] = useState<userProfileInputFormType>({
-    id:"",
     loginId:"",
     password:"",
     checkPassword:"",
-    name:"",
-    phone:"",
-    zoneCode:0,
-    city:"",
+    userName:user.userName,
+    phone:user.phone,
     detailAddress:""
   })
   const [profileErrText,setProfileErrText] = useState<profileInputErrTextType>({
     loginId:"",
     password:"",
     checkPassword:"",
-    name:"",
-    phone:"",
-    zoneCode:"",
-    city:"",
     detailAddress:"",
   })
   const handleOnChange = (e : React.ChangeEvent<HTMLInputElement>) => {
@@ -55,53 +52,69 @@ function ProfileInputBody() {
 
     setUserProfile({
       ...userProfile,
-      [name]:value
-    })
-    setProfileErrText({
-      ...profileErrText,
-      [name]:value
+      [name]:value.toString()
     })
 
   }
+
   const handleOnFecth = (e : React.MouseEvent<HTMLButtonElement>) => {
 
     let errText:profileInputErrTextType = {
       loginId:"",
       password:"",
       checkPassword:"",
-      name:"",
-      phone:"",
-      zoneCode:"",
-      city:"",
       detailAddress:""
     }
 
-    if(userProfile.loginId === "" || userProfile.loginId.length < 21 || userProfile.loginId.length < 7 ){
+    console.log(userProfile)
+
+    if(userProfile.loginId === "" || userProfile.loginId.length > 20 || userProfile.loginId.length < 6 ){
       errText.loginId = "아이디를 6자 이상 20자 이하로 입력해주세요."
     } 
-    if(8 < userProfile.password.length || 21 < userProfile.password.length){
+    if(6 > userProfile.password.length || 20 < userProfile.password.length){
       errText.password = "비밀번호는 8자 이상 20자 이하로 입력해주세요."
     }
     if(userProfile.password !== userProfile.checkPassword){
       errText.checkPassword = "비밀번호가 서로 다릅니다."
     }
-    if(userProfile.name === "") errText.name = "이름을 입력해주세요."
-    if(userProfile.phone === "") errText.phone = "전화 번호를 입력해주세요."
-    
-    if(userProfile.zoneCode === 0) errText.zoneCode = "우편번호를 입력해주세요."
-    if(userProfile.city === "") errText.city = "주소를 입력해주세요."
-    if(userProfile.detailAddress === "") errText.detailAddress = "상세주소를 입력해주세요."
+    // if(userProfile.detailAddress === "") errText.detailAddress = "상세 주소를 입력해주세요."
     if(errText.loginId !== "" || errText.password !== "" || errText.checkPassword !== "" ||
-      errText.name !== "" || errText.phone !== "" || errText.zoneCode !== "" || errText.city !== "" ||
-      errText.detailAddress !== ""){
+    errText.detailAddress !== ""){
 
       console.log(errText)
       setProfileErrText(errText);
-
+      
       return
     }
-    router.push('./signup-completion')
+    console.log(userProfile)
+    fetchingProfile();
   }
+
+  async function fetchingProfile() {
+
+    let res = await fetch(reqUrl + '/auth/signup',{
+      method:"POST",
+      headers:{
+        'Content-type':'application/json'
+      },
+      body:JSON.stringify({
+        loginId:userProfile.loginId,
+        password:userProfile.password,
+        name:userProfile.userName,
+        phone:userProfile.phone,
+        address:address?.address
+      })
+    })
+    if(res.ok) {
+      const data = res.json();
+      console.log(data)
+      console.log(address?.address)
+      router.push('./signup-completion')
+    }
+
+    return
+  }
+
   return (  
     <>
       <form className="block px-5 mt-10">
@@ -120,13 +133,12 @@ function ProfileInputBody() {
             >
             중복확인
           </button>
-          <p></p>
         </div>
           <p className='text-red-500 text-xs'>{profileErrText.loginId}</p>
         <div className="flex-col">
           {
             SignupInputProfileList.map( item => (
-            <div>
+            <div className="flex-col">
               {/* { item.id === 1 || 2 ? () => setPwType(true)  : null} */}
             <p 
               className="text-[14px] my-3"
@@ -135,18 +147,43 @@ function ProfileInputBody() {
               <span className="text-red-500">*</span></p>
               <input
                 className="h-[48px] border w-full rounded-[6px] diveide-[#e5e7eb] text-sm"
-                type= { pwType? "password" : "text"}
-                placeholder={item.placeholder}
+                type= "password"
+                placeholder= {item.placeholder}
                 key={item.id}
                 name={item.name}
                 onChange={handleOnChange}
                 //이름과 휴대폰 번호는 휴대폰 인증에서 데이터 받아와서 미리 표시해두고 싶지만
                 //시간부족으로 차후 구현예정입니다.
                 />
-                {/* <p className='text-red-500 text-xs'>{profileErrText. `${item.name}`}</p> */}
+                {/* <p className='text-red-500 text-xs'>{profileErrText.}</p> */}
             </div>
             ))
           }
+          <div>
+              {/* { item.id === 1 || 2 ? () => setPwType(true)  : null} */}
+            <p 
+              className="text-[14px] my-3"
+              >이름
+              <span className="text-red-500">*</span></p>
+              <input
+                className="h-[48px] border w-full rounded-[6px] diveide-[#e5e7eb] text-sm"
+                onChange={handleOnChange}
+                //이름과 휴대폰 번호는 휴대폰 인증에서 데이터 받아와서 미리 표시해두고 싶지만
+                //시간부족으로 차후 구현예정입니다.
+                value={user.userName}
+                />
+            <p 
+              className="text-[14px] my-3"
+              >휴대폰 번호
+              <span className="text-red-500">*</span></p>
+              <input
+                className="h-[48px] border w-full rounded-[6px] diveide-[#e5e7eb] text-sm"
+                onChange={handleOnChange}
+                value={user.phone}
+                //이름과 휴대폰 번호는 휴대폰 인증에서 데이터 받아와서 미리 표시해두고 싶지만
+                //시간부족으로 차후 구현예정입니다.
+                />
+            </div>
         <p className="text-[14px] my-3">자택주소<span className="text-red-500">*</span></p>
         <div className="flex mb-2">
           <DaumPostCodeModal 
@@ -157,6 +194,7 @@ function ProfileInputBody() {
             type="text"
             placeholder="  우편번호"
             name="zoneCode"
+            onChange={handleOnChange}
             value={address?.zonecode}
           />
           <p
@@ -172,15 +210,19 @@ function ProfileInputBody() {
           <input
             className="h-[48px] border w-full mb-2 rounded-[6px] diveide-[#e5e7eb] text-sm"
             type="text"
-            name="address"
+            name="city"
+            onChange={handleOnChange}
             value={address?.address}
             />
+            <p className='text-red-500 text-xs'></p>
             <input
             className="h-[48px] border w-full mb-2 rounded-[6px] diveide-[#e5e7eb] text-sm"
             type="text"
             placeholder="  상세주소"
             name="detailAddress"
+            onChange={handleOnChange}
             />
+            <p className='text-red-500 text-xs'>{profileErrText.detailAddress}</p>
         </div>
         <ul className="flex-col">
         <li className="flex text-[13px] my-5">

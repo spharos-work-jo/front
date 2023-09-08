@@ -12,11 +12,11 @@ import { options } from "../../api/auth/[...nextauth]/options"
 export default async function ShopHistory() {
 
   
-  const session = await getServerSession(options)
+  // const session = await getServerSession(options)
 
-  if (!session) {
-    redirect('/api/auth/signin?callbackUrl=/coupon')
-  }
+  // if (!session) {
+  //   redirect('/api/auth/signin?callbackUrl=/coupon')
+  // }
 
 
 

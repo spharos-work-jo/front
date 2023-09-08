@@ -1,21 +1,23 @@
 'use client'
 
+import { UserContext } from "@/app/signup/layout";
 import { useRouter } from "next/navigation";
-import React, { useState, SetStateAction } from "react";
+import React, { useState, SetStateAction, useContext } from "react";
 
   const AuthBehindTap = ( props : { authNumber:string }) => {
 
+    const user = useContext(UserContext);
     const router = useRouter();
 
     const [certNumber,setCertNumber] = useState<string>("");
     
     const [errText,setErrText] = useState<string>("");
 
-    const reqUrl = 'http://workjo.duckdns.org/api/v1/cert/phone/confirm'
+    const reqUrl = 'http://workjo.duckdns.org'
     const reqLocalUrl = 'http://10.10.10.103:8000'
     async function sameReqNumHandler() {
     
-      let res2 = await fetch(reqLocalUrl + '/api/v1/cert/phone/confirm',{
+      let res2 = await fetch(reqUrl + '/api/v1/cert/phone/confirm',{
         method:"POST",
         headers: {
           'Content-type':'application/json'
@@ -26,7 +28,10 @@ import React, { useState, SetStateAction } from "react";
         })
       })
     //props로 전달받은 전화번호& 입력받은 인증번호를 body에 담아서 요청
+    console.log("!!!!!!!!!!!!!!!!!!!")
     console.log(res2)
+    console.log("!!!!!!!!!!!!!!!!!!!")
+    console.log(user)
 
     if(res2.status !== 200){
 
