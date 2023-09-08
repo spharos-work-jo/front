@@ -90,8 +90,8 @@ function HeaderTop() {
           <li className='text-sm font-medium whitespace-nowrap' >
               {session.status==='authenticated' ?
                 <>
-                <p className='pl-5 inline-block' onClick={handleLogout}>
-                  로그아웃 : {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
+                <p className='pl-5 inline-block text-xs' onClick={handleLogout}>
+                  로그아웃 {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
                 </p>
                 <span className='inline-block'>
                   <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>

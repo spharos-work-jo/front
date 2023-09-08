@@ -26,7 +26,7 @@ const SignupInfoBottom = () => {
               }
             </ol>
             <div className='w-full py-8'>
-              <Link href='signup/auth'>
+              <Link href='/signup/auth'>
                 <p className='w-full p-4 text-center text-black text-sm rounded-lg bg-ssg-linear'>
                   회원가입
                 </p>

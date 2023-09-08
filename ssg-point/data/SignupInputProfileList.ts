@@ -20,18 +20,4 @@ export const SignupInputProfileList:SignupInputProfileListType[] = [
     name:"checkPassword",
     message:"비밀번호가 서로 다릅니다."
   },
-  {
-    id:3,
-    placeholder:" ",
-    title:"이름",
-    name:"userName",
-    message:"이름을 입력해주세요."
-  },
-  {
-    id:4,
-    placeholder:" ",
-    title:"휴대폰번호",
-    name:"phone",
-    message:"전화 번호를 입력해주세요."
-  },
 ]
