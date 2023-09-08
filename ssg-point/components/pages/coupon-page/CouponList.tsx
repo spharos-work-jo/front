@@ -82,6 +82,7 @@ const CouponWrap = ({couponId} : { couponId: number}) => {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + session.data?.user.data.token
     };
+    console.log(session.data);
 
     const handleButtonClick = async () => {  // 새로운 이벤트 핸들러 함수 추가
         try {
