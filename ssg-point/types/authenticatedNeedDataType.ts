@@ -1,4 +1,5 @@
 export interface authenticatedNeedDataType{
+  loginId:string,
   name:string,
   gender:string,
   foreigner:any,
