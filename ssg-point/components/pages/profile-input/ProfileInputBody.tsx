@@ -9,7 +9,18 @@ import DaumPostCodeModal from "../auth/modal/DaumPostCodeModal";
 import { wayMarketingList } from "@/data/wayMarketingList";
 import { UserContext } from "@/app/signup/layout";
 
+
 function ProfileInputBody() {
+
+interface existByIdMessageType {
+  state:boolean,
+  message:string
+}
+  const [existByIdMessage,setExistByIdMessage] = useState<existByIdMessageType>({
+    state:false,
+    message:"",
+  })
+
 
   const router = useRouter();
   const user = useContext(UserContext);
@@ -32,6 +43,38 @@ function ProfileInputBody() {
     }
 }, [address])
 
+  async function existById (e : React.MouseEvent<HTMLButtonElement>) {
+    
+    user.loginId = userProfile.loginId
+
+    let res = await fetch(reqUrl + '/user/id-check',{
+      method:"POST",
+      headers:{
+        'Content-type':"application/json"
+      },
+      body:JSON.stringify({
+        loginId:user.loginId
+      })
+    })
+
+    const data = res.json();
+    if(!res.ok){
+      console.log(data)
+      setExistByIdMessage({
+        message:"이미 존재하는 ID입니다.",
+        state:false
+      })
+      return
+    }
+    else{
+      console.log(data)
+      setExistByIdMessage({
+        message:"사용가능한 ID입니다.",
+        state:true
+      })
+      return
+    }
+  }
   const [userProfile,setUserProfile] = useState<userProfileInputFormType>({
     loginId:"",
     password:"",
@@ -79,7 +122,7 @@ function ProfileInputBody() {
     }
     // if(userProfile.detailAddress === "") errText.detailAddress = "상세 주소를 입력해주세요."
     if(errText.loginId !== "" || errText.password !== "" || errText.checkPassword !== "" ||
-    errText.detailAddress !== ""){
+    errText.detailAddress !== "" || !existByIdMessage.state){
 
       console.log(errText)
       setProfileErrText(errText);
@@ -109,7 +152,7 @@ function ProfileInputBody() {
       const data = res.json();
       console.log(data)
       console.log(address?.address)
-      router.push('./signup-completion')
+      router.push('./complete')
     }
 
     return
@@ -126,14 +169,22 @@ function ProfileInputBody() {
             placeholder="  영문,숫자 6~20자리 입력해주세요."
             name="loginId"
             onChange={handleOnChange}
-          />
+          />          
           <button 
             className="h-[px] w-1/4 border rounded-[6px] ml-3 border-gray-400 text-[15px]"
             type="button"
+            onClick={existById}
             >
             중복확인
           </button>
-        </div>
+          </div>
+          <p className=
+            {
+              existByIdMessage.state ? 'my-1 text-gray-500 text-xs' : 'my-1 text-red-500 text-xs'
+            }
+          >
+            {existByIdMessage.message}
+          </p>
           <p className='text-red-500 text-xs'>{profileErrText.loginId}</p>
         <div className="flex-col">
           {

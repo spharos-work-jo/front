@@ -6,12 +6,14 @@ export const UserContext = createContext<userInputProfileType>({} as userInputPr
 export interface userInputProfileType{
   userName:string,
   phone:string,
-  birthDay:string
+  birthDay:string,
+  loginId:string,
 }
 const user:userInputProfileType = {
   userName:"",
   phone:"",
-  birthDay:""
+  birthDay:"",
+  loginId:""
 }
 export default function Layout({children} : {children: React.ReactNode}){
     return (  

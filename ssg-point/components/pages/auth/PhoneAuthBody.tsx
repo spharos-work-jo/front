@@ -70,6 +70,7 @@ function PhoneAuthBody() {
     const [reqCertNumber,setReqCertNumber] = useState<boolean>(false);
 
     const [signUpListData,setSignUpListData] = useState<authenticatedNeedDataType>({
+      loginId:'',
       name: '',
       gender: '남자',
       foreigner: '내국인',
@@ -148,6 +149,7 @@ function PhoneAuthBody() {
             user.userName = signUpListData.name;
             user.phone = signUpListData.phone;
             user.birthDay = signUpListData.birthday;
+            user.loginId = signUpListData.loginId;
 
             setIsClick(true);
 
