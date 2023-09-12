@@ -123,6 +123,7 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
         })
     },[])
 
+    
     const [showModal, setShowModal] = useState(false);
 
     const handleBarcodeClick = async () => {
