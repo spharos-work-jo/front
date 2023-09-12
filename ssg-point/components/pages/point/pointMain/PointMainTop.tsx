@@ -9,7 +9,8 @@ function PointMainTop() {
   const [SavePoint,setSavePoint] = useState<number>(0);
   const [DeletePoint,setDeletePoint] = useState<number>(0);
   const [totalPoint,setTotalPoint] = useState<number>(0);
-
+  let resPoint = fetch('http://workjo.duckdns.org/api/v1/point/simple-info')
+  .then 
   useEffect(() => {
 
     setTotalPoint(point.totalPoint);
