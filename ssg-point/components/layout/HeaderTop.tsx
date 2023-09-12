@@ -11,12 +11,10 @@ import Image from 'next/image'
 import Swal from 'sweetalert2'
 import { AppContext } from "@/app/layout";
 import { signOut, useSession } from 'next-auth/react'
-import CustomSlider from '../ui/CustomSlider'
 import CustomBarcode from '../ui/CustomBarcode'
 
 
 function HeaderTop() {
-  const [isLogin, setIsLogin] = useState<Boolean>(false)
   const [isOpened, setIsOpened] = useState<Boolean>(false)
   const [title, setTitle] = useState<String>('')
   const pathname = usePathname();
@@ -24,8 +22,6 @@ function HeaderTop() {
   const session = useSession();
   const point = useContext(AppContext);
   console.log(session)
-  console.log(session)
-
 
   const handleSideMenu = () => {
     setIsOpened(!isOpened)

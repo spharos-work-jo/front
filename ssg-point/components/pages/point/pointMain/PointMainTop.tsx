@@ -8,8 +8,6 @@ function PointMainTop() {
   const point = useContext(AppContext);
   const [SavePoint,setSavePoint] = useState<number>(0);
   const [DeletePoint,setDeletePoint] = useState<number>(0);
-  const [DeletePointDay,setDeletePointDay] = useState<string>("");
-  
   const [totalPoint,setTotalPoint] = useState<number>(0);
 
   useEffect(() => {
@@ -39,7 +37,7 @@ function PointMainTop() {
             <ul className="py-6 px-5">
               <li className="w-full text-sm flex justify-between">
                 <b>사용 가능</b>
-                  <p>{totalPoint}</p>
+                  <p></p>
                   <Image 
                   src="/assets/images/point/pointImage.png"
                   alt="포인트 이미지"

@@ -16,11 +16,6 @@ export const AppContext = createContext<pointType>({
 
 });
   
-export const Context = createContext<userEmail>({
-
-  email:''
-
-});
 interface pointType{
 
   totalPoint:number,
@@ -32,17 +27,7 @@ interface pointType{
   totalPoint : 0,
 
   };
-  interface userEmail{
 
-    email:string
-  
-  }
-  
-    const email:userEmail = {
-  
-    email:""
-  
-    };
 export const metadata: Metadata = {
   title: '신세계포인트',
   description: '신세계포인트 이용 정보는 물론 쇼핑과 라이프 스타일 혜택까지 볼거리가 풍성한 신세계포인트 앱으로 일상에 신세계를 더해보세요.',
@@ -70,7 +55,7 @@ export default function RootLayout({
       <body className='inter.classname'>
         <AuthProvider>
           <Header />
-          {children}
+            {children}
           <Footer />
           <ScrollToTop />
         </AuthProvider>
