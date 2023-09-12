@@ -52,7 +52,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <AppContext.Provider value={point}>
-      <body>
+      <body className='inter.classname'>
         <AuthProvider>
           <Header />
           {children}

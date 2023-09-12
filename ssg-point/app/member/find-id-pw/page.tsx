@@ -17,7 +17,6 @@ function Page(){
         <>
             <section className="pt-20">
 
-
                 <AuthHeaderBottom
                     typeList={PhoneCardSelectBoxData}
                     selected={selected}
