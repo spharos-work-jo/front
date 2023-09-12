@@ -1,49 +1,62 @@
-import { EventTypeData } from '@/data/event'
+'use client'
 import React from 'react'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { EventType } from '@/types/event'
 
-
 const IngEvent = () => {
 
-  const [eventList, setEvenvList] = useState<EventType[]>([]); // 빈 배열로 초기화
-    useEffect(() => {
-    // useEffect 내부에서 HTTP 요청을 보내 데이터를 가져옵니다.
-      fetch('https://workjo.duckdns.org/api/v1/point/event/ongoing')
-      .then((response) => response.json())
-      .then((data) => {
-
-          console.log('Received Data:', data);
-
+  const [eventList, setEventList] = useState<EventType[]>([]); // 빈 배열로 초기화
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const headers = {
+          'Content-Type': 'application/json',
+        };
+        const response = await fetch(`https://workjo.duckdns.org/api/v1/events/ongoing`, {
+          method: 'GET',
+          headers
         });
-      }, []);
+        const data = await response.json();
+        
+        if (response.ok && data.data && Array.isArray(data.data.content)) {
+          setEventList(data.data.content);
+        } else {
+          console.error("Invalid API response", data);
+          
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching data", error);
 
-
+      }
+    };
+  
+    fetchData();
+  }, []);
+    
   return (
     <div className='pb-[60px]'>
       <ul className='list-none'>
 
-        {eventList.map((item:any) => (
+        {Array.isArray(eventList) && eventList.map((item: any) => (
 
         <li key={item.id} className='box-border text-[0px] relative text-center'>
-          <Link href={'https://mycloudmembership-prd.s3.ap-northeast-2.amazonaws.com/shinsegaepoint/public/svcm-fo/webapp/20230828/086a3dfb-c047-43a9-8634-0512d5389d91.jpg'}>
+          <Link href={item.thumbnailUrl}>
           </Link>
           <p className='recommendation'>추천</p>
 
           <div className='pt-[20px] pr-[20px] pb-[35px] pl-[20px]'>
             <p className='text-[16px] font-medium leading-[26px] text-left whitespace-nowrap overflow-hidden text-ellipsis'>{item.name}</p>
-            <p className='text-[13px] font-normal leading-[21px] text-left pt-[4px]'>{item.start_date} ~ {item.end_date}</p>
+            <p className='text-[13px] font-normal leading-[21px] text-left pt-[4px]'>{item.startDate} ~ {item.endDate}</p>
           </div>
         </li>
-
         ))}
-
       </ul>
       </div>
   )
 }
 export default IngEvent
+
 
 
 

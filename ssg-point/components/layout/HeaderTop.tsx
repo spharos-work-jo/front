@@ -11,6 +11,8 @@ import Image from 'next/image'
 import Swal from 'sweetalert2'
 import { AppContext } from "@/app/layout";
 import { signOut, useSession } from 'next-auth/react'
+import CustomSlider from '../ui/CustomSlider'
+import CustomBarcode from '../ui/CustomBarcode'
 
 
 function HeaderTop() {
@@ -85,20 +87,11 @@ function HeaderTop() {
       : <HeaderUserStatus title={title}/>}
       </ul>
     </nav>
-
       <nav className='header_menu'>
         <ul className='flex relative gap-4 justify-center items-center'>
-          <li className='text-sm font-medium whitespace-nowrap' >
-              {session.status==='authenticated' ?
-                <>
-                <p className='pl-5 inline-block text-xs' onClick={handleLogout}>
-                  {/* 로그아웃 {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp; */}
-                </p>
-                <span className='inline-block'>
-                  <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
-                </span>
-                </>
-              : <Link href='/login'>로그인</Link> }
+          <li className='text-sm font-medium flex items-center whitespace-nowrap' >
+              
+                <Link href='/login'>로그인</Link>
             </li>
 
           <li onClick={handleSideMenu}>

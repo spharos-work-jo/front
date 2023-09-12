@@ -56,7 +56,7 @@ function SideMenu(props: {
                   >
                     {/* {user.name} 참고 : 나중에 session에서 유저정보 불러오면 이름 표시 */} 
                   </strong>
-                  {session.data.user.data.name}님 반갑습니다.
+                  
                 </p>
               </div>
               <p className="flex itmes-center mt-[16px] text-[20px] font-bold leading-6">
