@@ -46,7 +46,7 @@ function SideMenu(props: {
         </div>
         {/* 로그인 박스 */}
         <div className={styles.login_signup}>
-          {session.status === "authenticated" ? (
+          { session.data?.user.data?.uuid !== undefined? (
             <>
               <div>
                 <p className="text-[18px] leading-[26px] inline">
@@ -82,7 +82,7 @@ function SideMenu(props: {
           )}
 
           <div className={styles.btn_box}>
-            {session.status === "authenticated" ? (
+            {session.data?.user.data?.uuid !== undefined? (
               <div className="flex w-full relative">
                 <button className={styles.btn_outbox} onClick={()=>signOut({
                   callbackUrl: 'http://localhost:3000/'
@@ -110,7 +110,7 @@ function SideMenu(props: {
         <FavList favList={favList}></FavList>
             
         {/* 로그인 시 마이 포인트, 마이 라운지 등의 바로가기 메뉴 */}
-        {session.status === "authenticated" ? <MyPage></MyPage> : null}
+        {session.data?.user.data?.uuid !== undefined? <MyPage></MyPage> : null}
 
         {/* 바로가기 메뉴 박스 */}
         <MenuBox menuList={menuList}></MenuBox>
