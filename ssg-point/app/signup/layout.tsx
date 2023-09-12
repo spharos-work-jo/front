@@ -1,5 +1,6 @@
 'use client'
 import React, { createContext } from 'react'
+import { Context } from '../layout';
 
 export const UserContext = createContext<userInputProfileType>({} as userInputProfileType);
 

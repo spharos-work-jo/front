@@ -29,7 +29,7 @@ export const options: NextAuthOptions = {
         console.log(res)
         const user = await res.json()
 
-  
+        
         if (res.ok && user) {
           console.log(user)
           return user
@@ -42,7 +42,9 @@ export const options: NextAuthOptions = {
       clientId: process.env.KAKAO_CLIENT_ID,
       clientSecret: process.env.KAKAO_CLIENT_SECRET,
       
-    }),
+    }
+    
+    ),
     NaverProvider({
       clientId: process.env.NAVER_CLIENT_ID,
       clientSecret: process.env.NAVER_CLIENT_SECRET
@@ -51,6 +53,7 @@ export const options: NextAuthOptions = {
 
   callbacks: {
     async jwt({ token, user }) {
+      console.log(user)
       return { ...token, ...user };
     },
 
