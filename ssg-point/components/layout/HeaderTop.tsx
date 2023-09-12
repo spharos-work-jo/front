@@ -11,6 +11,8 @@ import Image from 'next/image'
 import Swal from 'sweetalert2'
 import { AppContext } from "@/app/layout";
 import { signOut, useSession } from 'next-auth/react'
+import CustomSlider from '../ui/CustomSlider'
+import CustomBarcode from '../ui/CustomBarcode'
 
 
 function HeaderTop() {
@@ -87,12 +89,16 @@ function HeaderTop() {
 
       <nav className='header_menu'>
         <ul className='flex relative gap-4 justify-center items-center'>
-          <li className='text-sm font-medium whitespace-nowrap' >
+          <li className='text-sm font-medium flex items-center whitespace-nowrap' >
               {session.status==='authenticated' ?
                 <>
-                <p className='pl-5 inline-block text-xs' onClick={handleLogout}>
-                  로그아웃 {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
+                <CustomBarcode value={session.data.user.data.uuid} options={{ width: 0.1, height: 10, displayValue:false}}/>
+                <p className='inline-block text-xs' onClick={handleLogout}>
+                  {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
                 </p>
+
+                
+
                 <span className='inline-block'>
                   <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
                 </span>

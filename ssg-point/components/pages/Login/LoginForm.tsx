@@ -64,7 +64,7 @@ function LoginForm() {
 
 
     Swal.fire({
-      text: "시간 설정이 변경되었습니다.",
+      text: "어서오세요, 비누님",
       icon: "success",
       toast: true,
       position: "top",
@@ -147,6 +147,7 @@ function LoginForm() {
   },[])
 
   return (
+
     <form className='flex flex-col gap-3 w-full px-10' onSubmit={handleLoginFetch}>
       <input 
         type="text" 

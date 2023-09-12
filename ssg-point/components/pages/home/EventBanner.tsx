@@ -29,7 +29,6 @@ function EventBanner() {
         loop={true}
         spaceBetween={0}
         slidesPerView={1}
-        
       >
         {
           EventTop && EventTop.map((item:any) => (
