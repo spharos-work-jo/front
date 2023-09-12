@@ -54,7 +54,7 @@ function HeaderTop() {
   useEffect(() => {
     const PathName = pathname.split('/').length
     console.log(pathname.split('/'))
-    console.log(session.data)
+    
     const getTitle = () => {
       const result = pageTitle.find((item) => item.path === pathname.split('/')[PathName -1] )?.title
 
@@ -71,7 +71,6 @@ function HeaderTop() {
     <>
     <SideMenu isOpened={isOpened} setIsOpened={setIsOpened}/>
     <div className='header_top w-full pr-5 box-border relative [z-index:2] flex justify-between items-center'>
-      
     <nav className={pathname==='/' ? 'flex relative justify-center items-center ml-5 mt-3' : 'flex relative justify-center items-center'}>
       <ul>
       { pathname === '/' ? null :
@@ -90,10 +89,19 @@ function HeaderTop() {
       <nav className='header_menu'>
         <ul className='flex relative gap-4 justify-center items-center'>
           <li className='text-sm font-medium flex items-center whitespace-nowrap' >
-              
-                <Link href='/login'>로그인</Link>
+            {session.data?.user.data?.uuid !== undefined?
+                <>
+                <CustomBarcode value={session.data.user.data.uuid} options={{ width: 0.1, height: 10, displayValue:false}}/>
+                <p className='inline-block text-xs' onClick={handleLogout}>
+                {session.data?.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
+                </p>
+                
+                <span className='inline-block'>
+                  <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
+                </span>
+                </>
+              : <Link href='/login'>로그인</Link> }
             </li>
-
           <li onClick={handleSideMenu}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M4 5H20" stroke="#121212" strokeWidth="2" strokeLinecap="round"/>

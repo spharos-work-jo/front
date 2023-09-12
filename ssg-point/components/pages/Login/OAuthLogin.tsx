@@ -4,11 +4,6 @@ import Link from 'next/link'
 import { signIn, useSession } from 'next-auth/react'
 
 const OAuthLogin = () => {
-
-  const session = useSession()
-
-  console.log(session)
-
   return (
     <div className='w-full pt-[40px] pr-[40px] pb-[80px] pl-[40px] bg-[#fbfbfb]'>
       <h3 className='text-[14px] leading-[24px] mb-[24px] font-medium'>간편 로그인</h3>
