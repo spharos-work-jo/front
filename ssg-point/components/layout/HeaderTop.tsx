@@ -22,6 +22,7 @@ function HeaderTop() {
   const session = useSession();
   const point = useContext(AppContext);
   console.log(session)
+  console.log(session)
 
 
   const handleSideMenu = () => {
@@ -51,7 +52,7 @@ function HeaderTop() {
   useEffect(() => {
     const PathName = pathname.split('/').length
     console.log(pathname.split('/'))
-    
+    console.log(session.data)
     const getTitle = () => {
       const result = pageTitle.find((item) => item.path === pathname.split('/')[PathName -1] )?.title
 
@@ -91,7 +92,7 @@ function HeaderTop() {
               {session.status==='authenticated' ?
                 <>
                 <p className='pl-5 inline-block text-xs' onClick={handleLogout}>
-                  로그아웃 {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
+                  {/* 로그아웃 {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp; */}
                 </p>
                 <span className='inline-block'>
                   <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
