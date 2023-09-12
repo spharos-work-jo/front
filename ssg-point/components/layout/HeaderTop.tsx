@@ -86,7 +86,6 @@ function HeaderTop() {
       : <HeaderUserStatus title={title}/>}
       </ul>
     </nav>
-
       <nav className='header_menu'>
         <ul className='flex relative gap-4 justify-center items-center'>
           <li className='text-sm font-medium flex items-center whitespace-nowrap' >
@@ -96,9 +95,7 @@ function HeaderTop() {
                 <p className='inline-block text-xs' onClick={handleLogout}>
                   {session.data.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
                 </p>
-
                 
-
                 <span className='inline-block'>
                   <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
                 </span>
