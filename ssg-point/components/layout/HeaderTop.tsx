@@ -89,7 +89,7 @@ function HeaderTop() {
       <nav className='header_menu'>
         <ul className='flex relative gap-4 justify-center items-center'>
           <li className='text-sm font-medium flex items-center whitespace-nowrap' >
-              {session.status==='authenticated' ?
+              {/* {session.status==='authenticated' ?
                 <>
                 <CustomBarcode value={session.data.user.data.uuid} options={{ width: 0.1, height: 10, displayValue:false}}/>
                 <p className='inline-block text-xs' onClick={handleLogout}>
@@ -100,7 +100,7 @@ function HeaderTop() {
                   <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>
                 </span>
                 </>
-              : <Link href='/login'>로그인</Link> }
+              : <Link href='/login'>로그인</Link> } */}
             </li>
 
           <li onClick={handleSideMenu}>
