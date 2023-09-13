@@ -1,6 +1,6 @@
 'use client'
 import { useSession } from 'next-auth/react'
-import React,{ useState } from 'react'
+import React,{ useEffect, useState } from 'react'
 import { useRouter } from "next/navigation";
 import GiftPointTop from './GiftPoint';
 import GiftPoint from './GiftPoint';
@@ -10,10 +10,12 @@ function GiftMainBody() {
   const [recUserName,setRecUserName] = useState<string>("");
   const [recUserPhone,setRecUserPhone] = useState<string>("");
   const [errText,setErrText] = useState<string>("");
-  const router = useRouter();
+  const [uuid,setUuid] = useState<string>("");
   const [Isview,setIsView] = useState<boolean>(false);
+  
+  
   const handleOnChange = (e : React.ChangeEvent<HTMLInputElement>) => {
-    
+  
     const {name,value} = e.target
 
     if(name === "recPhone"){
@@ -28,11 +30,8 @@ function GiftMainBody() {
   const findUUIDUrl = "http://workjo.duckdns.org/api/v1/user/find-for-gift"
   const data = useSession();
   const token = data.data?.user.data.token;
-
-
+  
   async function handleOnClick() {
-    
-    let resJson;
     
     console.log(token)
     console.log(recUserName)
@@ -54,21 +53,23 @@ function GiftMainBody() {
 
     console.log(req)
 
-    let res = await fetch(findUUIDUrl,req)
-    resJson = res.json()
-    
-    if(!res.ok){
-      setErrText("입력하신 번호로 가입된 회원이 없습니다.")
-      console.log(res.status)
-      console.log(resJson)
+      let response = await fetch(findUUIDUrl,req)
       
+      if(response.ok){
+        const data = await response.json();
+        console.log(data)
+        setIsView(true)
+        setUuid(data.data)
+        return
+      }
+      setErrText("해당 회원정보를 가진 사용자가 없습니다.")
       return
-    }
-    setIsView(true);
-    
     //실제 사이트에서는 유저확인하는 모달이 뜸
     //시간되면 구현할 예정입니다.
   }
+  useEffect(() => {
+    console.log(`uuid = ${uuid}`)
+  },[uuid]) 
   return (
     <>
       <div className='px-5 my-10'>
@@ -98,7 +99,10 @@ function GiftMainBody() {
         </button>
         <p className='text-red-500 text-xs'>{errText}</p>
         {
-          Isview ? <GiftPoint/> : null
+          Isview ? <GiftPoint 
+                      userUuid={uuid}
+                      recName={recUserName}
+                      /> : null
         }
       </div>
     </>
