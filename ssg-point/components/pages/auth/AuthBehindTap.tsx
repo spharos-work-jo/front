@@ -28,10 +28,6 @@ import React, { useState, SetStateAction, useContext } from "react";
         })
       })
     //props로 전달받은 전화번호& 입력받은 인증번호를 body에 담아서 요청
-    console.log("!!!!!!!!!!!!!!!!!!!")
-    console.log(res2)
-    console.log("!!!!!!!!!!!!!!!!!!!")
-    console.log(user)
 
     if(res2.status !== 200){
 
