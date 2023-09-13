@@ -87,7 +87,7 @@ function HeaderTop() {
           <li className='text-sm font-medium flex items-center whitespace-nowrap' >
             {session.data?.user.data?.uuid !== undefined?
                 <>
-                <CustomBarcode value={session.data.user.data.uuid} options={{ width: 0.1, height: 10, displayValue:false}}/>
+                <CustomBarcode value={session.data?.user.data?.uuid} options={{ width: 0.1, height: 10, displayValue:false}}/>
                 <p className='inline-block text-xs' onClick={handleLogout}>
                 {session.data?.user.data.name} 님 &nbsp; {point.totalPoint} &nbsp;
                 </p>
