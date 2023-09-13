@@ -6,7 +6,6 @@ import Image from "next/image";
 import React, { useEffect, useState} from "react";
 import CreatePointComponent from "./CreatePointComponent";
 import { pointDataType } from "@/types/pointDataType";
-import idx from 'idx';
 
 function PointMainBody() {
 
