@@ -38,9 +38,9 @@ function CreatePointComponent({ data, id } : { data: pointDataType[], id:string 
                   src="/assets/images/point/pointPlusIcon.png"
                 />
                 <span 
-                  className="text-[#EA035C] pl-1 text-sm"
-                  >
+                  className="text-[#EA035C] pl-1 text-sm">
                   <b>{item.point}P </b>
+                  <p>{item.title}</p>
                 </span> 
               </p>
               <p>

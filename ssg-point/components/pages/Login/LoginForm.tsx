@@ -185,7 +185,7 @@ function LoginForm() {
 
     
 
-      <div className='flex justify-start items-start gap-24 mb-8 ml-3'>
+      <div className='flex justify-around items-start mb-8'>
         <div className='flex justify-start items-center gap-3'>
           <input 
             className="box-content w-5 h-5 rounded-full checked:bg-black appearance-none border border-black cursor-pointer checked:bg-[url('/assets/images/login/check.png')] checked:bg-[length:12px_10px] checked:bg-no-repeat checked:bg-center"
@@ -197,7 +197,7 @@ function LoginForm() {
           />
           <label htmlFor="isAutoId" className='text-[13px]'>아이디 저장</label>
         </div>
-        <div className='flex ml-12 justify-start items-center gap-3'>
+        <div className='flex ml-8 justify-start items-center gap-3'>
           <input 
             className="box-content w-5 h-5 rounded-full checked:bg-black appearance-none border border-black cursor-pointer checked:bg-[url('/assets/images/login/check.png')] checked:bg-[length:12px_10px] checked:bg-no-repeat checked:bg-center"
             type="checkbox"
