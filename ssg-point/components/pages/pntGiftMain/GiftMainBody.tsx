@@ -1,8 +1,6 @@
 'use client'
 import { useSession } from 'next-auth/react'
 import React,{ useEffect, useState } from 'react'
-import { useRouter } from "next/navigation";
-import GiftPointTop from './GiftPoint';
 import GiftPoint from './GiftPoint';
 
 function GiftMainBody() {

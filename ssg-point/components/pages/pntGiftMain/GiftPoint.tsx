@@ -1,11 +1,14 @@
 'use client'
 import { useSession } from 'next-auth/react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function GiftPoint({userUuid,recName}:{
   userUuid:string,
   recName:string
 }) {
+
+  const data = useSession();
+  const token = data.data?.user.data.token;
 
   interface sendGiftUserDataType{
     message:string,
@@ -22,11 +25,11 @@ function GiftPoint({userUuid,recName}:{
     toUserName:recName
   })
 
+  fetchPoint()
+
   const userName = recName;
   //이름 중간부분 별표처리는 시간이 부족해서 일단 넘어가겠습니다 ㅜㅜ
   // const point = useContext(AppContext);
-  const data = useSession();
-
   const [point,setPoint] = useState<number>(0);
   const [usePointMessage,setUsePointMessage] = useState<boolean>(false);
   const handleOnClick = ( e : any) => {
@@ -79,9 +82,10 @@ function GiftPoint({userUuid,recName}:{
     })
     console.log(sendGiftUserData)
   }
-  const token = data.data?.user.data.token;
+  async function fetchPoint() {
 
-  window.onload= async function() {
+    console.log("window Onload ")
+
     let res = await fetch("http://workjo.duckdns.org/api/v1/point/simple-info",{
       method:"GET",
       headers:{
@@ -92,6 +96,7 @@ function GiftPoint({userUuid,recName}:{
     if(res.ok){
       console.log(json)
       setPoint(json.data.usableTotalPoint)
+      console.log(point)
     }
   }
   
