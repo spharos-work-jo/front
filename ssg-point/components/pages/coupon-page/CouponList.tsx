@@ -6,7 +6,6 @@ import { CouponListType } from '@/types/CouponList';
 import { useSession } from 'next-auth/react';
 import Swal from 'sweetalert2';
 import CustomBarcode from '@/components/ui/CustomBarcode';
-import moment from 'moment'
 
 const CouponList = ( {pathName} : { pathName: string } ) => {
     const [couponList, setCouponList] = useState<number[]>([]);

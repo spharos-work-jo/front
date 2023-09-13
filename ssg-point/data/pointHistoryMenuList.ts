@@ -7,17 +7,17 @@ export const pointHistoryMenuList:pointHistoryMenuListType[] = [
   {
     id:"1",
     name:"전체",
-    pointType:["ETC"]
+    pointType:["ETC","EVENT_REWARD","GIFT","EARN","USE","EXPIRE",]
   },
   { 
     id:"2",
     name:"적립/사용",
-    pointType:["EARN"]
+    pointType:["EARN","USE"]
   },
   {
     id:"3",
     name:"선물",
-    pointType:["G"]
+    pointType:["GIFT"]
   },
   {
     id:"4",
