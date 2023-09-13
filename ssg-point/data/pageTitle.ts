@@ -12,4 +12,6 @@ export interface PageTitleType {
     {path: "mylounge", title: "마이라운지",},
     {path: "signup",title:"회원가입",},
     {path: "login", title:"로그인",},
+    {path: "mybenefits", title: "마이 혜택"},
+    {path: "mypoint", title: "마이 포인트"}
   ]

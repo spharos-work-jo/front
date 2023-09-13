@@ -131,27 +131,27 @@ export const loginMenuList = [
       {
         img_url: "/assets/images/sidemenu/point_plus.png",
         name: "포인트 플러스",
-        url: "/",
+        url: "/mybenefits/my-plus",
       },
       {
         img_url: "/assets/images/sidemenu/my_luck.png",
         name: "나의 운세 보기",
-        url: "/",
+        url: "/mybenefits/my-luck",
       },
       {
         img_url: "/assets/images/sidemenu/my_coupon.png",
         name: "마이 쿠폰함",
-        url: "/",
+        url: "/mybenefits/my-coupon",
       },
       {
         img_url: "/assets/images/sidemenu/my_event.png",
         name: "마이 이벤트",
-        url: "/",
+        url: "/mybenefits/my-event",
       },
       {
         img_url: "/assets/images/sidemenu/point_tip.png",
         name: "포인트 꿀팁",
-        url: "/",
+        url: "/mybenefits/my-honey",
       },
     ],
   },

@@ -11,7 +11,7 @@ function EventSort( {pathName} : { pathName: string }) {
   return (
     <select onChange={handleSelect} className='w-[95px] h-[38px] ml-[15px] mt-[10px] '>
       <option value={'new'}>최신순</option>
-      <option value={'end'}>마감임박</option>
+      <option value={'endDate'}>마감임박</option>
     </select>
   )
 }
