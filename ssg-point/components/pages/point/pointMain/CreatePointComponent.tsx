@@ -7,32 +7,25 @@ import React, { useContext, useEffect } from "react";
 function CreatePointComponent({ data, id } : { data: pointDataType[], id:string }) {
 
   const PointData = data;
-  const point = useContext(AppContext);
+  // const point = useContext(AppContext);
   const myDate = new Date();
 
-  useEffect(() =>{
+  // useEffect(() =>{
 
-    let totalPoint = 0;    
+  //   let totalPoint = 0;    
 
-    PointData.map((item) =>{
-      console.log("!!!!!!!!!")
-        totalPoint += item.point
-    })  
-    console.log(point.totalPoint)
-    point.totalPoint = totalPoint;
-    console.log(totalPoint)
+  //   PointData.map((item) =>{
+  //       totalPoint += item.point
+  //   })  
+  //   console.log(point.totalPoint)
+  //   point.totalPoint = totalPoint;
+  //   console.log(totalPoint)
 
-  },[id])
+  // },[id])
   
   return (  
     <>
-      <div className="w-full">
-
-        {/* <button
-        onClick={handleOnClick}
-        >
-        test
-        </button> */}
+      <div className="w-full">        
         
         {
           PointData.map((item) => (

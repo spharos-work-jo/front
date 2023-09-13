@@ -108,12 +108,13 @@ function PhoneAuthBody() {
       e.preventDefault();
       
       const {name,value} = e.target;
-
+      console.log(e.target)
 
       setSignUpListData({
         ...signUpListData,
         [name]:value
       })
+      console.log(signUpListData)
     }
 
     const handleSignUpFetch = async (e: React.MouseEvent<HTMLButtonElement>) => {
