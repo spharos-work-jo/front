@@ -64,7 +64,7 @@ function LoginForm() {
 
 
     Swal.fire({
-      text: "어서오세요, 비누님",
+      text: "처리중입니다.",
       icon: "success",
       toast: true,
       position: "top",
@@ -98,7 +98,7 @@ function LoginForm() {
 
       if(result) {
         Swal.fire({
-          text: "시간 설정이 변경되었습니다.",
+          text: "처리중입니다.",
           icon: "success",
           toast: true,
           position: "top",
@@ -215,7 +215,7 @@ function LoginForm() {
       <p>IS AUTO ID : {loginData.isAutoId ? 'true' : 'false'}</p>
       <p>IS AUTO LOGIN : {loginData.isAutoLogin ? 'true' : 'false'}</p> */}
 
-        {/* <p onClick={handleConfirm}> 팝업 샘플</p> */}
+      {/* <p onClick={handleConfirm}> 팝업 샘플</p> */}
         
       <ul className='btn_list_box flex text-[14px] text-center justify-center mt-7'>
         <li className={styles.log}>

@@ -85,12 +85,27 @@ export const mypointTabMenu = [
 export const mybenefitsTabMenu = [
     {
         id: 1,
+        name: '포인트 플러스',
+        link: '/my-plus'
+    },
+    {
+        id: 2,
+        name: '나의 운세보기',
+        link: '/my-luck'
+    },
+    {
+        id: 3,
         name: '마이 쿠폰함',
         link: '/my-coupon',
     },
     {
-        id: 2,
+        id: 4,
         name: '마이 이벤트',
         link: '/my-event',
     },
+    {
+        id: 5,
+        name: '포인트 꿀팁',
+        link: '/my-honey'
+    }
 ]

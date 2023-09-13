@@ -11,7 +11,10 @@ declare module "next-auth" {
         role: string,
         name: string,
         image: string,
-        providerName: string,
+        provider: string,
+        email: string,
+        id: number,
+        
     } & DefaultSession["user"] & KakaoProfile["kakao_account"]
   }
 }

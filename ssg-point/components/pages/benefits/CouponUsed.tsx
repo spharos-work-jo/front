@@ -1,16 +1,14 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import styles from './CouponList.module.css';
+import styles from './CouponAvailable.module.css';
 import Image from 'next/image';
 import { CouponListType } from '@/types/CouponList';
 import { useSession } from 'next-auth/react';
 import Swal from 'sweetalert2';
 import CustomBarcode from '@/components/ui/CustomBarcode';
-import moment from 'moment'
 
-const CouponList = ( {pathName} : { pathName: string } ) => {
+const CouponUsed = ( {pathName} : { pathName: string } ) => {
     const [couponList, setCouponList] = useState<number[]>([]);
-    const [sortOption, setSortOption] = useState<string>('new'); // 정렬 옵션 state 추가
     const session = useSession();  // Destructuring을 이용해서 session.data를 바로 사용
 
 useEffect(() => {
@@ -25,19 +23,11 @@ useEffect(() => {
         headers
     });
     const data = await response.json();
-    
-    let sortedCoupons = [...data.data.content];
-    if (sortOption === 'new') {
-    sortedCoupons.sort((a, b) => moment(a.startDate).diff(moment(b.startDate)));
-    } else {
-    sortedCoupons.sort((a, b) => moment(a.endDate).diff(moment(b.endDate)));
-    }
-
-    setCouponList(sortedCoupons);
+    setCouponList(data.data.content);
     };
 
     fetchData();
-}, [sortOption]); 
+}, []);
 
     return (
         <div className='pt-2.5 pr-5 pb-14 pl-5'>
@@ -45,14 +35,14 @@ useEffect(() => {
             <div className='coupon_search h-[46px] flex items-center justify-between border-b border-black'>
                 <div className='w-[95px] h-[38px] text-[14px] relative pt-3'>
                     <select className='sel'>
-                        <option value={'new'}>최신순</option>
-                        <option value={'endDate'}>마감임박</option>
+                        <option value={'new'}>마감임박</option>
+                        <option value={'endDate'}>최신순</option>
                     </select>
                 </div>
                 <div>
                     <button className='text-[14px] pr-[26px] relative'>
-                        <span className={styles.btn}>
-                        전체다운
+                        <span className={styles.all}>
+                        더 많은 쿠폰 보기
                         </span>
                     </button>
                 </div>
@@ -73,7 +63,7 @@ useEffect(() => {
     );
 };
 
-export default CouponList;
+export default CouponUsed;
 
 
 const CouponWrap = ({ couponId } : { couponId: number }) => {
@@ -158,7 +148,8 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
         //             confirmButtonColor: "#000000",
         //         });
         //     }
-        // });
+        // }); 
+        // }
 
 
     return (

@@ -71,16 +71,42 @@ function OAuthLoginForm() {
       setErrorText(errText)
       return
     } else {
-      console.log(loginData)
-      const result = await signIn('credentials', {
-        loginId: loginData.loginId,
-        password: loginData.password,
-        redirect: true,
-        callbackUrl: callBackUrl ? callBackUrl : '/'
-      })
-      console.log(result)
+
+      const response = await fetch('http://10.10.10.203:8000/api/v1/auth/oauth-login-create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          oauthId: "Y3HFwRGXdJOjCOXFAyIj7vyt595OJL3OKQfzskoOn5E",
+          provider: "NAVER",
+          loginId: loginData.loginId,
+          password: loginData.password
+        }),
+      });
+      console.log(response)
+      
+
+      const data = await response.json(); 
+      if (data.success)
+        signIn('credentials', {
+        // ... 토큰이나 세션 ID 등을 설정
+      });
+      // ... 다른 로그인 후처리
     }
-  }
+
+    
+
+      // console.log(loginData)
+      // const result = await signIn('credentials', {
+      //   loginId: loginData.loginId,
+      //   password: loginData.password,
+      //   redirect: true,
+      //   callbackUrl: callBackUrl ? callBackUrl : '/'
+      // })
+      // console.log(result)
+    }
+  
 
   useEffect(() => {
     if(typeof window !== 'undefined') {
@@ -122,7 +148,7 @@ function OAuthLoginForm() {
         {pwType ? (
           <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eye.png'} alt="비밀번호 감추기" height={20} width={20}  /> </button>
         ) : (
-          <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eyeclose.png'} alt="비밀번호 보이기" height={20} width={20}  /> </button>
+          <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eyeclose.png'} alt="비밀번호 보이기" height={20} width={20} /> </button>
         )}
   
         </div>
@@ -135,10 +161,6 @@ function OAuthLoginForm() {
       <button type="button" className='btn_pm w-full rounded-[28px] text-black p-3 text-sm border h-[56px]' onClick={handleLoginFetch}>
         <strong className='text-[18px]'>로그인</strong>
       </button>
-      {/* <p>LOGIN ID : {loginData.loginId}</p>
-      <p>PASSWORD : {loginData.password}</p>
-      <p>IS AUTO ID : {loginData.isAutoId ? 'true' : 'false'}</p>
-      <p>IS AUTO LOGIN : {loginData.isAutoLogin ? 'true' : 'false'}</p> */}
       <ul className='btn_list_box flex text-[14px] text-center justify-center mt-7'>
         <li className={styles.log}>
           <Link href={'/member/find-id-pw'}>아이디 찾기</Link>
@@ -153,6 +175,7 @@ function OAuthLoginForm() {
 
     </form>
   )
+
 }
 
 export default OAuthLoginForm
