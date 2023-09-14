@@ -71,14 +71,28 @@ function OAuthLoginForm() {
       setErrorText(errText)
       return
     } else {
-      console.log(loginData)
-      const result = await signIn('credentials', {
-        loginId: loginData.loginId,
-        password: loginData.password,
-        redirect: true,
-        callbackUrl: callBackUrl ? callBackUrl : '/'
-      })
-      console.log(result)
+
+      const response = await fetch('https://workjo.duckdns.org/api/v1/auth/oauth-login-create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          oauthId: "Y3HFwRGXdJOjCOXFAyIj7vyt595OJL3OKQfzskoOn5E",
+          provider: "NAVER",
+          loginId: loginData.loginId,
+          password: loginData.password
+        }),
+      });
+      console.log(response)
+      
+
+      const data = await response.json(); 
+      if (data.success)
+        signIn('credentials', {
+        // ... 토큰이나 세션 ID 등을 설정
+      });
+      // ... 다른 로그인 후처리
     }
   }
 
@@ -97,7 +111,7 @@ function OAuthLoginForm() {
   },[])
 
   return (
-    <form className='flex flex-col gap-3 w-full px-10' onSubmit={handleLoginFetch}>
+    <form className='flex flex-col gap-3 w-full' onSubmit={handleLoginFetch}>
       <input 
         type="text" 
         name="loginId" 
@@ -114,7 +128,6 @@ function OAuthLoginForm() {
         type={pwType ? 'password' : 'text'}
         name="password" 
         id="password"
-        placeholder='비밀번호 (영문, 숫자, 특수문자 8~20자)'
         className='Pw w-full rounded-3xl focus-visible:outline-blue-700 bg-white p-3 text-sm border border-black-500'
         onChange={handleOnChange}
         />
@@ -123,7 +136,7 @@ function OAuthLoginForm() {
         {pwType ? (
           <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eye.png'} alt="비밀번호 감추기" height={20} width={20}  /> </button>
         ) : (
-          <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eyeclose.png'} alt="비밀번호 보이기" height={20} width={20}  /> </button>
+          <button type="button" onClick={handlePwType}> <Image src={'/assets/images/login/eyeclose.png'} alt="비밀번호 보이기" height={20} width={20} /> </button>
         )}
   
         </div>
@@ -131,8 +144,26 @@ function OAuthLoginForm() {
 
 
       <p className='text-red-500 text-xs'>{errorText.password}</p>
-      </form>
+
+    
+      <button type="button" className='btn_pm w-full rounded-[28px] text-black p-3 text-sm border h-[56px]' onClick={handleLoginFetch}>
+        <strong className='text-[18px]'>로그인</strong>
+      </button>
+      <ul className='btn_list_box flex text-[14px] text-center justify-center mt-7'>
+        <li className={styles.log}>
+          <Link href={'/member/find-id-pw'}>아이디 찾기</Link>
+        </li>
+        <li className={styles.log}>
+          <Link href={'/member/find-pw'}>비밀번호 찾기</Link>
+        </li>
+        <li>
+          <Link href='/signup'>회원가입</Link>
+        </li>
+      </ul>
+
+    </form>
   )
+
 }
 
 export default OAuthLoginForm

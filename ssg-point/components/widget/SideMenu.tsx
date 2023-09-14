@@ -1,6 +1,5 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./SideMenu.module.css";
 import Logo from "../ui/header/Logo";
 import Link from "next/link";
@@ -12,6 +11,7 @@ import {
   menuList,
 } from "@/data/SideMenuData";
 import { signOut, useSession } from "next-auth/react";
+import { AppContext } from "@/app/layout";
 
 const favUrl =
   "https://mycloudmembership-prd.s3.amazonaws.com/shinsegaepoint/public/shinsegaepoint-ext/images/menu-images-renewal/menu_big_";
@@ -21,13 +21,15 @@ function SideMenu(props: {
   setIsOpened: React.Dispatch<React.SetStateAction<Boolean>>;
 }) {
   const session = useSession();
-  console.log(session)
+  console.log(session.data)
   const { isOpened, setIsOpened } = props;
+  const point = useContext(AppContext);
 
   /** 참고: Back에서 받아오는 나의 즐겨찾기 목록 state */ 
   // const [myFav, setMyFav] = useState<>()
   return (
     <>
+    
       <div
         className={
           isOpened
@@ -44,7 +46,7 @@ function SideMenu(props: {
         </div>
         {/* 로그인 박스 */}
         <div className={styles.login_signup}>
-          {session.status === "authenticated" ? (
+          { session.data?.user.data?.uuid !== undefined? (
             <>
               <div>
                 <p className="text-[18px] leading-[26px] inline">
@@ -53,13 +55,15 @@ function SideMenu(props: {
                 after:bg-[#ffdfb5] after:absolute
                 after:w-[100%] after:inline-block after:h-[15px] after:z-[-1] after:left-0 after:bottom-0"
                   >
-                    {/* {user.name} 참고 : 나중에 session에서 유저정보 불러오면 이름 표시 */} 
-                  </strong>
-                  김형진님 반갑습니다.
+                    {/* {user.name} 참고 : 나중에 session에서 유저정보 불러오면 이름 표시 */}
+                    {session.data?.user.data?.name}
+                  </strong> 님 반갑습니다.
                 </p>
               </div>
               <p className="flex itmes-center mt-[16px] text-[20px] font-bold leading-6">
                 {/* {user.point} 참고 : 유저의 포인트 정보 불러온 후 표시 */}
+                {/* {point.totalPoint} */}
+                &nbsp; {point.totalPoint}
                 <Image
                   alt="point"
                   src={
@@ -68,7 +72,8 @@ function SideMenu(props: {
                   width={27}
                   height={24}
                   style={{ display: "inline-block", marginLeft: "7px" }}
-                ></Image>
+                >
+                </Image>
               </p>
             </>
           ) : (
@@ -78,7 +83,7 @@ function SideMenu(props: {
           )}
 
           <div className={styles.btn_box}>
-            {session.status === "authenticated" ? (
+            {session.data?.user.data?.uuid !== undefined? (
               <div className="flex w-full relative">
                 <button className={styles.btn_outbox} onClick={()=>signOut({
                   callbackUrl: 'http://localhost:3000/'
@@ -106,7 +111,7 @@ function SideMenu(props: {
         <FavList favList={favList}></FavList>
             
         {/* 로그인 시 마이 포인트, 마이 라운지 등의 바로가기 메뉴 */}
-        {session.status === "authenticated" ? <MyPage></MyPage> : null}
+        {session.data?.user.data?.uuid !== undefined? <MyPage></MyPage> : null}
 
         {/* 바로가기 메뉴 박스 */}
         <MenuBox menuList={menuList}></MenuBox>

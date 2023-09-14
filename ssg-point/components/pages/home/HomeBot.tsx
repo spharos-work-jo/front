@@ -4,11 +4,8 @@ import { EventBannerData } from '@/data/homeBotEvent'
 import { EventBannerDataType } from '@/types/event';
 import CustomSlider from '@/components/ui/CustomSlider';
 
-
 const HomeBot = () => {
-
   const data : EventBannerDataType[] = EventBannerData;
-
   return (
     <>
     {

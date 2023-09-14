@@ -1,6 +1,4 @@
-import { useRef, useState } from 'react';
-import { EventBannerData } from '@/data/homeBotEvent'
-import { EventBannerDataType, EventBannerListProps } from '@/types/event'
+import { EventBannerListProps } from '@/types/event'
 import React from 'react'
 import Image from 'next/image';
 import { Swiper , SwiperSlide } from 'swiper/react'
@@ -9,13 +7,14 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/pagination';
 import 'swiper/css';
 import { Pagination, Navigation } from 'swiper/modules';
-import { type } from 'os';
+import Link from 'next/link';
+
 
 function CustomSlider({data}: {data: EventBannerListProps[]}) {
   return (
   
       <Swiper
-        className='swiper relative w-full h-[455px]'
+        className='swiper relative w-full h-[auto]'
 
         modules={[Scrollbar, Pagination, Navigation]}
         pagination={{ 
@@ -26,7 +25,7 @@ function CustomSlider({data}: {data: EventBannerListProps[]}) {
           draggable: true,
         }}
         
-        spaceBetween={50}
+        spaceBetween={0}
         slidesPerView={1}
         onSlideChange={() => console.log('slide change')}
         onSwiper={(swiper) => console.log(swiper)}
@@ -35,11 +34,20 @@ function CustomSlider({data}: {data: EventBannerListProps[]}) {
           {
             data.map((item:EventBannerListProps) => (
               <SwiperSlide key={item.id}>
+                <div className='w-full h-[auto]'>
+                <Link href={item.url}>
+
                 <Image
                   src={`/assets/images/event${item.imgUrl}`}
                   alt={`/assets/images/event${item.imgAlt}`}
-                  fill={true}
+                  width={1920}
+                  height={500}
+                  priority
                 />
+
+                </Link>
+                </div>
+
               </SwiperSlide>
             ))
           }

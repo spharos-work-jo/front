@@ -1,9 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
+
 function ProfileInputTop() {
 
   const iconUrl : string = "/assets/images/signupIcon/";
+
 
   return (  
     <>

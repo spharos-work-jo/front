@@ -6,10 +6,10 @@ import SignupInfoBottom from "@/components/pages/signup/SignupInfoBottom"
 function Page(){
     return (  
         <>
-          <section className="pt-20 pb-10 block">
+            <section className="pt-20 pb-10 block">
             <SignupInfoTop />  
             <SignupInfoBottom />  
-          </section>
+            </section>
         </>
     );
 };

@@ -1,6 +1,6 @@
 export interface timeFilterType{
   id:string,
-  name:string
+  name:string,
 }
 export const timeFilter:timeFilterType[] = [
   {
@@ -17,6 +17,6 @@ export const timeFilter:timeFilterType[] = [
   },
   {
     id:"4",
-    name:"6"
+    name:"6개월"
   }
 ]

@@ -1,11 +1,10 @@
+import { DaumAddressType } from "./DaumAddressType";
+
 export interface userProfileInputFormType{
-  id:string,
   loginId:string,
   password:string,
   checkPassword:string,
-  name:string,
+  userName:string,
   phone:string,
-  zoneCode:number,
-  city:string,
   detailAddress:string,
 }

@@ -1,0 +1,33 @@
+.col:before {
+  content: "";
+  clear: both;
+  display: inline-block;
+  width: 1px;
+  height: 10px;
+  background: #cbcbcb;
+  margin-right: 8px;
+  vertical-align: middle;
+  margin-bottom: 1px;
+  margin-left: 10px;
+}
+
+.btn:before {
+  background: url('/assets/images/coupon/down.png')no-repeat left 0/19px 19px;
+  content: "";
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+}
+
+.all::after {
+  background: url('/assets/images/coupon/more.png') no-repeat 0 0/6px 10px;
+  width: 6px;
+  height: 10px;
+  right: 0;
+  left: unset;
+  bottom: 1px;
+  opacity: .7;
+}

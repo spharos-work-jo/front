@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { newsAgencyList } from '@/data/newsAgencyList';
 import { authenticatedNeedDataType } from '@/types/authenticatedNeedDataType';
 import { signUpErrorTypeData } from '@/types/signUpErrorTypeData';
@@ -8,11 +8,17 @@ import { localForeignerList } from '@/data/localForeignerList';
 import AuthBehindTap from './AuthBehindTap';
 import CheckStatus from './CheckStatus';
 import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditionsList';
+import { UserContext } from "@/app/signup/layout";
 
 
-function PhoneAuthBody() {
-    // const reqUrl = "http://workjo.duckdns.org"
-    const reqUrl = "http://10.10.10.103:8000"
+function PhoneAuthBody( props:{pathName: string} ) {
+
+    const user = useContext(UserContext);
+
+    const path = props.pathName;
+    const reqUrl = "http://workjo.duckdns.org"
+
+    // const reqUrl = "http://10.10.10.103:8000"
 
     const [authPhoneNumber,setAuthPhoneNumber] = useState<string>("");;
 
@@ -67,6 +73,7 @@ function PhoneAuthBody() {
     const [reqCertNumber,setReqCertNumber] = useState<boolean>(false);
 
     const [signUpListData,setSignUpListData] = useState<authenticatedNeedDataType>({
+      loginId:'',
       name: '',
       gender: '남자',
       foreigner: '내국인',
@@ -104,12 +111,13 @@ function PhoneAuthBody() {
       e.preventDefault();
       
       const {name,value} = e.target;
-
+      console.log(e.target)
 
       setSignUpListData({
         ...signUpListData,
         [name]:value
       })
+      console.log(signUpListData)
     }
 
     const handleSignUpFetch = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -134,12 +142,18 @@ function PhoneAuthBody() {
       {
         //약관동의 체크 안되어있다가 전부다 체크하면 인증번호 요청 컴포넌트 호출되어야하는데
         //안됨 이 부분은 차후 수정예정
+        //↑추가 완료  
           console.log(errText)
           setErrorText(errText);
             
           return  
 
       }
+      
+            user.userName = signUpListData.name;
+            user.phone = signUpListData.phone;
+            user.birthDay = signUpListData.birthday;
+            user.loginId = signUpListData.loginId;
 
             setIsClick(true);
 
@@ -152,11 +166,12 @@ function PhoneAuthBody() {
                 phone: signUpListData.phone
               })
             })
-       
+
             console.log(res.body)
             if(res.status === 200){
 
               errText.reqInfo=""
+              setAuthPhoneNumber(signUpListData.phone)
               setReqCertNumber(true)
               
               return 
@@ -167,7 +182,7 @@ function PhoneAuthBody() {
 
             return 
 
-       
+      
     }
 
     useEffect(() => {
@@ -177,7 +192,7 @@ function PhoneAuthBody() {
     },[reqCertNumber])
   return (
     <>
-      <form className='px-10 pt-4'>
+      <form className='px-5 pt-4'>
           <div className='text-[13px]'>
             <p className='pt-10 pb-2'>
               <b>이름을 입력해주세요.</b>
@@ -271,16 +286,18 @@ function PhoneAuthBody() {
                 />
                 <p className='text-red-500 text-xs'>{errorText.phone}</p>
             </div>
-            <div className='text-lg border-b-[1px] divide-[#e5e7eb] mt-14 pb-2'>
+            <div className='text-sm border-b-[1px] divide-[#e5e7eb] mt-14 pb-2'>
+            <p><b>휴대전화 인증 약관</b></p>
             <CheckStatus
                   checkId={0}
-                  label={"전체 동의"}
+                  label={"모든 약관에 동의합니다."}
                   name={"전체 동의"}
                   checked={agreeDataList.every((item) => item.check)}
                   handler={handleAllChecked}
-                  size={25}
+                  size={20}
                 />
             </div>
+            <div className='text-xs'>
               {
                 signUpAgreeList.map( (item:signUpAgreeListType) => {
                   return(
@@ -296,6 +313,7 @@ function PhoneAuthBody() {
                   ) 
                 })
               }
+            </div>
               <p className='text-red-500 text-xs'>{errorText.agree}</p>
               <button
                 className="w-full"
@@ -305,7 +323,11 @@ function PhoneAuthBody() {
                 { reqCertNumber === true && isClick === true ? null : <AuthDefaultTap/> } 
               </button>
 
-                { reqCertNumber === true && isClick === true ? <AuthBehindTap authNumber={authPhoneNumber}/> : null } 
+                { reqCertNumber === true && isClick === true ? 
+                <AuthBehindTap 
+                authNumber={authPhoneNumber}
+                pathName={path}
+                /> : null } 
 
               <p className='text-red-500 text-xs'>{errorText.reqInfo}</p>
             </form>

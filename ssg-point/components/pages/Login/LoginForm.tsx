@@ -7,6 +7,7 @@ import styles from './LoginForm.module.css'
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
+import Swal from "sweetalert2";
 
 function LoginForm() {
   
@@ -60,6 +61,22 @@ function LoginForm() {
   }
 
   const handleLoginFetch = async () => {
+
+
+    Swal.fire({
+      text: "처리중입니다.",
+      icon: "success",
+      toast: true,
+      position: "top",
+      showConfirmButton: false,
+      timer: 1500,
+      timerProgressBar: true,
+      customClass: {
+        container: "my-swal",
+      },
+    });
+
+
     let errText: ErroLogInFormType = {
       loginId: '',
       password: '',
@@ -78,9 +95,42 @@ function LoginForm() {
         redirect: true,
         callbackUrl: callBackUrl ? callBackUrl : '/'
       })
+
+      if(result) {
+        Swal.fire({
+          text: "처리중입니다.",
+          icon: "success",
+          toast: true,
+          position: "top",
+          showConfirmButton: false,
+          timer: 1500,
+          timerProgressBar: true,
+          customClass: {
+            container: "my-swal",
+          },
+        });
+      }
+
       console.log(result)
     }
   }
+
+
+  const handleConfirm = () => {
+    Swal.fire({
+      text: "로그아웃 하시겠습니까?",
+      showCancelButton: true,
+      confirmButtonText: "네",
+      cancelButtonText: "아니요",
+      customClass: {
+        confirmButton: 'mySwalConfirmButton',
+        cancelButton: 'mySwalCancelButton',
+      },
+    }).then((result) => {
+      console.log("close")
+    })
+  }
+
 
   useEffect(() => {
     if(typeof window !== 'undefined') {
@@ -97,6 +147,7 @@ function LoginForm() {
   },[])
 
   return (
+
     <form className='flex flex-col gap-3 w-full px-10' onSubmit={handleLoginFetch}>
       <input 
         type="text" 
@@ -134,7 +185,7 @@ function LoginForm() {
 
     
 
-      <div className='flex justify-start items-start gap-24 mb-8 ml-3'>
+      <div className='flex justify-around items-start mb-8'>
         <div className='flex justify-start items-center gap-3'>
           <input 
             className="box-content w-5 h-5 rounded-full checked:bg-black appearance-none border border-black cursor-pointer checked:bg-[url('/assets/images/login/check.png')] checked:bg-[length:12px_10px] checked:bg-no-repeat checked:bg-center"
@@ -146,7 +197,7 @@ function LoginForm() {
           />
           <label htmlFor="isAutoId" className='text-[13px]'>아이디 저장</label>
         </div>
-        <div className='flex ml-12 justify-start items-center gap-3'>
+        <div className='flex ml-8 justify-start items-center gap-3'>
           <input 
             className="box-content w-5 h-5 rounded-full checked:bg-black appearance-none border border-black cursor-pointer checked:bg-[url('/assets/images/login/check.png')] checked:bg-[length:12px_10px] checked:bg-no-repeat checked:bg-center"
             type="checkbox"
@@ -163,6 +214,9 @@ function LoginForm() {
       <p>PASSWORD : {loginData.password}</p>
       <p>IS AUTO ID : {loginData.isAutoId ? 'true' : 'false'}</p>
       <p>IS AUTO LOGIN : {loginData.isAutoLogin ? 'true' : 'false'}</p> */}
+
+      {/* <p onClick={handleConfirm}> 팝업 샘플</p> */}
+        
       <ul className='btn_list_box flex text-[14px] text-center justify-center mt-7'>
         <li className={styles.log}>
           <Link href={'/member/find-id-pw'}>아이디 찾기</Link>

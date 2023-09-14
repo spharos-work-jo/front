@@ -16,7 +16,7 @@ export const options: NextAuthOptions = {
         console.log(credentials)
         if(!credentials?.loginId || !credentials?.password) return null
         
-        const res = await fetch("http://workjo.duckdns.org/api/v1/auth/login", {
+        const res = await fetch("https://workjo.duckdns.org/api/v1/auth/login", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ export const options: NextAuthOptions = {
         console.log(res)
         const user = await res.json()
 
-  
+        
         if (res.ok && user) {
           console.log(user)
           return user
@@ -42,7 +42,9 @@ export const options: NextAuthOptions = {
       clientId: process.env.KAKAO_CLIENT_ID,
       clientSecret: process.env.KAKAO_CLIENT_SECRET,
       
-    }),
+    }
+    
+    ),
     NaverProvider({
       clientId: process.env.NAVER_CLIENT_ID,
       clientSecret: process.env.NAVER_CLIENT_SECRET
@@ -51,11 +53,13 @@ export const options: NextAuthOptions = {
 
   callbacks: {
     async jwt({ token, user }) {
+      console.log(user)
       return { ...token, ...user };
     },
 
     async session({ session, token }) {
       session.user = token as any;
+      
       return session;
     },
     async redirect({ url, baseUrl }) {

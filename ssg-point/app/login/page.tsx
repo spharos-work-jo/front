@@ -1,10 +1,7 @@
 import LoginForm from '@/components/pages/Login/LoginForm'
-// import Logo from '@/components/ui/header/Logo'
 import React from 'react'
 import Image from 'next/image'
 import OAuthLogin from '@/components/pages/Login/OAuthLogin'
-import { getServerSession } from 'next-auth'
-import { options } from '../api/auth/[...nextauth]/options'
 // get path from 'path'
 
 

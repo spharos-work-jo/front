@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 :root {
+  --billita-white: #ffffff;
+  --billita-black: #1e1e1e;
+  --billita-blue: #0071ff;
+  --billita-gray: #d9d9d9;
+  --billita-primary: #070b0b;
+  --billita-secondary: #ff4974;
+  --billita-blueHighlight: #00c4df;
+
+
   --ssg-point-primary: #000;
   --ssg-point-secondary: #fff;
   --ssg-point-tertiary: #f5f5f5;
   --ssg-point-primary-gradient: linear-gradient(126deg, #F40000 0%, #E6772A 7.29%, #EE9C38 17.71%, #EDAE3D 53.36%, #E78A41 65.63%, #A460C4 79.52%, #9C6BC2 88.98%, #71A2B9 96.55%);
 }
+
 
 * {
   box-sizing: border-box;
@@ -168,14 +180,16 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
   opacity: 0;
   pointer-events: none;
 }
-/* @font-face {
+
+@font-face {
   font-family: "sans";
   src: url("/fonts/NotoSans.ttf");
 }
 
 body {
   font-family: "sans";
-} */
+}
+
 .postmodal{
   position: fixed;
   box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
@@ -293,7 +307,7 @@ background: linear-gradient(93.4deg,#f40000,#ff8a00 14.06%,#f9ad05 37.76%,#fc348
 .swiper-scrollbar {
   position: absolute !important;
   left: 30px !important;
-  bottom: 46px !important;
+  bottom: 42px !important;
   width: 73% !important;
   height: 2px !important;
   z-index: 1 !important;
@@ -317,7 +331,7 @@ background: linear-gradient(93.4deg,#f40000,#ff8a00 14.06%,#f9ad05 37.76%,#fc348
 .swiper-pagination {
   position: absolute;
   right: 10px !important;
-  bottom: 38px !important;
+  bottom: 32px !important;
   z-index: 2 !important;
   box-sizing: border-box !important;
   height: 18px !important;
@@ -469,4 +483,229 @@ background: linear-gradient(93.4deg,#f40000,#ff8a00 14.06%,#f9ad05 37.76%,#fc348
   height: 7px;
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAVCAYAAAAuJkyQAAAACXBIWXMAACE4AAAhOAFFljFgAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAACOSURBVHgBzdZLDsAgCARQblRuyhE4atuFpi60fmDQSdg0hnlpXEj05UoTnWqvvHOnEYqL1nq5+JhHCR+t9HILhEZpo5N7BxCoVpeMHvRETXcgUcu7ESjzTk+U2y6PRe5/27IQdh9XFsMwKwVwzExRGGakMBzTQ23BzKDCMCOocMwfahsmR07C5DAVjytLHkm1yW3+j4vHAAAAAElFTkSuQmCC) no-repeat;
   background-size: 10px auto;
+}
+
+/* 포인트 제휴사 카드관리 */
+.cardNum::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 24px;
+  width: 4px;
+  display: block;
+  height: 1px;
+  background: #666;
+}
+
+
+.manage_active {
+background: url(/assets/images/point/list.png) 50% no-repeat;
+background-size: 10px auto;
+}
+
+.str_red::before {
+  color: #eb0000;
+  content: "·";
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.str::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  top: 0;
+  line-height: 20px;
+  font-size: 12px;
+  color: #767676;
+  font-weight: 700;
+}
+
+
+
+/* sweet alert
+
+/* swal custom */
+
+.mySwalConfirmButton {
+  background-color: var(--billita-blueHighlight) !important;
+  border-radius: 1rem !important;
+  font-size: 0.8rem !important;
+  padding: 0.5rem 2rem !important;
+}
+
+.mySwalConfirmButton {
+  justify-content: center !important;
+}
+
+.mySwalConfirmButton:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 113, 255, 0.1) !important;
+}
+
+.mySwal-only-confirm .mySwalConfirmButtonOnly {
+  background-color: var(--billita-blueHighlight) !important;
+  border-radius: 1rem !important;
+  font-size: 0.8rem !important;
+  padding: 0.5rem 2rem !important;
+  justify-content: center !important;
+}
+
+.mySwal-only-confirm .swal2-popup.swal2-toast .swal2-styled {
+  margin: 0 auto !important;
+  justify-content: center !important;
+}
+
+.mySwal-only-confirm .swal2-title {
+  font-size: 0.8rem !important;
+}
+
+.mySwalCancelButton {
+  background-color: var(--billita-secondary) !important;
+  border-radius: 1rem !important;
+  font-size: 0.8rem !important;
+  padding: 0.5rem 2rem !important;
+}
+
+.swal2-html-container {
+  font-size: 0.9rem !important;
+  font-weight: normal !important;
+  font-family: var(--billita-hangul) !important;
+}
+
+.swal2-popup {
+  width: 80% !important;
+  border-radius: 1rem !important;
+  padding: 2rem 0 2rem 0 !important;
+}
+
+.my-swal {
+  font-weight: bold !important;
+  font-family: var(--billita-hangul) !important;
+}
+
+.my-swal .swal2-popup {
+  padding: 0.5rem 1rem !important;
+  background-color: black !important;
+  border-radius: 0.3rem !important;
+  mix-blend-mode: hard-light;
+  opacity: 0.9;
+}
+
+.my-swal .swal2-html-container {
+  font-size: 0.8rem !important;
+  font-weight: normal !important;
+  color: white !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.my-swal .swal2-icon.swal2-info {
+  visibility: hidden;
+  position: absolute;
+}
+
+.my-swal-warning {
+  font-weight: bold !important;
+  font-family: var(--billita-hangul) !important;
+}
+.my-swal-warning .swal2-popup.swal2-toast .swal2-html-container {
+  color: var(--billita-secondary) !important;
+  font-size: 0.7rem !important;
+}
+
+.my-swal-warning .swal2-popup {
+  border-radius: 0.3rem !important;
+  background-color: #ffffff !important;
+  font-weight: 0.8rem !important;
+  mix-blend-mode: hard-light !important;
+  padding: 0.3rem !important;
+  justify-content: center !important;
+}
+
+.my-swal-warning .swal2-popup.swal2-toast .swal2-icon {
+  visibility: hidden !important;
+}
+
+.mySwal-only-confirm {
+  justify-content: center !important;
+} */
+
+
+
+/* event */
+.recomm {
+  font-size: 13px;
+  line-height: 21px;
+  color: #fff;
+  position: absolute;
+  left: 0;
+  top: 15px;
+  background: url(/assets/images/event/event_reco.png) no-repeat;
+  width: 60px;
+  height: 26px;
+  background-size: 60px 26px;
+  font-weight: 700;
+  padding-left: 15px;
+  text-align: left;
+  padding-top: 2px;
+  z-index: 3px;
+}
+
+.fin {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: 500;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 20px;
+  line-height: 30px;
+  background: url(/assets/images/event/event_bg.png) 0 100% no-repeat;
+  background-size: 100% auto;
+}
+
+.win {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: 500;
+  box-sizing: border-box;
+  font-size: 20px;
+  line-height: 30px;
+  background: linear-gradient(106.4deg,#eb0000 6.03%,#eb6612 21.34%,#c68200 37.11%,#fc348c 52.88%,#7720a7 67.72%,#0ca19a 82.1%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.BACK::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  width: 120px;
+  height: 120px;
+  background: url(/assets/images/event/event_bg.png) 0 0 no-repeat;
+  background-size: 100% auto;
 }

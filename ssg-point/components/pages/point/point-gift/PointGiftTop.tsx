@@ -21,7 +21,7 @@ const PointGiftTop = () => {
           </p>
           <div className='pt-[40px]'>
             <button className='btn_pm block rounded-lg w-full text-center h-[48px] text-[14px] leading-[24px] font-[550] box-border'>
-              <Link href={''} className=''>선물하기</Link>
+              <Link href={'/mypoint/pntGiftMain'} className=''>선물하기</Link>
             </button>
           </div>
         </div>

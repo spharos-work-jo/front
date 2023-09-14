@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 
 function CardAuthBody() {
+
   return (  
     <>
-    <div className='px-10 pt-4'>
+    <div className='px-5 pt-4'>
       <div className="flex justify-center text-xl">
           <p className="my-[50px]">
             보유하신 <b>신용/체크카드</b>로<br/>
@@ -12,8 +13,8 @@ function CardAuthBody() {
         </div>
           <button
             className="w-full mt-20"
-            type='submit'
-            >
+            type='button'
+            >             
             <p className='py-4 mt-3 my-[50px] text-center text-black text-sm rounded-lg bg-ssg-linear'>
               <b>신용/체크카드 인증</b>
             </p>
