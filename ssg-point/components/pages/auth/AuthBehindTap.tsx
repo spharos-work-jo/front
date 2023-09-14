@@ -4,10 +4,11 @@ import { UserContext } from "@/app/signup/layout";
 import { useRouter } from "next/navigation";
 import React, { useState, SetStateAction, useContext } from "react";
 
-  const AuthBehindTap = ( props : { authNumber:string }) => {
+  const AuthBehindTap = ( props : { authNumber:string,pathName:string }) => {
 
     const user = useContext(UserContext);
     const router = useRouter();
+    const pathName = props.pathName;
 
     const [certNumber,setCertNumber] = useState<string>("");
     
@@ -28,10 +29,6 @@ import React, { useState, SetStateAction, useContext } from "react";
         })
       })
     //props로 전달받은 전화번호& 입력받은 인증번호를 body에 담아서 요청
-    console.log("!!!!!!!!!!!!!!!!!!!")
-    console.log(res2)
-    console.log("!!!!!!!!!!!!!!!!!!!")
-    console.log(user)
 
     if(res2.status !== 200){
 
@@ -39,8 +36,13 @@ import React, { useState, SetStateAction, useContext } from "react";
 
       return
     }
+    if(pathName === "signUpAuth"){
+      router.push('./conditions')
+    }
+    if(pathName === "findPointPwd"){
+      router.push('./point-pwd-chg/new-point-pwd')
+    }
     
-    router.push('./conditions')
   }
   const matchReqNum = (e : React.ChangeEvent<HTMLInputElement>) => {
 

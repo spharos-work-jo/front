@@ -9,6 +9,7 @@ import CustomBarcode from '@/components/ui/CustomBarcode';
 import { useRouter } from 'next/navigation';
 import { useSearchParams } from 'next/navigation'
 
+
 function CouponList() {
     
     const query = useSearchParams()

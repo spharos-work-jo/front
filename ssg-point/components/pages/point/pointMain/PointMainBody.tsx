@@ -153,7 +153,7 @@ async function pointDataFetch() {
         <div>
         {/* <p>{myDate.toLocaleDateString('ko-KR', { timeZone: 'UTC', year: 'numeric', month: 'long', day: 'numeric'})}</p> */}
 
-        <ul className="flex mb-3 w-full border-b-[1px] border-gray-400">
+        <ul className="flex mb-2 w-full border-b-[1px]">
           {
             pointHistoryMenuList.map((item:pointHistoryMenuListType) => (
               <li 
@@ -161,7 +161,7 @@ async function pointDataFetch() {
                 id={item.id}
                 onClick={handleOnChange}
                 className={
-                  selectPointHistory === item.id ? 'border-b-[3px] border-[#EA035C] pb-8 text-sm w-1/4 flex justify-center' :'text-sm w-1/4 pb-8 flex justify-center'
+                  selectPointHistory === item.id ? 'border-b-[3px] border-[#EA035C] pb-5 text-sm w-1/4 flex justify-center' :'text-sm w-1/4 pb-6 flex justify-center'
                 }
               >
                 {item.name}
@@ -169,7 +169,7 @@ async function pointDataFetch() {
             ))
           }
           </ul>
-          <div className="px-5 pb-5">
+          <div className="px-5 py-3">
             <select
               name="searchRangeTime"
               className="w-1/4 text-xs"
@@ -205,22 +205,28 @@ async function pointDataFetch() {
                   <p className="mx-2 text-xs">사용 {usedPoint}P</p>
               </div>
             </div>
-            <div className="flex justify-center items-center w-full h-[490px]">
-              <div className="w-full flex justify-center align-center">
+            <div className="flex justify-center items-center w-full">
+              
               { 
                 emptyPointHistory ? 
+                <div className="w-full flex justify-center h-[500px]">
                   <CreatePointComponent
                     id={selectPointHistory}
                     data={pointList}
                   />
+                </div>
+
                 :
-                  <Image
-                    alt="빈 내역창 아이콘"
-                    height={48}
-                    width={48}
-                    src="/assets/images/point/noPointIcon.png"/>
+                <div className="w-full h-[350px] relative">
+                  <div className="h-[60px] w-[60px] absolute top-[50%] left-[50%]" style={{transform: "translate(-50%, -50%)"}}>
+                    <Image
+                      alt="빈 내역창 아이콘"
+                      height={100}
+                      width={100}
+                      src="/assets/images/point/noPointIcon.png"/>
+                </div>
+                </div>
               }
-              </div>
           </div>
         </div>
       </>

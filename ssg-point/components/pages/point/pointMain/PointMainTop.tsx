@@ -1,17 +1,20 @@
 'use client'
 import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
-import { AppContext } from "@/app/layout";
 import { useSession } from "next-auth/react";
 
 function PointMainTop() {
 
-  const point = useContext(AppContext);
   const session = useSession();
   const [SavePoint,setSavePoint] = useState<number>(0);
   const [DeletePoint,setDeletePoint] = useState<number>(0);
   const token = session.data?.user.data.token;
-  let TotalPoint = 0;
+  const [TotalPoint,setTotalPoint] = useState<number>(0);
+
+  window.onload= async function(){
+    totalPointOnFetch()
+  }
+
   async function totalPointOnFetch() { 
 
     let res = await fetch('http://workjo.duckdns.org/api/v1/point/simple-info',{
@@ -23,14 +26,20 @@ function PointMainTop() {
     
     if(res.ok){
       let resJson = await res.json();
-      console.log(res)
-      TotalPoint = resJson.data.usableTotalPoint;
+      console.log(resJson.data)
+      setTotalPoint(resJson.data.usableTotalPoint)
+      console.log(TotalPoint)
     }
     return
   }
-  
-  totalPointOnFetch();
+  console.log(TotalPoint)
 
+  totalPointOnFetch()
+  
+  useEffect(() => {
+    totalPointOnFetch()
+  },[TotalPoint])
+  
   return (  
     <>
       <div className="flex justify-center w-full">

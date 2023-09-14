@@ -11,10 +11,13 @@ import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditio
 import { UserContext } from "@/app/signup/layout";
 
 
-function PhoneAuthBody() {
+function PhoneAuthBody( props:{pathName: string} ) {
 
     const user = useContext(UserContext);
-    const reqUrl = "https://workjo.duckdns.org"
+
+    const path = props.pathName;
+    const reqUrl = "http://workjo.duckdns.org"
+
     // const reqUrl = "http://10.10.10.103:8000"
 
     const [authPhoneNumber,setAuthPhoneNumber] = useState<string>("");;
@@ -189,7 +192,7 @@ function PhoneAuthBody() {
     },[reqCertNumber])
   return (
     <>
-      <form className='px-10 pt-4'>
+      <form className='px-5 pt-4'>
           <div className='text-[13px]'>
             <p className='pt-10 pb-2'>
               <b>이름을 입력해주세요.</b>
@@ -320,7 +323,11 @@ function PhoneAuthBody() {
                 { reqCertNumber === true && isClick === true ? null : <AuthDefaultTap/> } 
               </button>
 
-                { reqCertNumber === true && isClick === true ? <AuthBehindTap authNumber={authPhoneNumber}/> : null } 
+                { reqCertNumber === true && isClick === true ? 
+                <AuthBehindTap 
+                authNumber={authPhoneNumber}
+                pathName={path}
+                /> : null } 
 
               <p className='text-red-500 text-xs'>{errorText.reqInfo}</p>
             </form>
