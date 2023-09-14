@@ -3,7 +3,7 @@ import WinEvent from '@/components/pages/event/WinEvent'
 
 const page = () => {
   return (
-    <div>
+    <div className='pt-5'>
       <WinEvent/>
     </div>
   )

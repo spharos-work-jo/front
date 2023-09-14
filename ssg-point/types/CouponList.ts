@@ -1,6 +1,7 @@
 export interface CouponListType
 {
   id: number;
+  userCouponId: number;
   name: string;
   description: string;
   couponValue: string;
@@ -11,7 +12,15 @@ export interface CouponListType
   guideline: string;
   couponNum: string;
   isDownloaded:boolean;
+  userCouponStatus: string;
   partnerImageUrl: string;
   partnerThumbnailUrl: string;
-  remainDay: string;
+  remainDay: number;
+  couponId: string;
+}
+
+export interface CouponDownType
+{
+  couponId: number;
+  userCouponId: number;
 }

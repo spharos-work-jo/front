@@ -14,7 +14,7 @@ import { UserContext } from "@/app/signup/layout";
 function PhoneAuthBody() {
 
     const user = useContext(UserContext);
-    const reqUrl = "http://workjo.duckdns.org"
+    const reqUrl = "https://workjo.duckdns.org"
     // const reqUrl = "http://10.10.10.103:8000"
 
     const [authPhoneNumber,setAuthPhoneNumber] = useState<string>("");;
