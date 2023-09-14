@@ -8,6 +8,7 @@ import AuthProvider from '@/app/context/AuthProvider'
 import ScrollToTop from '@/components/ui/ScrollToTop'
 import React,{createContext} from 'react'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const AppContext = createContext<pointType>({
