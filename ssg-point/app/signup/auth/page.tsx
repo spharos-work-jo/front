@@ -10,6 +10,7 @@ import { useState } from "react";
 function Page(){
 
     const [selected,setSelected] = useState<string>("0");
+    const path = "signUpAuth"
 
     return(
         <>
@@ -21,7 +22,9 @@ function Page(){
                     setSelected={setSelected}
                 />
                 {
-                    selected === "0" ? <PhoneAuthBody/> : <CardAuthBody/>
+                    selected === "0" ? 
+                    <PhoneAuthBody
+                    pathName={path}/> : <CardAuthBody/>
 
                 }
                 <AuthBottom/>

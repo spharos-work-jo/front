@@ -45,13 +45,15 @@ function GiftPoint({userUuid,recName}:{
       method:"POST",
       headers:{
         'Content-type':'application/json',
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${token}`,
+        // 'Access-Control-Allow-Origin':"*"
       },
       body:JSON.stringify({
         sendGiftUserData
       })
     }
     console.log(sendGiftUserData)
+    console.log(typeof(sendGiftUserData.pointPassword))
     let res = await fetch("http://workjo.duckdns.org/api/v1/point/gifts/give",req)
     const data = await res.json();
     console.log(data)

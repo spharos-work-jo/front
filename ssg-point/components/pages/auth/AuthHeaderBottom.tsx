@@ -17,9 +17,7 @@ const handleClick = (e : any) => {
   
   return(
     <>
-      
-      
-        <div className='mt-10 mx-10 flex'>
+        <div className='mt-10 mx-5 flex'>
           
             {
               typeList.map( item => (
@@ -51,8 +49,6 @@ const handleClick = (e : any) => {
                             <span className='text-[13px]'>{item.title}</span>
                             </b>
                           </div>
-                        
-                        
                       </button>
                     </a>
                   </div>  
