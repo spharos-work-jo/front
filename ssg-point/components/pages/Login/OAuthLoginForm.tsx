@@ -72,7 +72,7 @@ function OAuthLoginForm() {
       return
     } else {
 
-      const response = await fetch('http://10.10.10.203:8000/api/v1/auth/oauth-login-create', {
+      const response = await fetch('https://workjo.duckdns.org/api/v1/auth/oauth-login-create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -94,19 +94,7 @@ function OAuthLoginForm() {
       });
       // ... 다른 로그인 후처리
     }
-
-    
-
-      // console.log(loginData)
-      // const result = await signIn('credentials', {
-      //   loginId: loginData.loginId,
-      //   password: loginData.password,
-      //   redirect: true,
-      //   callbackUrl: callBackUrl ? callBackUrl : '/'
-      // })
-      // console.log(result)
-    }
-  
+  }
 
   useEffect(() => {
     if(typeof window !== 'undefined') {

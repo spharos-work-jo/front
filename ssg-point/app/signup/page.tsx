@@ -7,8 +7,8 @@ function Page(){
     return (  
         <>
             <section className="pt-20 pb-10 block">
-              <SignupInfoTop />  
-              <SignupInfoBottom />  
+            <SignupInfoTop />  
+            <SignupInfoBottom />  
             </section>
         </>
     );

@@ -17,7 +17,7 @@ const IngEvent = () => {
         const headers = {
           'Content-Type': 'application/json',
         };
-          let apiUrl = `http://workjo.duckdns.org/api/v1/events/ongoing?sortedBy=${sort}`;
+          let apiUrl = `https://workjo.duckdns.org/api/v1/events/ongoing?sortedBy=${sort}`;
           const response = await fetch(apiUrl, {
             method: 'GET',
             headers,

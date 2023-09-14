@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import styles from './CouponAvailable.module.css';
+import styles from './CouponUsed.module.css';
 import Image from 'next/image';
 import { CouponListType } from '@/types/CouponList';
 import { useSession } from 'next-auth/react';
@@ -18,12 +18,16 @@ useEffect(() => {
         'Authorization': `Bearer ${session.data?.user.data.token}`
     };
 
-    const response = await fetch('http://workjo.duckdns.org/api/v1/coupon', {
+    const response = await fetch('https://workjo.duckdns.org/api/v1/coupon/my?searchType=NON_AVAILABLE', {
         method: 'GET',
         headers
-    });
+    })
     const data = await response.json();
-    setCouponList(data.data.content);
+    if (Array.isArray(data.data.content)) {
+        setCouponList(data.data.content);
+    } else {
+        console.error("Unexpected type for content", data.data.content);
+    }
     };
 
     fetchData();
@@ -35,8 +39,8 @@ useEffect(() => {
             <div className='coupon_search h-[46px] flex items-center justify-between border-b border-black'>
                 <div className='w-[95px] h-[38px] text-[14px] relative pt-3'>
                     <select className='sel'>
-                        <option value={'new'}>마감임박</option>
-                        <option value={'endDate'}>최신순</option>
+                        <option value={'new'}>최신순</option>
+                        <option value={'endDate'}>마감임박</option>
                     </select>
                 </div>
                 <div>
@@ -67,7 +71,7 @@ export default CouponUsed;
 
 
 const CouponWrap = ({ couponId } : { couponId: number }) => {
-    const session = useSession();  // Destructuring을 이용해서 session.data를 바로 사용
+    const session = useSession();
     const [isdownloaded, setIsdownloaded] = useState(false);
 
     const [couponData, setCouponData] = useState<CouponListType>({} as CouponListType);
@@ -78,7 +82,7 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
     };
     console.log(session.data);
 
-    const handleButtonClick = async () => {  // async 키워드 추가
+    const handleButtonClick = async () => {
         if (!session.data?.user.data.token) {
             Swal.fire({
             title: "로그인이 필요합니다.",
@@ -132,25 +136,6 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
         const closeModal = () => {
         setShowModal(false);
     };
-
-        // Swal.fire({
-        //     title: "쿠폰을 사용하시겠습니까?",
-        //     showCancelButton: true,
-        //     confirmButtonText: "사용",
-        //     cancelButtonText: "취소",
-        //     confirmButtonColor: "#000000",
-        //     cancelButtonColor: "#000000",
-        // }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         Swal.fire({
-        //             title: "쿠폰 사용에 성공했습니다.",
-        //             confirmButtonText: "확인",
-        //             confirmButtonColor: "#000000",
-        //         });
-        //     }
-        // }); 
-        // }
-
 
     return (
 

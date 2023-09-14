@@ -4,8 +4,6 @@ import styles from './CouponPageBot.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { ThisExpression } from 'typescript'
-
 
 const CouponPageBot = () => {
 

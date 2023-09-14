@@ -31,6 +31,7 @@ function EventBanner() {
 
   return (
     <section>
+      { EventTop && (
       <Swiper
         className='relative w-full h-[auto]'
         modules={[Scrollbar, Pagination, Navigation]}
@@ -66,8 +67,10 @@ function EventBanner() {
           )) : null // EventTop이 null이면 아무 것도 렌더링하지 않음
         }
       </Swiper>
+      )}
     </section>
   );
 }
+
 
 export default EventBanner;

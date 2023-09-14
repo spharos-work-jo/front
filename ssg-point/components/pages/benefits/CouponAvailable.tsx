@@ -7,19 +7,20 @@ import { useSession } from 'next-auth/react';
 import Swal from 'sweetalert2';
 import CustomBarcode from '@/components/ui/CustomBarcode';
 
-
-const CouponList = ( {pathName} : { pathName: string } ) => {
+const CouponUsed = ( {isUsed} : { isUsed: string } ) => {
     const [couponList, setCouponList] = useState<number[]>([]);
-    const session = useSession();  // Destructuring을 이용해서 session.data를 바로 사용
+    const session = useSession();
 
 useEffect(() => {
-    const fetchData = async () => {  // async 함수로 변경
+    async function fetchData() {
     const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${session.data?.user.data.token}`
     };
+    
+    const searchTypeQuery = isUsed === '0' ? 'AVAILABLE' : 'NON_AVAILABLE';
 
-    const response = await fetch('http://workjo.duckdns.org/api/v1/coupon/my', {
+    const response = await fetch(`https://workjo.duckdns.org/api/v1/coupon/my?searchType=${searchTypeQuery}`, {
         method: 'GET',
         headers
     });
@@ -28,7 +29,7 @@ useEffect(() => {
     };
 
     fetchData();
-}, []);
+}, [isUsed]);
 
     return (
         <div className='pt-2.5 pr-5 pb-14 pl-5'>
@@ -36,8 +37,8 @@ useEffect(() => {
             <div className='coupon_search h-[46px] flex items-center justify-between border-b border-black'>
                 <div className='w-[95px] h-[38px] text-[14px] relative pt-3'>
                     <select className='sel'>
-                        <option value={'new'}>마감임박</option>
-                        <option value={'endDate'}>최신순</option>
+                        <option value={'new'}>최신순</option>
+                        <option value={'endDate'}>마감임박</option>
                     </select>
                 </div>
                 <div>
@@ -64,11 +65,11 @@ useEffect(() => {
     );
 };
 
-export default CouponList;
+export default CouponUsed;
 
 
 const CouponWrap = ({ couponId } : { couponId: number }) => {
-    const session = useSession();  // Destructuring을 이용해서 session.data를 바로 사용
+    const session = useSession(); 
     const [isdownloaded, setIsdownloaded] = useState(false);
 
     const [couponData, setCouponData] = useState<CouponListType>({} as CouponListType);
@@ -79,7 +80,7 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
     };
     console.log(session.data);
 
-    const handleButtonClick = async () => {  // async 키워드 추가
+    const handleButtonClick = async () => {
         if (!session.data?.user.data.token) {
             Swal.fire({
             title: "로그인이 필요합니다.",
@@ -92,8 +93,7 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + session.data?.user.data.token
         };
-          // await 키워드를 추가하여 비동기 처리
-        const response = await fetch(`http://workjo.duckdns.org/api/v1/coupon/${couponId}/download`, {
+        const response = await fetch(`https://workjo.duckdns.org/api/v1/coupon/${couponId}/download`, {
             method: 'POST',
             headers,
             body: JSON.stringify({ id: couponData.id })
@@ -111,58 +111,31 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
     }
 
     useEffect(() => {
-        fetch(`http://workjo.duckdns.org/api/v1/coupon/${couponId}`, {
+        fetch(`https://workjo.duckdns.org/api/v1/coupon/${couponId}`, {
             method: 'GET',
             headers 
         })
         .then((response) => response.json())
         .then((data) => {
-
-            console.log(data)
             setCouponData(data.data)
             setIsdownloaded(data.data.isDownloaded);
         })
     },[])
-    
-    const [showModal, setShowModal] = useState(false);
-
-    const handleBarcodeClick = async () => {
-        setShowModal(true);
-    };
-        const closeModal = () => {
-        setShowModal(false);
-    };
-
-        // Swal.fire({
-        //     title: "쿠폰을 사용하시겠습니까?",
-        //     showCancelButton: true,
-        //     confirmButtonText: "사용",
-        //     cancelButtonText: "취소",
-        //     confirmButtonColor: "#000000",
-        //     cancelButtonColor: "#000000",
-        // }).then((result) => {
-        //     if (result.isConfirmed) {
-        //         Swal.fire({
-        //             title: "쿠폰 사용에 성공했습니다.",
-        //             confirmButtonText: "확인",
-        //             confirmButtonColor: "#000000",
-        //         });
-        //     }
-        // }); 
-        // }
-
 
     return (
 
-        <li key={couponData.id} className='border-b pt-4 box-border'>
+        <div key={couponData.id} className='border-b pt-4 box-border'>
             <div className='inline-block align-top'>
                 {couponData && couponData.imageUrl ? (
-                <Image src={couponData.imageUrl} alt={couponData.name} height={80} width={80} />
+                <Image src={couponData.imageUrl} alt='쿠폰이미지' height={80} width={80} />
                 ) : (
                 <p>Image Loading or Not Available</p>
                 )}
-
-                <Image src={couponData.partnerImageUrl} alt="emart24" height={80} width={80} />
+                {couponData && couponData.partnerImageUrl ? (
+                <Image src={couponData.partnerImageUrl} alt='파트너이미지' height={80} width={80} />
+                ) : (
+                    <p>Image Loading or Not Available</p>
+                )}
             </div>
             <div className='pl-[18px] w-[calc(100%_-_80px)] align-top inline-block box-border'>
                 <p className='text-[11px] text-gray-400 leading-5'>
@@ -181,10 +154,13 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
                 </p>
                 <div className='flex justify-between items-center box-border border-t-[1px] relative pt-[12px] pb-[16px] mt-[12px]'>
                     <div className='flex justify-between w-full'>
-                        <Image src={couponData.partnerThumbnailUrl} alt="e24" height={1} width={28} />
-                        
+                        {couponData && couponData.partnerThumbnailUrl ? (
+                        <Image src={couponData.partnerThumbnailUrl} alt='파트너썸네일' height={1} width={28} />
+                        ) : (
+                            <p>Image Loading or Not Available</p>
+                        )}
                         {isdownloaded ?
-                        <li onClick={handleBarcodeClick} className='flex mt-[-1px] mb-[-1px] whitespace-nowrap items-center text-[12px] text-slate-500'>사용하기
+                        <li className='flex mt-[-1px] mb-[-1px] whitespace-nowrap items-center text-[12px] text-slate-500'>사용하기
                         <CustomBarcode value={couponData.couponNum} options={{ width: 0.5, height: 15, displayValue:false }}/> </li> 
                         :
                         <button onClick={handleButtonClick}>
@@ -194,6 +170,6 @@ const CouponWrap = ({ couponId } : { couponId: number }) => {
                     </div>
                 </div>
             </div>
-        </li>
+        </div>
     );
 }

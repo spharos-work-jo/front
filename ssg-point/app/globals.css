@@ -637,6 +637,8 @@ background-size: 10px auto;
 } */
 
 
+
+/* event */
 .recomm {
   font-size: 13px;
   line-height: 21px;
@@ -671,5 +673,39 @@ background-size: 10px auto;
   font-size: 20px;
   line-height: 30px;
   background: url(/assets/images/event/event_bg.png) 0 100% no-repeat;
+  background-size: 100% auto;
+}
+
+.win {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-weight: 500;
+  box-sizing: border-box;
+  font-size: 20px;
+  line-height: 30px;
+  background: linear-gradient(106.4deg,#eb0000 6.03%,#eb6612 21.34%,#c68200 37.11%,#fc348c 52.88%,#7720a7 67.72%,#0ca19a 82.1%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.BACK::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  width: 120px;
+  height: 120px;
+  background: url(/assets/images/event/event_bg.png) 0 0 no-repeat;
   background-size: 100% auto;
 }

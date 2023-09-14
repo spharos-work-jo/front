@@ -1,11 +1,12 @@
 'use client'
 import React, { useEffect } from 'react';
 import { useSession, getSession } from 'next-auth/react';
-import { useRouter } from 'next/navigation'; // please note that I corrected the import path
-import { get } from 'http';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const OAuthLoading = () => {
   const { data: session, status } = useSession();
+  const [token, setToken] = useState(null);
   const router = useRouter();
   
   useEffect(() => {
@@ -15,7 +16,7 @@ const OAuthLoading = () => {
         provider: 'NAVER',
       };
 
-      fetch('http://10.10.10.203:8000/api/v1/auth/oauth-login', {
+      fetch('https://workjo.duckdns.org/api/v1/auth/oauth-login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,14 +31,10 @@ const OAuthLoading = () => {
         console.log("유저데이터: ", data);
 
         if (data.code === 'S001') {
-          // Store JWT in localStorage (if that's your method of storing tokens)
-          fetch('http:// ')
-          session.user.data.token = data.data.token;
-      
-          // Navigate to home
+          setToken(data.data.token);
           router.push('/');
+          
         } else {
-          // Navigate to total login if the login attempt was not successful
           router.push('/totallogin');
         }
       });
