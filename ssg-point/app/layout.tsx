@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   themeColor: '#ffffff',
 }
 
-
 export default function RootLayout({
   children,
 }: {
