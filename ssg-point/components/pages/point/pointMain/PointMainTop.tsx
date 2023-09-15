@@ -11,34 +11,24 @@ function PointMainTop() {
   const token = session.data?.user.data.token;
   const [TotalPoint,setTotalPoint] = useState<number>(0);
 
-  window.onload= async function(){
-    totalPointOnFetch()
-  }
-
-  async function totalPointOnFetch() { 
-
-    let res = await fetch('http://workjo.duckdns.org/api/v1/point/simple-info',{
-      method:"GET",
-      headers:{
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    
-    if(res.ok){
-      let resJson = await res.json();
-      console.log(resJson.data)
-      setTotalPoint(resJson.data.usableTotalPoint)
-      console.log(TotalPoint)
-    }
-    return
-  }
-  console.log(TotalPoint)
-
-  totalPointOnFetch()
   
   useEffect(() => {
-    totalPointOnFetch()
-  },[TotalPoint])
+    const getData = async () => { 
+
+      await fetch('http://workjo.duckdns.org/api/v1/point/simple-info',{
+        method:"GET",
+        headers:{
+          'Authorization': `Bearer ${token}`
+        }
+      }).then(res => res.json())
+      .then(data => {
+        setTotalPoint(data.data.usableTotalPoint)
+        setSavePoint(data.data.savePoint)
+        setDeletePoint(data.data.deletePoint)
+      })
+    }
+    getData()
+  },[])
   
   return (  
     <>

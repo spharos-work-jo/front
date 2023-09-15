@@ -1,12 +1,13 @@
 'use client'
 
-import { UserContext } from "@/app/signup/layout";
+import { UserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 import React, { useState, useContext } from "react";
 
-  const AuthBehindTap = ( props : { authNumber:string,pathName:string }) => {
+const AuthBehindTap = ( props : { authNumber:string,pathName:string }) => {
 
     const user = useContext(UserContext);
+    
     const router = useRouter();
     const pathName = props.pathName;
 

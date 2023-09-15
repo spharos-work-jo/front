@@ -1,5 +1,5 @@
 'use client'
-import { UserContext } from "@/app/signup/layout";
+import { UserContext } from "@/context/UserContext";
 import React, { useContext } from "react";
 
 function SignupCompletionBottom() {

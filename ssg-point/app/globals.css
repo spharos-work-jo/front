@@ -77,7 +77,6 @@ body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, button, input, textarea, figure, fi
 .btn_primary {
   padding-top: 6px;
   background: linear-gradient(110deg,#f40000 -5.78%,#ff8a00 17.06%,#f8b404 33.44%,#f9ad05 48.81%,#ff8a00 64.68%,#b258cb 85.01%,#00c4b4 103.04%);
-  /* background: var(--ssg-point-primary-gradient); */
   color: #000;
 }
 
@@ -192,7 +191,7 @@ body {
 
 .postmodal{
   position: fixed;
-  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
   height: 100px;
   width: 250px;
   top:20%;
@@ -265,7 +264,7 @@ background: linear-gradient(93.4deg,#f40000,#ff8a00 14.06%,#f9ad05 37.76%,#fc348
 }
 
 .scrollbar::-webkit-scrollbar {
-  width: 0; /* 웹킷 브라우저에서 스크롤바의 너비를 0으로 설정하여 숨김 */
+  width: 0; 
 }
 
 /* mypoint tab */
@@ -634,7 +633,7 @@ background-size: 10px auto;
 
 .mySwal-only-confirm {
   justify-content: center !important;
-} */
+} 
 
 
 

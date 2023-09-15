@@ -8,13 +8,12 @@ import { localForeignerList } from '@/data/localForeignerList';
 import AuthBehindTap from './AuthBehindTap';
 import CheckStatus from './CheckStatus';
 import { signUpAgreeList, signUpAgreeListType } from '@/data/signUpAgreeConditionsList';
-import { UserContext } from "@/app/signup/layout";
+import { UserContext } from '@/context/UserContext';
 
 
 function PhoneAuthBody( props:{pathName: string} ) {
 
     const user = useContext(UserContext);
-
     const path = props.pathName;
     const reqUrl = "http://workjo.duckdns.org"
 

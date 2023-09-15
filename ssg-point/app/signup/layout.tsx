@@ -1,8 +1,7 @@
 'use client'
-import React, { createContext } from 'react'
-import { Context } from '../layout';
+import { UserContext } from '@/context/UserContext';
+import React, { createContext, use, useContext } from 'react'
 
-export const UserContext = createContext<userInputProfileType>({} as userInputProfileType);
 
 export interface userInputProfileType{
   userName:string,
@@ -10,13 +9,15 @@ export interface userInputProfileType{
   birthDay:string,
   loginId:string,
 }
-const user:userInputProfileType = {
-  userName:"",
-  phone:"",
-  birthDay:"",
-  loginId:""
-}
+
+
 export default function Layout({children} : {children: React.ReactNode}){
+    const user:userInputProfileType = {
+      userName:"",
+      phone:"",
+      birthDay:"",
+      loginId:""
+    }
     return (  
         <>
           <UserContext.Provider value={user}>

@@ -7,7 +7,7 @@ import { profileInputErrTextType } from "@/types/profileInputErrTextType";
 import { DaumAddressType } from "@/types/DaumAddressType";
 import DaumPostCodeModal from "../auth/modal/DaumPostCodeModal";
 import { wayMarketingList } from "@/data/wayMarketingList";
-import { UserContext } from "@/app/signup/layout";
+import { UserContext } from "@/context/UserContext";
 
 
 function ProfileInputBody() {

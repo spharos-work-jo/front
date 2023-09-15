@@ -1,7 +1,7 @@
 'use client'
-import { UserContext } from "@/app/signup/layout";
 import React, { useContext } from "react";
 import Image from "next/image";
+import { UserContext } from "@/context/UserContext";
 
 function SignupCompletionTop() {
 
