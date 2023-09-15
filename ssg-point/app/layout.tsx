@@ -4,7 +4,6 @@ import type { Metadata } from 'next'
 import Footer from '@/components/layout/Footer'
 import AuthProvider from '@/app/context/AuthProvider'
 import ScrollToTop from '@/components/ui/ScrollToTop'
-import React from 'react'
 
 export const metadata: Metadata = {
   title: '신세계포인트',
@@ -13,13 +12,6 @@ export const metadata: Metadata = {
   icons: { apple: '/assets/images/icons/icon-192x192.png'},
   themeColor: '#ffffff',
 }
-
-
-
-// const myFont = localFont({
-//   src: '../fonts/NotoSans.ttf ',
-//   display: 'swap',
-// })
 
 
 export default function RootLayout({
