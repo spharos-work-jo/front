@@ -24,7 +24,7 @@ function Page(){
                     setSelected={setSelected}
                 />
                 {
-                    selected === "0" ? <PhoneAuthBody/> : <CardAuthBody/>
+                    selected === "0" ? <PhoneAuthBody pathName="???"/> : <CardAuthBody/>
 
                 }
                 <AuthBottom/>

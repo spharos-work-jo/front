@@ -6,7 +6,7 @@ const Page = () => {
 
   return (
     <div>
-     <OAuthLoading/>
+    <OAuthLoading/>
     </div>
   )
 }

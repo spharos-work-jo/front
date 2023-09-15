@@ -1,5 +1,4 @@
 'use client'
-import { AppContext } from "@/app/layout";
 import { pointDataType } from "@/types/pointDataType";
 import Image from "next/image";
 import React, { useContext, useEffect } from "react";
@@ -7,7 +6,6 @@ import React, { useContext, useEffect } from "react";
 function CreatePointComponent({ data, id } : { data: pointDataType[], id:string }) {
 
   const PointData = data;
-  // const point = useContext(AppContext);
   const myDate = new Date();
 
   // useEffect(() =>{
