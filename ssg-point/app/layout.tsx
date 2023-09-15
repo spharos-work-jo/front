@@ -1,32 +1,10 @@
-'use client'
 import Header from '@/components/layout/Header'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import Footer from '@/components/layout/Footer'
 import AuthProvider from '@/app/context/AuthProvider'
 import ScrollToTop from '@/components/ui/ScrollToTop'
-import React,{createContext} from 'react'
-
-const inter = Inter({ subsets: ['latin'] })
-
-export const AppContext = createContext<pointType>({
-
-  totalPoint:0
-
-});
-  
-interface pointType{
-
-  totalPoint:number,
-
-}
-
-  const point:pointType = {
-
-  totalPoint : 0,
-
-  };
+import React from 'react'
 
 export const metadata: Metadata = {
   title: '신세계포인트',
@@ -51,7 +29,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <AppContext.Provider value={point}>
       <body className='inter.classname'>
         <AuthProvider>
           <Header />
@@ -60,7 +37,6 @@ export default function RootLayout({
           <ScrollToTop />
         </AuthProvider>
       </body>
-      </AppContext.Provider>
     </html>
   )
 }
