@@ -49,8 +49,7 @@ function GiftMainBody() {
       })
   }
 
-    console.log(req)
-
+      console.log(req)
       let response = await fetch(findUUIDUrl,req)
       
       if(response.ok){
