@@ -61,7 +61,7 @@ function GiftPoint({userUuid,recName}:{
       })
       return
     }
-    let res = await fetch("http://workjo.duckdns.org/api/v1/point/gifts/give",{
+    let res = await fetch("https://workjo.duckdns.org/api/v1/point/gifts/give",{
       method:"POST",
       headers:{
         'Content-type':'application/json',
@@ -114,7 +114,7 @@ function GiftPoint({userUuid,recName}:{
   }
   async function fetchPoint() {
 
-    let res = await fetch("http://workjo.duckdns.org/api/v1/point/simple-info",{
+    let res = await fetch("https://workjo.duckdns.org/api/v1/point/simple-info",{
       method:"GET",
       headers:{
         'Authorization': `Bearer ${token}`
