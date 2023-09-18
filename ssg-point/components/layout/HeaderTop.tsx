@@ -109,7 +109,7 @@ function HeaderTop() {
                 <>
                 <CustomBarcode value={session.data?.user.data?.uuid} options={{ width: 0.1, height: 10, displayValue:false}}/>
                 <p className='inline-block text-xs' onClick={handleLogout}>
-                  {topName} 님 {totalPoint}
+                  {topName} 님&#160;&#160;{totalPoint}
                 </p>
                 <span className='inline-block pl-2'>
                   <Image src="/assets/images/etc/point.png" alt="포인트" height={15} width={15}/>

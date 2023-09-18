@@ -191,7 +191,7 @@ function PhoneAuthBody( props:{pathName: string} ) {
     },[reqCertNumber])
   return (
     <>
-      <form className='px-5 pt-4'>
+      <form className='pt-4'>
           <div className='text-[13px]'>
             <p className='pt-10 pb-2'>
               <b>이름을 입력해주세요.</b>
